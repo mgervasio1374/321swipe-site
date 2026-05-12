@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Brand palette */
+  --color-navy-950: #060d1c;
+  --color-navy-900: #0c1524;
+  --color-navy-800: #132040;
+  --color-navy-700: #1a3460;
+  --color-navy-600: #1e4080;
+  --color-navy-100: #dce8f5;
+  --color-navy-50:  #eef4fb;
+
+  --color-accent-600: #1d4ed8;
+  --color-accent-500: #2563eb;
+  --color-accent-400: #3b82f6;
+  --color-accent-50:  #eff6ff;
+
+  --color-surface:   #f8fafc;
+  --color-surface-2: #f1f5f9;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #ffffff;
+  --foreground: #0c1524;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* ── Atmospheric ambient drift — for large environmental glow orbs ──────────── */
+/* Three variants with different timing and phase to feel organic              */
+
+@keyframes ambient-drift {
+  0%, 100% { transform: translate(0px,    0px)   scale(1.00); }
+  20%       { transform: translate(18px,  -14px) scale(1.04); }
+  45%       { transform: translate(-10px,  12px) scale(0.97); }
+  70%       { transform: translate(14px,   18px) scale(1.03); }
+}
+
+@keyframes ambient-drift-b {
+  0%, 100% { transform: translate(0px,    0px)   scale(1.00); }
+  30%       { transform: translate(-22px,  10px) scale(1.05); }
+  65%       { transform: translate(16px,  -10px) scale(0.96); }
+}
+
+@keyframes ambient-drift-c {
+  0%, 100% { transform: translate(0px,   0px)   scale(1.00); }
+  25%       { transform: translate(10px, -20px) scale(1.03); }
+  55%       { transform: translate(-16px, 14px) scale(0.98); }
+  80%       { transform: translate(8px,   10px) scale(1.02); }
+}
+
+.ambient-a { animation: ambient-drift   28s ease-in-out infinite; }
+.ambient-b { animation: ambient-drift-b 36s ease-in-out infinite; animation-delay: -14s; }
+.ambient-c { animation: ambient-drift-c 22s ease-in-out infinite reverse; animation-delay: -8s; }
+
+/* ── Grain drift — subtle film-grain texture shift ──────────────────────────── */
+@keyframes grain-drift {
+  0%   { transform: translate(0%, 0%); }
+  20%  { transform: translate(-1.5%, -1%); }
+  40%  { transform: translate(1%, -2%); }
+  60%  { transform: translate(-1%, 1.5%); }
+  80%  { transform: translate(1.5%, 0.5%); }
+  100% { transform: translate(0%, 0%); }
+}
+.grain-overlay { animation: grain-drift 8s steps(1) infinite; }
+
+/* ── Glow breathe — gentle pulse on smaller glow elements ──────────────────── */
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 0.85; transform: scale(1.06); }
+}
+.glow-breathe      { animation: glow-breathe  8s ease-in-out infinite; }
+.glow-breathe-slow { animation: glow-breathe 12s ease-in-out infinite; animation-delay: -4s; }
+
+/* ── Live pulse ring — expanding ring on operational indicators ─────────────── */
+@keyframes live-pulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.live-ring { animation: live-pulse 2s ease-out infinite; }
+
+/* ── Intelligence wave — for animated path lines ────────────────────────────── */
+@keyframes wave-drift {
+  0%, 100% { transform: translateX(0px); }
+  50%       { transform: translateX(-12px); }
+}
+.wave-drift { animation: wave-drift 14s ease-in-out infinite; }
+
+/* ── Subtle background shimmer — soft light wave across the page ──────────────── */
+@keyframes bg-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.bg-shimmer {
+  background-size: 200% 200%;
+  animation: bg-shimmer 15s ease-in-out infinite;
+}
+
+/* ── Gradient pulse — gentle opacity shift on gradient overlays ──────────────── */
+@keyframes gradient-pulse {
+  0%, 100% { opacity: 0.04; }
+  50% { opacity: 0.08; }
+}
+.gradient-pulse { animation: gradient-pulse 12s ease-in-out infinite; }
