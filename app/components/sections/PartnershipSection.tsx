@@ -37,7 +37,8 @@ export function PartnershipSection() {
       {/* Top gradient entry — smooths the dark-to-light transition from IntelligenceSection */}
       <div
         aria-hidden
-        className="pointer-events-none absolute top-0 inset-x-0 h-20 bg-gradient-to-b from-slate-50/60 to-transparent"
+        className="pointer-events-none absolute top-0 inset-x-0 h-32"
+        style={{ background: "linear-gradient(180deg, #0d1e3a 0%, #1e293b 18%, #94a3b8 38%, #f1f5f9 60%, #ffffff 80%)" }}
       />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 

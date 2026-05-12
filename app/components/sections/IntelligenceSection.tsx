@@ -54,7 +54,7 @@ export function IntelligenceSection() {
     <section
       id="intelligence"
       className="relative py-28 lg:py-36 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #ffffff 0%, #060d1c 7%)" }}
+      style={{ background: "linear-gradient(180deg, #ffffff 0%, #f1f5f9 5%, #94a3b8 14%, #1e293b 26%, #0d1e3a 38%, #060d1c 52%)" }}
     >
       {/* Multi-layer glow system */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
