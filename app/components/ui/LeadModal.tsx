@@ -14,6 +14,7 @@ const LABEL = "block text-[10.5px] font-semibold uppercase tracking-wide text-na
 export function LeadModal() {
   const [open, setOpen]     = useState(false);
   const [step, setStep]     = useState<Step>("idle");
+  const [errMsg, setErrMsg] = useState("");
   const [file, setFile]     = useState<File | null>(null);
   const [dragging, setDrag] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -60,8 +61,11 @@ export function LeadModal() {
     try {
       const res  = await fetch("https://api.web3forms.com/submit", { method: "POST", body: fd });
       const data = await res.json();
+      console.log("Web3Forms response:", data);
       setStep(data.success ? "success" : "error");
-    } catch {
+      if (!data.success) setErrMsg(data.message ?? "Unknown error");
+    } catch (err) {
+      console.error("Submission error:", err);
       setStep("error");
     }
   };
@@ -256,7 +260,7 @@ export function LeadModal() {
 
                     {step === "error" && (
                       <p className="mt-2.5 text-xs text-red-400 text-center">
-                        Something went wrong. Please try again or email us directly.
+                        {errMsg || "Something went wrong. Please try again or email us directly."}
                       </p>
                     )}
 
