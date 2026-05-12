@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { EASE } from "@/app/lib/animations";
 
@@ -15,15 +15,17 @@ export function LeadModal() {
   const [open, setOpen]     = useState(false);
   const [step, setStep]     = useState<Step>("idle");
   const [errMsg, setErrMsg] = useState("");
-  const [file, setFile]     = useState<File | null>(null);
-  const [dragging, setDrag] = useState(false);
-  const fileRef = useRef<HTMLInputElement>(null);
   const [form, setForm]     = useState({ name: "", company: "", email: "", phone: "", processor: "" });
 
   useEffect(() => {
-    const open = () => { setOpen(true); setStep("idle"); setFile(null); setForm({ name: "", company: "", email: "", phone: "", processor: "" }); };
-    window.addEventListener("open-lead-modal", open);
-    return () => window.removeEventListener("open-lead-modal", open);
+    const handler = () => {
+      setOpen(true);
+      setStep("idle");
+      setErrMsg("");
+      setForm({ name: "", company: "", email: "", phone: "", processor: "" });
+    };
+    window.addEventListener("open-lead-modal", handler);
+    return () => window.removeEventListener("open-lead-modal", handler);
   }, []);
 
   useEffect(() => {
@@ -39,11 +41,6 @@ export function LeadModal() {
       setForm(f => ({ ...f, [k]: e.target.value })),
   });
 
-  const pickFile = (f: File) => {
-    if (f.size > 10 * 1024 * 1024) return;
-    setFile(f);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStep("submitting");
@@ -56,16 +53,13 @@ export function LeadModal() {
     fd.append("phone", form.phone);
     fd.append("company", form.company);
     if (form.processor) fd.append("current_processor", form.processor);
-    if (file) fd.append("statement", file, file.name);
 
     try {
       const res  = await fetch("https://api.web3forms.com/submit", { method: "POST", body: fd });
       const data = await res.json();
-      console.log("Web3Forms response:", data);
       setStep(data.success ? "success" : "error");
       if (!data.success) setErrMsg(data.message ?? "Unknown error");
-    } catch (err) {
-      console.error("Submission error:", err);
+    } catch {
       setStep("error");
     }
   };
@@ -108,7 +102,7 @@ export function LeadModal() {
                 </svg>
               </button>
 
-              {/* ── Success state ── */}
+              {/* ── Success ── */}
               {step === "success" ? (
                 <div className="p-10 text-center">
                   <div className="w-12 h-12 rounded-full bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center mx-auto mb-5">
@@ -117,12 +111,12 @@ export function LeadModal() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">Request Received</h3>
-                  <p className="text-sm text-navy-100/55 leading-relaxed mb-7 max-w-xs mx-auto">
-                    We'll review your information and reach out within one business day. Keep an eye on your inbox.
+                  <p className="text-sm text-navy-100/55 leading-relaxed mb-2 max-w-xs mx-auto">
+                    We'll reach out within one business day. Your advisor will request your processor statement directly when we connect.
                   </p>
                   <button
                     onClick={close}
-                    className="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-navy-800/60 border border-navy-700/60 text-sm font-medium text-white hover:bg-navy-700/60 transition-colors"
+                    className="mt-5 inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-navy-800/60 border border-navy-700/60 text-sm font-medium text-white hover:bg-navy-700/60 transition-colors"
                   >
                     Close
                   </button>
@@ -176,56 +170,14 @@ export function LeadModal() {
                       <input type="text" placeholder="e.g. Heartland, Square, Stripe…" className={INPUT} {...field("processor")} />
                     </div>
 
-                    {/* File drop zone */}
-                    <div>
-                      <label className={LABEL}>
-                        Attach Statement <span className="normal-case font-normal opacity-60">(optional · PDF, JPG, PNG · 10 MB max)</span>
-                      </label>
-                      <div
-                        onDragOver={e => { e.preventDefault(); setDrag(true); }}
-                        onDragLeave={() => setDrag(false)}
-                        onDrop={e => { e.preventDefault(); setDrag(false); const f = e.dataTransfer.files?.[0]; if (f) pickFile(f); }}
-                        onClick={() => fileRef.current?.click()}
-                        className={`relative rounded-xl border-2 border-dashed px-4 py-4 text-center cursor-pointer transition-colors ${
-                          dragging
-                            ? "border-accent-500/60 bg-accent-500/5"
-                            : "border-navy-700/50 hover:border-navy-600/60 hover:bg-navy-800/20"
-                        }`}
-                      >
-                        <input
-                          ref={fileRef}
-                          type="file"
-                          accept=".pdf,.jpg,.jpeg,.png"
-                          className="sr-only"
-                          onChange={e => { const f = e.target.files?.[0]; if (f) pickFile(f); }}
-                        />
-                        {file ? (
-                          <div className="flex items-center justify-center gap-2">
-                            <svg viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 text-accent-400 shrink-0">
-                              <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2L9.5 1.5z" />
-                            </svg>
-                            <span className="text-xs text-white font-medium truncate max-w-[200px]">{file.name}</span>
-                            <button
-                              type="button"
-                              onClick={e => { e.stopPropagation(); setFile(null); if (fileRef.current) fileRef.current.value = ""; }}
-                              className="text-navy-100/40 hover:text-white ml-1 shrink-0"
-                            >
-                              <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5">
-                                <path d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z" />
-                              </svg>
-                            </button>
-                          </div>
-                        ) : (
-                          <>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5 text-navy-100/25 mx-auto mb-1">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
-                            </svg>
-                            <p className="text-xs text-navy-100/35">
-                              Drag & drop or <span className="text-accent-400">browse</span>
-                            </p>
-                          </>
-                        )}
-                      </div>
+                    {/* Statement note */}
+                    <div className="flex items-start gap-2.5 rounded-xl px-3.5 py-3" style={{ background: "rgba(37,99,235,0.06)", border: "1px solid rgba(37,99,235,0.12)" }}>
+                      <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5 text-accent-400 shrink-0 mt-0.5">
+                        <path fillRule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm8-2.5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 018 5.5zm0-2a1 1 0 110 2 1 1 0 010-2z" clipRule="evenodd" />
+                      </svg>
+                      <p className="text-[11px] text-navy-100/45 leading-relaxed">
+                        Your advisor will request your processor statement directly when we connect — no need to attach anything now.
+                      </p>
                     </div>
                   </div>
 
@@ -260,7 +212,7 @@ export function LeadModal() {
 
                     {step === "error" && (
                       <p className="mt-2.5 text-xs text-red-400 text-center">
-                        {errMsg || "Something went wrong. Please try again or email us directly."}
+                        {errMsg || "Something went wrong. Please try again."}
                       </p>
                     )}
 
