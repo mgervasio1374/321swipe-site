@@ -240,8 +240,8 @@ export function HeroSection() {
               {...fadeUp(0.43)}
               className="mt-7 flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
             >
-              <motion.a
-                href="#review"
+              <motion.button
+                onClick={() => window.dispatchEvent(new Event("open-lead-modal"))}
                 whileHover={{ scale: 1.025 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center justify-center gap-2 rounded-lg text-white font-semibold text-sm px-6 py-3 transition-colors"
@@ -254,8 +254,8 @@ export function HeroSection() {
                 <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5 opacity-60">
                   <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
                 </svg>
-              </motion.a>
-              <Button variant="secondary" href="#contact" className="text-sm px-6 py-3">
+              </motion.button>
+              <Button variant="secondary" onClick={() => (window as any).Tawk_API?.maximize?.()} className="text-sm px-6 py-3">
                 Talk to 321 Swipe
               </Button>
             </motion.div>

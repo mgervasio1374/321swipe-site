@@ -162,15 +162,15 @@ export function PartnershipSection() {
 
                 {/* Footer CTA */}
                 <div className="px-7 pb-7 pt-4">
-                  <a
-                    href="#review"
+                  <button
+                    onClick={() => window.dispatchEvent(new Event("open-lead-modal"))}
                     className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-accent-500 hover:text-accent-600 transition-colors"
                   >
                     See what a statement review looks like
                     <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5">
                       <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
                     </svg>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
