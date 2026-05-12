@@ -103,10 +103,15 @@ export function IntelligenceSection() {
 
             <ScrollReveal delay={0.16}>
               <p className="mt-5 text-[15px] text-navy-100/70 leading-relaxed max-w-lg">
-                Most processors profit from complexity. We exist to eliminate it.
-                Every 321 Swipe client gets access to Verian — our payment
-                intelligence layer that translates your processor statement into
-                plain numbers, real insights, and concrete savings.
+                Verian is 321 Swipe&apos;s payment intelligence platform. It turns processor
+                statements into plain-English insights, clear fee visibility, and concrete
+                savings opportunities.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={0.22}>
+              <p className="mt-3 text-[13px] text-navy-100/50 leading-relaxed max-w-lg">
+                No black-box reports. No confusing fee codes. Just a clear view of what
+                you are paying, why it changed, and what to fix.
               </p>
             </ScrollReveal>
 

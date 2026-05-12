@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(Get-Content \"C:\\\\Users\\\\micha\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-micha-Documents-321swipe-site\\\\71987ea0-bcbf-4e4e-b3e5-ad3848b6b984\\\\tasks\\\\bt1z186zo.output\" -Wait)",
+      "Bash(Select-String -Pattern \"ready|error|Error|failed|localhost\" --SimpleMatch)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\micha\\\\Documents\\\\321swipe-site\" -Recurse -Force)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\micha\\\\Documents\\\\321swipe-site\\\\node_modules\\\\next\\\\dist\\\\docs\\\\01-app\\\\\" -Recurse -Name | head -50)",
+      "Bash(npm install *)",
+      "Bash(taskkill /PID 61832 /F)",
+      "Bash(taskkill /PID 32544 /F)",
+      "Bash(npx tsc *)",
+      "Bash(npm list *)",
+      "Bash(node -e \"const fm = require\\('c:/Users/micha/Documents/321swipe-site/node_modules/framer-motion'\\); console.log\\(Object.keys\\(fm\\).slice\\(0,10\\)\\)\")",
+      "Bash(node -e \"const fm = require\\('c:/Users/micha/Documents/321swipe-site/node_modules/framer-motion/dist/dom.js'\\); \")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://321swipe-site-zyqz.vercel.app/)",
+      "Bash(npx vercel *)"
+    ]
+  }
+}

@@ -9,6 +9,19 @@ const featuredServices = [
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+        <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
+    title: "Statement Analysis",
+    subtitle: "Where the money is",
+    body: "A human analyst reviews your processor statement every month. We find what you're being overcharged, explain it in plain English, and fix it — without you having to ask.",
+    tags: ["Monthly human review", "Hidden fee identification", "Rate optimization"],
+    accent: "from-emerald-50/60 to-teal-50/30",
+    iconBg: "bg-emerald-600",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
         <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
         <line x1="1" y1="10" x2="23" y2="10" />
       </svg>
@@ -19,19 +32,6 @@ const featuredServices = [
     tags: ["All card types", "Next-day funding", "Interchange-plus", "No hidden fees"],
     accent: "from-navy-50 to-accent-50/40",
     iconBg: "bg-accent-500",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-        <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-      </svg>
-    ),
-    title: "Statement Analysis",
-    subtitle: "Where the money is",
-    body: "A human analyst reviews your processor statement every month. We find what you're being overcharged, explain it in plain English, and fix it — without you having to ask.",
-    tags: ["Monthly human review", "Hidden fee identification", "Rate optimization"],
-    accent: "from-emerald-50/60 to-teal-50/30",
-    iconBg: "bg-emerald-600",
   },
 ];
 
@@ -44,7 +44,7 @@ const supportingServices = [
       </svg>
     ),
     title: "Surcharging",
-    body: "Compliant surcharge programs that offset your processing costs without losing customers. We handle setup, signage, and ongoing compliance.",
+    body: "Compliant surcharge programs designed to help offset processing costs while protecting the customer experience. We assist with setup, signage, and program guidance.",
   },
   {
     icon: (

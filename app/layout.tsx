@@ -10,9 +10,9 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "321 Swipe — Modern Payment Intelligence for Home Service Businesses",
+  title: "321 Swipe | Payment Intelligence for Home Service Contractors",
   description:
-    "321 Swipe helps contractors simplify payments, improve visibility, and make smarter financial decisions with human guidance and modern technology.",
+    "321 Swipe helps HVAC, plumbing, electrical, roofing, and home service contractors understand processing costs, review statements, and improve payment workflows.",
 };
 
 export default function RootLayout({

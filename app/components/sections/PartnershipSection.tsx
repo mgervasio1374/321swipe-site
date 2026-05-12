@@ -59,9 +59,8 @@ export function PartnershipSection() {
           <ScrollReveal delay={0.18}>
             <p className="mt-6 text-base text-slate-500 leading-relaxed max-w-2xl">
               Every contractor we work with gets more than a payment processor.
-              They get an advisor who picks up the phone, reviews their numbers
-              every month, and proactively brings them savings — without being asked.
-              That&apos;s a relationship most processors simply can&apos;t offer.
+              They get a named advisor who picks up the phone, reviews their numbers,
+              and proactively brings savings opportunities before they have to ask.
             </p>
           </ScrollReveal>
         </div>
@@ -85,9 +84,9 @@ export function PartnershipSection() {
                     Every account includes
                   </p>
                   <h3 className="text-base font-bold text-navy-900 leading-snug">
-                    No call centers.
+                    What every 321 Swipe
                     <br />
-                    No tiers. No surprises.
+                    client gets
                   </h3>
                 </div>
 

@@ -62,15 +62,15 @@ export function AdvantageSection() {
             </ScrollReveal>
             <ScrollReveal delay={0.08}>
               <h2 className="text-3xl sm:text-4xl font-bold text-navy-900 leading-tight tracking-tight">
-                Not backed by private equity.{" "}
+                Independent by design.{" "}
                 <span className="text-accent-500">Built for contractors.</span>
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={0.16}>
               <p className="mt-5 text-base text-slate-500 leading-relaxed max-w-sm">
-                The largest payment processors are PE-owned and optimized for
-                margin. We&apos;re optimized for contractor outcomes — which means
-                lower costs, real transparency, and genuine relationships.
+                Many large processors are built around scale, margin, and investor returns.
+                321 Swipe stays independent, relationship-driven, and focused on contractor
+                outcomes: lower costs, clearer reporting, and real accountability.
               </p>
             </ScrollReveal>
 

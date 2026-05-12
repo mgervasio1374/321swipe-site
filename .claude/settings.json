@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(timeout 15)",
+      "Bash(Get-Content \"C:\\\\Users\\\\micha\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-micha-Documents-321swipe-site\\\\71987ea0-bcbf-4e4e-b3e5-ad3848b6b984\\\\tasks\\\\buc56zpuw.output\")",
+      "Bash(find /c/Users/micha -name \"*.json\" -path \"*vercel*\" 2>/dev/null | grep -v node_modules | grep -v npm-cache | head -20)",
+      "Read(//c/Users/micha/**)"
+    ]
+  }
+}
