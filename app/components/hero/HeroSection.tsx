@@ -163,7 +163,7 @@ export function HeroSection() {
           ════════════════════════════════════════════════════════════════════════ */}
       <motion.div
         className="relative w-full mx-auto max-w-7xl px-6 lg:px-8"
-        style={{ paddingTop: "calc(60px + 3.5vh)", paddingBottom: "4vh", y: txtParallax }}
+        style={{ paddingTop: "calc(60px + 1.5vh)", paddingBottom: "4vh", y: txtParallax }}
       >
         {/* Asymmetric grid — right column is wider and offset to break rigidity */}
         <div className="grid lg:grid-cols-[1fr_1.22fr] items-center gap-10 lg:gap-4">
@@ -218,10 +218,9 @@ export function HeroSection() {
               {...fadeUp(0.28)}
               className="mt-5 text-[1rem] text-slate-500 leading-[1.72] max-w-[440px]"
             >
-              Most home service contractors overpay their processor every month —
-              and never know it. 321 Swipe finds the money you&apos;re losing,
-              puts a real advisor in your corner, and gives you full visibility
-              into what your payments are actually costing you.
+              Most home service contractors overpay their processor every month — and never know it.
+              321 Swipe reviews your statements, identifies hidden fees and pricing issues, and gives
+              you clear visibility into what your payments are actually costing you.
             </motion.p>
 
             {/* Human trust signal */}
@@ -232,7 +231,7 @@ export function HeroSection() {
               <svg viewBox="0 0 16 16" fill="currentColor" className="w-3 h-3 text-accent-400 shrink-0">
                 <path d="M8 8a3 3 0 100-6 3 3 0 000 6zm0 1a5 5 0 00-4.546 2.916A5.986 5.986 0 008 14a5.986 5.986 0 004.546-2.084A5 5 0 008 9z" />
               </svg>
-              Real people reviewing real statements. Technology backed by human expertise.
+              Real people review real statements. Technology helps us find the leaks faster.
             </motion.p>
 
             {/* CTAs */}
@@ -265,7 +264,7 @@ export function HeroSection() {
             {/* Trust strip */}
             <motion.div
               {...fadeUp(0.54)}
-              className="mt-7 pt-6 border-t border-slate-100/90 flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-400"
+              className="mt-7 pt-5 border-t border-slate-100/90 flex flex-wrap gap-x-4 gap-y-2.5 text-xs text-slate-400"
             >
               <div className="flex items-center gap-1.5">
                 <span className="flex gap-px">
@@ -276,12 +275,12 @@ export function HeroSection() {
                   ))}
                 </span>
                 <span className="font-semibold text-slate-500">5.0</span>
-                <span>from contractors</span>
+                <span className="text-slate-400">· 300+ contractor clients</span>
               </div>
               <span className="w-px h-3.5 bg-slate-200 self-center hidden sm:block" />
-              <span className="font-medium text-slate-500">300+ active clients</span>
+              <span className="font-medium text-slate-500">Independent, not PE-owned</span>
               <span className="w-px h-3.5 bg-slate-200 self-center hidden sm:block" />
-              <span>Independent · Not PE-owned</span>
+              <span className="text-slate-400">Real reviews by real advisors</span>
             </motion.div>
 
             {/* Payment type pulse — accepted card types with sequential glow */}

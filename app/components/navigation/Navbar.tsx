@@ -100,12 +100,13 @@ export function Navbar() {
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
           >
+            {/* TODO: Replace logo-dark.svg with a higher-resolution/optimised asset when available */}
             <Image
               src="/logo-dark.svg"
               alt="321 Swipe"
-              width={118}
-              height={47}
-              style={{ height: "auto" }}
+              width={128}
+              height={51}
+              style={{ height: "auto", maxHeight: "36px", width: "auto" }}
               priority
             />
           </motion.a>

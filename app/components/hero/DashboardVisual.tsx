@@ -33,9 +33,9 @@ function Counter({ target, prefix = "", suffix = "", delay = 900 }: {
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const transactions = [
-  { id: 1, merchant: "Apex Roofing LLC",   category: "Invoice",      amount: "+$4,250", time: "2m ago",  icon: "🏠" },
-  { id: 2, merchant: "FlowRight Plumbing", category: "Card Present", amount: "+$890",   time: "14m ago", icon: "🔧" },
-  { id: 3, merchant: "Summit HVAC",        category: "ACH Transfer", amount: "+$3,100", time: "1h ago",  icon: "❄️" },
+  { id: 1, merchant: "Apex Roofing LLC",    category: "Invoice Paid",    amount: "+$4,250", time: "2m ago",  icon: "🏠" },
+  { id: 2, merchant: "FlowRight Plumbing",  category: "Mobile Payment",  amount: "+$890",   time: "18m ago", icon: "🔧" },
+  { id: 3, merchant: "BrightLine Electric", category: "ACH — Job Pymt",  amount: "+$3,100", time: "1h ago",  icon: "⚡" },
 ];
 
 const bars      = [38, 62, 50, 75, 58, 91, 68];
@@ -121,9 +121,9 @@ export function DashboardVisual() {
               {/* Stats row — animated counters */}
               <div className="grid grid-cols-3 divide-x divide-slate-100 border-b border-slate-100/80">
                 {[
-                  { label: "Volume",       target: 48320, prefix: "$", delay: 950  },
-                  { label: "Transactions", target: 184,   prefix: "",  delay: 1060 },
-                  { label: "Avg. Ticket",  target: 262,   prefix: "$", delay: 1170 },
+                  { label: "Job Payments", target: 48320, prefix: "$", delay: 950  },
+                  { label: "Jobs Funded",  target: 184,   prefix: "",  delay: 1060 },
+                  { label: "Avg. Job",     target: 262,   prefix: "$", delay: 1170 },
                 ].map((stat, i) => {
                   const deltas = ["+12%", "+8%", "+4%"];
                   return (
@@ -143,7 +143,7 @@ export function DashboardVisual() {
               {/* Bar chart */}
               <div className="px-5 pt-4 pb-2">
                 <p className="text-[9px] font-semibold text-slate-400 uppercase tracking-[0.07em] mb-3">
-                  Daily Volume
+                  Weekly Job Payments
                 </p>
                 <div className="flex items-end gap-1.5 h-[54px]">
                   {bars.map((h, i) => {
@@ -249,7 +249,7 @@ export function DashboardVisual() {
                   Insight from 321 Swipe
                 </p>
                 <p className="text-[10px] text-slate-400 mt-0.5 whitespace-nowrap">
-                  You could save ~$420/mo on fees
+                  ~$480/mo in hidden fees found
                 </p>
               </div>
             </motion.div>
@@ -269,7 +269,7 @@ export function DashboardVisual() {
                 <span className="relative w-2 h-2 rounded-full bg-emerald-500" />
               </span>
               <span className="text-[10px] font-semibold text-slate-600 whitespace-nowrap">
-                Next deposit in 18h
+                Funds deposited · 6:00 AM
               </span>
             </motion.div>
 
@@ -292,7 +292,7 @@ export function DashboardVisual() {
                 </svg>
               </div>
               <span className="text-[10px] font-semibold text-navy-900 whitespace-nowrap">
-                $8,240 processed today
+                $8,240 in job payments today
               </span>
             </motion.div>
 
