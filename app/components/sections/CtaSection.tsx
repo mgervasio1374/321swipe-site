@@ -87,8 +87,10 @@ export function CtaSection() {
         {/* CTAs */}
         <ScrollReveal delay={0.28}>
           <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-            <motion.button
-              onClick={() => window.dispatchEvent(new Event("open-lead-modal"))}
+            <motion.a
+              href="https://upload.321swipe.com"
+              target="_blank"
+              rel="noopener noreferrer"
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-white text-navy-900 font-semibold text-sm px-7 py-3.5 hover:bg-slate-50 transition-colors shadow-lg shadow-black/20"
             >
@@ -96,7 +98,7 @@ export function CtaSection() {
               <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5">
                 <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
               </svg>
-            </motion.button>
+            </motion.a>
             <Button variant="ghost" onClick={() => (window as any).Tawk_API?.maximize?.()} className="text-navy-100 hover:text-white hover:bg-white/10 text-sm px-7 py-3.5">
               Talk to 321 Swipe
             </Button>
