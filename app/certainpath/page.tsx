@@ -541,7 +541,12 @@ export default function CertainPathPage() {
               <Image src="/logo-dark.svg" alt="321 Swipe" width={128} height={51}
                 style={{ height: "auto", maxHeight: "34px", width: "auto" }} priority />
             </a>
-            <span className="hidden sm:block text-[12px] font-medium text-slate-400 flex-1">For CertainPath Members</span>
+            <div className="hidden sm:flex items-center gap-2.5 flex-1">
+              <Image src="/certainpath-logo.svg" alt="CertainPath" width={120} height={30}
+                style={{ height: "20px", width: "auto", opacity: 0.75 }} />
+              <span className="w-px h-4 bg-slate-200" />
+              <span className="text-[12px] font-medium text-slate-400">Member Page</span>
+            </div>
             <div className="flex items-center gap-3 shrink-0">
               <button onClick={openChat} className="hidden md:block text-[13px] font-medium text-slate-500 hover:text-navy-900 px-3 py-2 transition-colors">
                 Talk to 321 Swipe
@@ -567,12 +572,11 @@ export default function CertainPathPage() {
             <div className="grid lg:grid-cols-[1fr_1.15fr] items-center gap-12 lg:gap-8">
               <div className="flex flex-col items-start max-w-[520px]">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05, ease: EASE }}>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-navy-50/90 px-3.5 py-1.5 text-xs font-semibold text-navy-700 mb-6 shadow-sm">
-                    <span className="relative flex w-1.5 h-1.5">
-                      <span className="live-ring absolute inline-flex h-full w-full rounded-full bg-accent-500 opacity-60" />
-                      <span className="relative w-1.5 h-1.5 rounded-full bg-accent-500" />
-                    </span>
-                    For CertainPath Members
+                  <span className="inline-flex items-center gap-2.5 rounded-full border border-navy-100 bg-navy-50/90 px-3.5 py-2 shadow-sm mb-6">
+                    <Image src="/certainpath-logo.svg" alt="CertainPath" width={100} height={24}
+                      style={{ height: "18px", width: "auto" }} />
+                    <span className="w-px h-3.5 bg-slate-300/70" />
+                    <span className="text-xs font-semibold text-navy-700">Member Page</span>
                   </span>
                 </motion.div>
 
@@ -639,7 +643,14 @@ export default function CertainPathPage() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-14">
               <ScrollReveal>
-                <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-500 mb-5">
+                <div className="flex items-center justify-center gap-3 mb-5">
+                  <Image src="/logo-dark.svg" alt="321 Swipe" width={90} height={36}
+                    style={{ height: "26px", width: "auto" }} />
+                  <span className="text-slate-300 text-lg">×</span>
+                  <Image src="/certainpath-logo.svg" alt="CertainPath" width={110} height={28}
+                    style={{ height: "22px", width: "auto" }} />
+                </div>
+                <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-500">
                   Software-connected workflows
                 </span>
               </ScrollReveal>
