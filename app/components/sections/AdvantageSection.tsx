@@ -80,7 +80,7 @@ export function AdvantageSection() {
                 {[
                   { stat: "$0", label: "Setup or cancellation fees" },
                   { stat: "No", label: "Long-term contracts, ever" },
-                  { stat: "97%", label: "Client retention rate" },
+                  { stat: "Month-to-month", label: "No long-term contracts" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-baseline gap-3">
                     <span className="text-2xl font-bold text-navy-900 tabular-nums">

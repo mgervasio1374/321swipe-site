@@ -74,7 +74,7 @@ const findings = [
 const stats = [
   { value: "$250M+", label: "Processed annually" },
   { value: "300+",   label: "Contractor clients" },
-  { value: "97%",    label: "Client retention" },
+  { value: "Human-led", label: "Advisor support" },
   { value: "Monthly", label: "Statement reviews" },
 ];
 
