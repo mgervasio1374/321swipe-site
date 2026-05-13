@@ -315,8 +315,10 @@ function SavingsCalculator() {
   const [showResult, setShowResult] = useState(false);
 
   const currentFees   = (volume * rate) / 100;
-  // Conservative estimate: ~0.5% reduction is illustrative only
-  const estOptRate    = Math.max(rate - 0.5, 1.5);
+  // Improvement scales with rate: higher rates have more room to optimize
+  // Capped at 0.80%, minimum optimized rate 1.75%
+  const improvement   = parseFloat(Math.min(rate * 0.18, 0.80).toFixed(2));
+  const estOptRate    = parseFloat(Math.max(rate - improvement, 1.75).toFixed(2));
   const estOptFees    = (volume * estOptRate) / 100;
   const estSavings    = currentFees - estOptFees;
   const estAnnual     = estSavings * 12;
@@ -438,7 +440,7 @@ function SavingsCalculator() {
                           ${fmt(estSavings)}<span className="text-sm font-normal text-slate-400">/mo</span>
                         </p>
                         <p className="text-[10px] text-slate-400 mt-1.5">
-                          ~${fmt(estAnnual)}/year · assuming ~0.50% rate improvement
+                          ~${fmt(estAnnual)}/year · assuming ~{improvement.toFixed(2)}% rate improvement
                         </p>
                       </div>
                     </div>
