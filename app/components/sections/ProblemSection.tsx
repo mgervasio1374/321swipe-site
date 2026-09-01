@@ -33,7 +33,7 @@ const problems = [
       </svg>
     ),
     title: "Slow Collections",
-    body: "Paper checks, net-30 invoices, endless follow-ups. Cash flow suffers while you wait — and wait — for money you already earned.",
+    body: "Paper checks, net-30 terms, and manual follow-ups. Cash flow suffers while you wait for money already earned.",
   },
   {
     icon: (
@@ -74,8 +74,9 @@ export function ProblemSection() {
           </ScrollReveal>
           <ScrollReveal delay={0.16}>
             <p className="mt-4 text-base text-slate-500 leading-relaxed">
-              Most home service contractors are overpaying and under-informed.
-              The processors don&apos;t make it easy — and that&apos;s not an accident.
+              Most processors make it difficult to understand what you are really paying.
+              Confusing statements, disconnected systems, slow collections, and limited visibility
+              quietly cost contractors money every month.
             </p>
           </ScrollReveal>
         </div>

@@ -163,7 +163,7 @@ export function HeroSection() {
           ════════════════════════════════════════════════════════════════════════ */}
       <motion.div
         className="relative w-full mx-auto max-w-7xl px-6 lg:px-8"
-        style={{ paddingTop: "calc(60px + 3.5vh)", paddingBottom: "4vh", y: txtParallax }}
+        style={{ paddingTop: "calc(60px + 1.5vh)", paddingBottom: "4vh", y: txtParallax }}
       >
         {/* Asymmetric grid — right column is wider and offset to break rigidity */}
         <div className="grid lg:grid-cols-[1fr_1.22fr] items-center gap-10 lg:gap-4">
@@ -218,10 +218,9 @@ export function HeroSection() {
               {...fadeUp(0.28)}
               className="mt-5 text-[1rem] text-slate-500 leading-[1.72] max-w-[440px]"
             >
-              Most home service contractors overpay their processor every month —
-              and never know it. 321 Swipe finds the money you&apos;re losing,
-              puts a real advisor in your corner, and gives you full visibility
-              into what your payments are actually costing you.
+              Most home service contractors overpay their processor every month — and never know it.
+              321 Swipe reviews your statements, identifies hidden fees and pricing issues, and gives
+              you clear visibility into what your payments are actually costing you.
             </motion.p>
 
             {/* Human trust signal */}
@@ -232,7 +231,7 @@ export function HeroSection() {
               <svg viewBox="0 0 16 16" fill="currentColor" className="w-3 h-3 text-accent-400 shrink-0">
                 <path d="M8 8a3 3 0 100-6 3 3 0 000 6zm0 1a5 5 0 00-4.546 2.916A5.986 5.986 0 008 14a5.986 5.986 0 004.546-2.084A5 5 0 008 9z" />
               </svg>
-              Real people reviewing real statements. Technology backed by human expertise.
+              Real people review real statements. Technology helps us find the leaks faster.
             </motion.p>
 
             {/* CTAs */}
@@ -241,7 +240,9 @@ export function HeroSection() {
               className="mt-7 flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
             >
               <motion.a
-                href="#review"
+                href="https://upload.321swipe.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.025 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center justify-center gap-2 rounded-lg text-white font-semibold text-sm px-6 py-3 transition-colors"
@@ -255,7 +256,7 @@ export function HeroSection() {
                   <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
                 </svg>
               </motion.a>
-              <Button variant="secondary" href="#contact" className="text-sm px-6 py-3">
+              <Button variant="secondary" onClick={() => (window as any).Tawk_API?.maximize?.()} className="text-sm px-6 py-3">
                 Talk to 321 Swipe
               </Button>
             </motion.div>
@@ -263,23 +264,20 @@ export function HeroSection() {
             {/* Trust strip */}
             <motion.div
               {...fadeUp(0.54)}
-              className="mt-7 pt-6 border-t border-slate-100/90 flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-400"
+              className="mt-7 pt-5 border-t border-slate-100/90 flex flex-wrap gap-x-4 gap-y-2 text-xs text-slate-400"
             >
-              <div className="flex items-center gap-1.5">
-                <span className="flex gap-px">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-3 h-3 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
+              {[
+                { strong: "300+", label: "contractor clients" },
+                { strong: "Independent,", label: "not PE-owned" },
+                { strong: "Real reviews", label: "by real advisors" },
+                { strong: "Month-to-month", label: "relationships" },
+              ].map((item, i) => (
+                <span key={i} className="flex items-center gap-1">
+                  <span className="font-semibold text-slate-600">{item.strong}</span>
+                  <span>{item.label}</span>
+                  {i < 3 && <span className="w-px h-3 bg-slate-200 ml-4 hidden sm:block" />}
                 </span>
-                <span className="font-semibold text-slate-500">5.0</span>
-                <span>from contractors</span>
-              </div>
-              <span className="w-px h-3.5 bg-slate-200 self-center hidden sm:block" />
-              <span className="font-medium text-slate-500">300+ active clients</span>
-              <span className="w-px h-3.5 bg-slate-200 self-center hidden sm:block" />
-              <span>Independent · Not PE-owned</span>
+              ))}
             </motion.div>
 
             {/* Payment type pulse — accepted card types with sequential glow */}

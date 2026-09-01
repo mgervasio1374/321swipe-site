@@ -100,12 +100,13 @@ export function Navbar() {
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
           >
+            {/* TODO: Replace logo-dark.svg with a higher-resolution/optimised asset when available */}
             <Image
               src="/logo-dark.svg"
               alt="321 Swipe"
-              width={118}
-              height={47}
-              style={{ height: "auto" }}
+              width={128}
+              height={51}
+              style={{ height: "auto", maxHeight: "36px", width: "auto" }}
               priority
             />
           </motion.a>
@@ -127,14 +128,16 @@ export function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3 shrink-0">
-            <a
-              href="#contact"
+            <button
+              onClick={() => (window as any).Tawk_API?.maximize?.()}
               className="text-[13.5px] font-medium text-slate-500 hover:text-navy-900 px-3 py-2 transition-colors duration-150"
             >
               Talk to 321 Swipe
-            </a>
+            </button>
             <motion.a
-              href="#review"
+              href="https://upload.321swipe.com"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               className="text-[13.5px] font-semibold text-white px-4 py-2 rounded-lg transition-colors duration-150"
@@ -184,8 +187,8 @@ export function Navbar() {
                 </a>
               ))}
               <div className="pt-4 flex flex-col gap-2 border-t border-slate-100 mt-2">
-                <Button variant="secondary" href="#contact">Talk to 321 Swipe</Button>
-                <Button variant="primary" href="#review">Request a Review</Button>
+                <Button variant="secondary" onClick={() => { setMobileOpen(false); (window as any).Tawk_API?.maximize?.(); }}>Talk to 321 Swipe</Button>
+                <Button variant="primary" href="https://upload.321swipe.com">Request a Review</Button>
               </div>
             </div>
           </motion.div>

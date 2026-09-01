@@ -37,7 +37,8 @@ export function PartnershipSection() {
       {/* Top gradient entry — smooths the dark-to-light transition from IntelligenceSection */}
       <div
         aria-hidden
-        className="pointer-events-none absolute top-0 inset-x-0 h-20 bg-gradient-to-b from-slate-50/60 to-transparent"
+        className="pointer-events-none absolute top-0 inset-x-0 h-32"
+        style={{ background: "linear-gradient(180deg, #0d1e3a 0%, #1e293b 18%, #94a3b8 38%, #f1f5f9 60%, #ffffff 80%)" }}
       />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
@@ -58,9 +59,8 @@ export function PartnershipSection() {
           <ScrollReveal delay={0.18}>
             <p className="mt-6 text-base text-slate-500 leading-relaxed max-w-2xl">
               Every contractor we work with gets more than a payment processor.
-              They get an advisor who picks up the phone, reviews their numbers
-              every month, and proactively brings them savings — without being asked.
-              That&apos;s a relationship most processors simply can&apos;t offer.
+              They get a named advisor who picks up the phone, reviews their numbers,
+              and proactively brings savings opportunities before they have to ask.
             </p>
           </ScrollReveal>
         </div>
@@ -84,9 +84,9 @@ export function PartnershipSection() {
                     Every account includes
                   </p>
                   <h3 className="text-base font-bold text-navy-900 leading-snug">
-                    No call centers.
+                    What every 321 Swipe
                     <br />
-                    No tiers. No surprises.
+                    client gets
                   </h3>
                 </div>
 
@@ -163,7 +163,9 @@ export function PartnershipSection() {
                 {/* Footer CTA */}
                 <div className="px-7 pb-7 pt-4">
                   <a
-                    href="#review"
+                    href="https://upload.321swipe.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-accent-500 hover:text-accent-600 transition-colors"
                   >
                     See what a statement review looks like

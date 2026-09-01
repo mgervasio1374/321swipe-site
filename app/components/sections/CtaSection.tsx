@@ -77,10 +77,9 @@ export function CtaSection() {
         {/* Sub */}
         <ScrollReveal delay={0.2}>
           <p className="mt-6 text-base sm:text-lg text-navy-100/70 leading-relaxed max-w-2xl mx-auto">
-            Most contractors overpay by{" "}
-            <span className="text-white font-semibold">$400–$1,200 per month</span>{" "}
-            without knowing it. A free statement review takes 15 minutes and gives
-            you a clear picture of where that money is going.
+            Many contractors discover hundreds of dollars per month in avoidable fees
+            during their first review. A free statement review gives you a clear picture
+            of what you are paying — and what you should not be.
           </p>
         </ScrollReveal>
 
@@ -88,7 +87,9 @@ export function CtaSection() {
         <ScrollReveal delay={0.28}>
           <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
             <motion.a
-              href="#contact"
+              href="https://upload.321swipe.com"
+              target="_blank"
+              rel="noopener noreferrer"
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-white text-navy-900 font-semibold text-sm px-7 py-3.5 hover:bg-slate-50 transition-colors shadow-lg shadow-black/20"
             >
@@ -97,7 +98,7 @@ export function CtaSection() {
                 <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
               </svg>
             </motion.a>
-            <Button variant="ghost" href="#contact" className="text-navy-100 hover:text-white hover:bg-white/10 text-sm px-7 py-3.5">
+            <Button variant="ghost" onClick={() => (window as any).Tawk_API?.maximize?.()} className="text-navy-100 hover:text-white hover:bg-white/10 text-sm px-7 py-3.5">
               Talk to 321 Swipe
             </Button>
           </div>
@@ -121,16 +122,18 @@ export function CtaSection() {
       {/* Footer strip */}
       <div className="relative mt-24 border-t border-navy-800/60">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          {/* TODO: Replace logo-white.svg with a higher-resolution or simplified horizontal web logo when available */}
           <Image
             src="/logo-white.svg"
             alt="321 Swipe"
             width={120}
             height={48}
             className="opacity-60 hover:opacity-80 transition-opacity"
-            style={{ height: "auto" }}
+            style={{ height: "auto", maxHeight: "32px", width: "auto" }}
           />
           <p className="text-xs text-navy-100/30 text-center">
             © {new Date().getFullYear()} 321 Swipe. Independent, contractor-first payment intelligence.
+            {/* TODO: Add required registered MSP/ISO disclosure once final legal language is provided */}
           </p>
           <div className="flex gap-5 text-xs text-navy-100/30">
             <a href="#" className="hover:text-navy-100/60 transition-colors">Privacy</a>
