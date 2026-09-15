@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
+import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
 import { EASE } from "@/app/lib/animations";
 
 const features = [
@@ -49,7 +50,7 @@ const feeRows = [
   { label: "Hidden Markup Fees", amount: "$400", pct: 26, color: "#60a5fa" },
 ];
 
-export function IntelligenceSection() {
+export function IntelligenceSection({ photo }: { photo: string | null }) {
   return (
     <section
       id="intelligence"
@@ -156,6 +157,17 @@ export function IntelligenceSection() {
             transition={{ duration: 0.65, delay: 0.18, ease: EASE }}
             className="relative"
           >
+            {/* Analyst photo — peeks out from behind the analysis card */}
+            <PhotoFrame
+              src={photo}
+              alt="A 321 Swipe analyst reviewing a processor statement on dual monitors"
+              brief="321 Swipe analyst at a dual-monitor desk, statement on screen annotated in blue. Dark office, monitor glow."
+              tone="navy"
+              motion="parallax"
+              className="hidden lg:block absolute -right-4 -top-14 w-[300px] h-[400px] rounded-[18px] rotate-3"
+              style={{ boxShadow: "0 24px 60px rgba(0,0,0,0.5)" }}
+            />
+
             {/* Deep glow behind card */}
             <div
               aria-hidden
@@ -164,12 +176,14 @@ export function IntelligenceSection() {
             />
 
             <div
-              className="relative rounded-2xl overflow-hidden"
+              className="relative rounded-2xl overflow-hidden lg:max-w-[480px]"
               style={{
                 background: "linear-gradient(145deg, #0f1e3a 0%, #0c1524 100%)",
                 boxShadow: "0 0 0 1px rgba(37,99,235,0.2), 0 24px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)",
               }}
             >
+              <div aria-hidden className="scan-line" />
+
               {/* Card header */}
               <div
                 className="flex items-center justify-between px-5 py-4"
@@ -179,7 +193,7 @@ export function IntelligenceSection() {
                   <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   <div>
                     <p className="text-xs font-semibold text-white leading-none">Statement Analysis</p>
-                    <p className="text-[10px] text-navy-100/40 mt-0.5">Apex Roofing LLC · May 2026</p>
+                    <p className="text-[10px] text-navy-100/40 mt-0.5">Apex Roofing LLC · last month</p>
                   </div>
                 </div>
                 <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-1 rounded-full">
@@ -265,10 +279,12 @@ export function IntelligenceSection() {
                     <p className="text-[10px] text-navy-100/45 mt-1">5 hidden fees identified · 0.80% rate reduction</p>
                   </div>
                   <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center text-lg shrink-0"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center text-blue-200 shrink-0"
                     style={{ background: "rgba(37,99,235,0.2)", border: "1px solid rgba(37,99,235,0.3)" }}
                   >
-                    💡
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                      <path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z" />
+                    </svg>
                   </div>
                 </motion.div>
 
@@ -277,10 +293,15 @@ export function IntelligenceSection() {
                   className="flex items-center justify-between pt-1 text-[11px]"
                   style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
                 >
-                  <span className="text-navy-100/35">Report generated May 11, 2026</span>
-                  <span className="text-accent-400 font-semibold cursor-pointer hover:text-accent-300 transition-colors">
-                    View full report →
-                  </span>
+                  <span className="text-navy-100/35">Reviewed by a 321 Swipe analyst</span>
+                  <a
+                    href="https://upload.321swipe.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent-400 font-semibold hover:text-accent-300 transition-colors"
+                  >
+                    Get yours →
+                  </a>
                 </div>
               </div>
             </div>

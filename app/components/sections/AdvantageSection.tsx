@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
+import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
 import { EASE } from "@/app/lib/animations";
 
 const advantages = [
@@ -47,9 +48,9 @@ const advantages = [
   },
 ];
 
-export function AdvantageSection() {
+export function AdvantageSection({ photo }: { photo: string | null }) {
   return (
-    <section id="about" className="py-24 lg:py-32 bg-surface border-t border-slate-100">
+    <section id="about" className="py-24 lg:py-28 bg-white border-t border-slate-100">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid lg:grid-cols-[1fr_1.8fr] gap-16 items-start">
 
@@ -79,11 +80,11 @@ export function AdvantageSection() {
               <div className="mt-10 flex flex-col gap-5">
                 {[
                   { stat: "$0", label: "Setup or cancellation fees" },
-                  { stat: "No", label: "Long-term contracts, ever" },
-                  { stat: "Month-to-month", label: "No long-term contracts" },
+                  { stat: "Month-to-month", label: "No long-term contracts, ever" },
+                  { stat: "Same-day", label: "Response from your advisor" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-baseline gap-3">
-                    <span className="text-2xl font-bold text-navy-900 tabular-nums">
+                    <span className="text-[22px] font-bold text-navy-900 tabular-nums whitespace-nowrap">
                       {item.stat}
                     </span>
                     <span className="text-sm text-slate-400">{item.label}</span>
@@ -93,8 +94,8 @@ export function AdvantageSection() {
             </ScrollReveal>
           </div>
 
-          {/* Right: advantage cards */}
-          <div className="flex flex-col gap-5">
+          {/* Right: advantage cards with a wide photo between the rows */}
+          <div className="grid sm:grid-cols-2 gap-5">
             {advantages.map((adv, i) => (
               <motion.div
                 key={adv.label}
@@ -103,20 +104,28 @@ export function AdvantageSection() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.5, ease: EASE }}
                 whileHover={{ x: 4, transition: { duration: 0.2, ease: "easeOut" as const } }}
-                className="group bg-white rounded-2xl border border-slate-200 p-6 flex gap-5 hover:border-slate-300 hover:shadow-md hover:shadow-slate-100 transition-shadow cursor-default"
+                className={`group bg-white rounded-2xl border border-slate-200 p-6 flex flex-col hover:border-slate-300 hover:shadow-md hover:shadow-slate-100 transition-shadow cursor-default ${i === 2 ? "sm:[grid-row:3]" : ""}`}
               >
                 <div className="shrink-0 w-10 h-10 rounded-xl bg-navy-50 flex items-center justify-center text-navy-700 group-hover:bg-navy-900 group-hover:text-white transition-colors duration-300">
                   {adv.icon}
                 </div>
-                <div>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-500 block mb-1">
-                    {adv.label}
-                  </span>
-                  <h3 className="text-sm font-semibold text-navy-900 mb-1.5">{adv.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{adv.body}</p>
-                </div>
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-500 block mt-4 mb-1">
+                  {adv.label}
+                </span>
+                <h3 className="text-[15px] font-semibold text-navy-900 mb-1.5">{adv.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{adv.body}</p>
               </motion.div>
             ))}
+            <ScrollReveal className="sm:col-span-2 sm:[grid-row:2]">
+              <PhotoFrame
+                src={photo}
+                alt="A roofing crew at work at golden hour while the foreman checks his phone"
+                brief="Wide, cinematic: a roofing crew at golden hour, foreman on the ground checking a phone, ladders and a plain truck."
+                tone="warm"
+                motion="parallax"
+                className="h-[260px] rounded-2xl"
+              />
+            </ScrollReveal>
           </div>
         </div>
       </div>
