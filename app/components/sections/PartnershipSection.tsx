@@ -51,8 +51,9 @@ export function PartnershipSection({ advisorPhoto, tailgatePhoto }: Props) {
     <section id="partnership" className="relative py-24 lg:py-28 bg-surface border-t border-slate-100">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        {/* ── Header ── */}
-        <div className="max-w-3xl mb-14">
+        {/* ── Header row: copy + tailgate photo ── */}
+        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-10 items-center mb-10 lg:mb-12">
+        <div className="max-w-3xl">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-500 mb-6">
               Human partnership
@@ -73,32 +74,34 @@ export function PartnershipSection({ advisorPhoto, tailgatePhoto }: Props) {
             </p>
           </ScrollReveal>
         </div>
+          <ScrollReveal direction="right">
+            <PhotoFrame
+              src={tailgatePhoto}
+              alt="An electrician and shop owner reviewing a tablet at the tailgate of their work van"
+              brief="Wide: an electrician and the shop owner reviewing a tablet at the tailgate of a work van, early morning, job site behind."
+              tone="light"
+              motion="parallax"
+              position="50% 25%"
+              className="h-[240px] lg:h-[280px] rounded-[20px]"
+              style={{ boxShadow: "0 24px 60px rgba(12,21,36,0.10)" }}
+            />
+          </ScrollReveal>
+        </div>
 
         <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-10 items-stretch">
 
-          {/* ── Left: advisor photo + tailgate photo ── */}
+          {/* ── Left: advisor photo ── */}
           <ScrollReveal direction="left" className="h-full">
-            <div className="flex flex-col gap-4 h-full">
-              <PhotoFrame
-                src={advisorPhoto}
-                alt="A 321 Swipe advisor on a call with a client, statement and notepad in front of her"
-                brief="A 321 Swipe advisor on a headset call at a bright desk, statement and notepad in front of her, mid-explanation and smiling."
-                tone="navy"
-                motion="parallax"
-                position="46% 35%"
-                className="flex-1 min-h-[420px] lg:min-h-[520px] rounded-[20px]"
-                style={{ boxShadow: "0 24px 60px rgba(12,21,36,0.14)" }}
-              />
-              <PhotoFrame
-                src={tailgatePhoto}
-                alt="An electrician and shop owner reviewing a tablet at the tailgate of their work van"
-                brief="Wide: an electrician and the shop owner reviewing a tablet at the tailgate of a work van, early morning, job site behind."
-                tone="light"
-                motion="parallax"
-                position="50% 20%"
-                className="h-[220px] rounded-2xl"
-              />
-            </div>
+            <PhotoFrame
+              src={advisorPhoto}
+              alt="A 321 Swipe advisor on a call with a client, statement and notepad in front of her"
+              brief="A 321 Swipe advisor on a headset call at a bright desk, statement and notepad in front of her, mid-explanation and smiling."
+              tone="navy"
+              motion="parallax"
+              position="46% 35%"
+              className="h-[440px] lg:h-full lg:min-h-[520px] rounded-[20px]"
+              style={{ boxShadow: "0 24px 60px rgba(12,21,36,0.14)" }}
+            />
           </ScrollReveal>
 
           {/* ── Right: what's included + pillars ── */}
