@@ -155,7 +155,7 @@ export function DiagnosticSection({ photo }: { photo: string | null }) {
                 brief="Tight crop: hands with a highlighter marking line items on a printed statement, laptop edge visible. Bright, documentary."
                 tone="warm"
                 motion="parallax"
-                className="mt-10 h-[250px] rounded-2xl"
+                className="mt-8 h-[165px] rounded-2xl"
               />
             </ScrollReveal>
           </div>

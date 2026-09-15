@@ -77,16 +77,16 @@ export function PartnershipSection({ advisorPhoto, tailgatePhoto }: Props) {
         <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-12 items-stretch">
 
           {/* ── Advisor photo + overlapping "included" card ── */}
-          <ScrollReveal direction="left">
-            <div className="relative">
+          <ScrollReveal direction="left" className="h-full">
+            <div className="relative h-full">
               <PhotoFrame
                 src={advisorPhoto}
                 alt="A 321 Swipe advisor on a call with a client, statement and notepad in front of her"
                 brief="A 321 Swipe advisor on a headset call at a bright desk, statement and notepad in front of her, mid-explanation and smiling."
                 tone="navy"
                 motion="parallax"
-                position="35% 40%"
-                className="h-[440px] lg:h-[620px] rounded-[20px]"
+                position="22% 40%"
+                className="h-[440px] lg:h-full lg:min-h-[600px] rounded-[20px]"
                 style={{ boxShadow: "0 24px 60px rgba(12,21,36,0.14)" }}
               />
               <motion.div
@@ -94,7 +94,7 @@ export function PartnershipSection({ advisorPhoto, tailgatePhoto }: Props) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: 0.25, duration: 0.55, ease: EASE }}
-                className="absolute left-4 right-4 bottom-4 lg:left-auto lg:right-[-32px] lg:bottom-10 lg:w-[340px] bg-white rounded-2xl overflow-hidden"
+                className="absolute left-4 right-4 bottom-4 lg:left-auto lg:right-[-32px] lg:bottom-auto lg:top-10 lg:w-[320px] bg-white rounded-2xl overflow-hidden"
                 style={{ boxShadow: "0 20px 60px rgba(12,21,36,0.18), 0 0 0 1px rgba(12,21,36,0.06)" }}
               >
                 <div className="px-6 pt-5 pb-3.5 border-b border-slate-100">

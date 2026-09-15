@@ -80,6 +80,7 @@ export function ProblemSection({ photo }: { photo: string | null }) {
                 brief="Plumbing company owner at a cluttered shop desk holding a multi-page processor statement, reading glasses pushed up. Morning light."
                 tone="light"
                 motion="parallax"
+                position="38% 50%"
                 className="h-[420px] lg:h-[560px] rounded-[20px]"
                 style={{ boxShadow: "0 24px 60px rgba(12,21,36,0.12)" }}
               />
@@ -88,7 +89,7 @@ export function ProblemSection({ photo }: { photo: string | null }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.5, ease: EASE }}
-                className="absolute right-4 top-6 lg:right-6 lg:top-9 w-[240px] bg-white rounded-[14px] p-4"
+                className="absolute left-4 top-4 lg:left-6 lg:top-6 w-[230px] bg-white rounded-[14px] p-4"
                 style={{ boxShadow: "0 16px 48px rgba(12,21,36,0.16), 0 0 0 1px rgba(12,21,36,0.06)" }}
               >
                 <p className="text-[9.5px] font-semibold uppercase tracking-[0.08em] text-slate-400">Statement · page 7 of 12</p>
