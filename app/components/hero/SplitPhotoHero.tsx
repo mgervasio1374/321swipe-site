@@ -1,0 +1,167 @@
+"use client";
+
+import { motion } from "framer-motion";
+import type { HTMLMotionProps } from "framer-motion";
+import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
+import { EASE } from "@/app/lib/animations";
+
+function fadeUp(delay = 0): Pick<HTMLMotionProps<"div">, "initial" | "animate" | "transition"> {
+  return {
+    initial: { opacity: 0, y: 28 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.65, delay, ease: EASE },
+  };
+}
+
+interface SplitPhotoHeroProps {
+  badge: React.ReactNode;
+  /** Three headline lines: muted, gradient, solid. */
+  lines: [React.ReactNode, React.ReactNode, React.ReactNode];
+  body: string;
+  primary: { label: string; onClick?: () => void; href?: string };
+  secondary: { label: string; onClick: () => void };
+  trustItems: { strong: string; label: string }[];
+  photo: { src: string | null; alt: string; brief: string; position?: string; tone?: "navy" | "warm" | "light" };
+  /** Card that overlaps the seam between copy and photo (e.g. a dashboard). */
+  visual: React.ReactNode;
+}
+
+/** Homepage-style hero: copy left, full-bleed photo right, floating visual over the seam. */
+export function SplitPhotoHero({ badge, lines, body, primary, secondary, trustItems, photo, visual }: SplitPhotoHeroProps) {
+  const primaryClass =
+    "inline-flex items-center justify-center gap-2 rounded-lg text-white font-semibold text-sm px-6 py-3 transition-colors";
+  const primaryStyle = {
+    background: "linear-gradient(135deg, #0c1524 0%, #132040 100%)",
+    boxShadow: "0 1px 4px rgba(12,21,36,0.28), 0 6px 20px rgba(12,21,36,0.14), inset 0 1px 0 rgba(255,255,255,0.06)",
+  };
+  const arrow = (
+    <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5 opacity-60">
+      <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
+    </svg>
+  );
+
+  return (
+    <section
+      className="relative overflow-hidden"
+      style={{ background: "linear-gradient(130deg, #f9fbfe 0%, #f1f5f9 40%, #f9fbfe 100%)" }}
+    >
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(12,21,36,0.07) 1.2px, transparent 1.2px)",
+          backgroundSize: "40px 40px",
+          opacity: 0.22,
+        }}
+      />
+
+      <div className="relative grid lg:grid-cols-[0.9fr_1.1fr] min-h-[100svh] lg:min-h-[720px]">
+        <div className="relative z-10 flex flex-col justify-center px-6 pt-28 pb-16 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-12 lg:pt-24">
+          <motion.div {...fadeUp(0.05)}>{badge}</motion.div>
+
+          <motion.h1
+            {...fadeUp(0.15)}
+            className="mt-6 font-bold tracking-[-0.038em] leading-[1.03]"
+            style={{ fontSize: "clamp(2.4rem, 4.4vw, 3.8rem)" }}
+          >
+            <span className="block text-navy-700/80 font-semibold">{lines[0]}</span>
+            <span
+              className="block"
+              style={{
+                background: "linear-gradient(125deg, #1a3ed4 0%, #2563eb 28%, #3b82f6 58%, #93c5fd 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                filter: "drop-shadow(0 1px 28px rgba(37,99,235,0.22))",
+              }}
+            >
+              {lines[1]}
+            </span>
+            <span className="block text-navy-900">{lines[2]}</span>
+          </motion.h1>
+
+          <motion.p {...fadeUp(0.28)} className="mt-5 text-[1rem] text-slate-500 leading-[1.72] max-w-[460px]">
+            {body}
+          </motion.p>
+
+          <motion.div {...fadeUp(0.43)} className="mt-7 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            {primary.href ? (
+              <motion.a
+                href={primary.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.025 }}
+                whileTap={{ scale: 0.97 }}
+                className={primaryClass}
+                style={primaryStyle}
+              >
+                {primary.label} {arrow}
+              </motion.a>
+            ) : (
+              <motion.button
+                onClick={primary.onClick}
+                whileHover={{ scale: 1.025 }}
+                whileTap={{ scale: 0.97 }}
+                className={primaryClass}
+                style={primaryStyle}
+              >
+                {primary.label} {arrow}
+              </motion.button>
+            )}
+            <motion.button
+              onClick={secondary.onClick}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-white text-navy-900 px-6 py-3 text-sm font-medium border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-colors"
+            >
+              {secondary.label}
+            </motion.button>
+          </motion.div>
+
+          <motion.div
+            {...fadeUp(0.54)}
+            className="mt-8 pt-5 border-t border-slate-200/70 flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-400"
+          >
+            {trustItems.map((item) => (
+              <span key={item.strong + item.label} className="flex items-center gap-1">
+                <span className="font-semibold text-slate-600">{item.strong}</span>
+                <span>{item.label}</span>
+              </span>
+            ))}
+          </motion.div>
+        </div>
+
+        <div className="relative min-h-[760px] lg:min-h-0">
+          <PhotoFrame
+            src={photo.src}
+            alt={photo.alt}
+            brief={photo.brief}
+            tone={photo.tone ?? "warm"}
+            motion="kenburns"
+            position={photo.position ?? "50% 40%"}
+            briefPosition="top-right"
+            priority
+            className="absolute inset-0 lg:[clip-path:polygon(9%_0,100%_0,100%_100%,0_100%)]"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none hidden lg:block"
+            style={{ background: "linear-gradient(90deg, #f3f6fa 0%, rgba(243,246,250,0.6) 8%, transparent 22%)" }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 h-24 pointer-events-none lg:hidden"
+            style={{ background: "linear-gradient(to top, rgba(6,13,28,0.5), transparent)" }}
+          />
+          <motion.div
+            initial={{ opacity: 0, x: 48, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 0.85, delay: 0.18, ease: EASE }}
+            className="absolute left-1/2 -translate-x-1/2 bottom-8 w-[min(92%,340px)] lg:left-[-24px] lg:translate-x-0 lg:bottom-10 lg:w-[320px]"
+          >
+            {visual}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
