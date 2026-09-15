@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
+import { AnalysisCard } from "@/app/components/sections/AnalysisCard";
 import { EASE } from "@/app/lib/animations";
 
 const features = [
@@ -42,12 +43,6 @@ const features = [
     title: "Cash Flow Clarity",
     body: "Know exactly when money hits your account after the job is done — and why deposits sometimes come up short.",
   },
-];
-
-const feeRows = [
-  { label: "Interchange Pass-Through", amount: "$1,440", pct: 75, color: "#2563eb" },
-  { label: "Processor Markup", amount: "$680", pct: 46, color: "#3b82f6" },
-  { label: "Hidden Markup Fees", amount: "$400", pct: 26, color: "#60a5fa" },
 ];
 
 export function IntelligenceSection({ photo }: { photo: string | null }) {
@@ -165,7 +160,7 @@ export function IntelligenceSection({ photo }: { photo: string | null }) {
             </ScrollReveal>
           </div>
 
-          {/* ── Right: analysis card ── */}
+          {/* ── Right: cycling analysis card ── */}
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -179,137 +174,7 @@ export function IntelligenceSection({ photo }: { photo: string | null }) {
               className="absolute -inset-8 rounded-[2rem] blur-3xl opacity-30 pointer-events-none"
               style={{ background: "radial-gradient(ellipse, #3b82f6 0%, #2563eb 40%, transparent 70%)" }}
             />
-
-            <div
-              className="relative rounded-2xl overflow-hidden"
-              style={{
-                background: "linear-gradient(145deg, #0f1e3a 0%, #0c1524 100%)",
-                boxShadow: "0 0 0 1px rgba(37,99,235,0.2), 0 24px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)",
-              }}
-            >
-              <div aria-hidden className="scan-line" />
-
-              {/* Card header */}
-              <div
-                className="flex items-center justify-between px-5 py-4"
-                style={{ borderBottom: "1px solid rgba(37,99,235,0.15)" }}
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <div>
-                    <p className="text-xs font-semibold text-white leading-none">Statement Analysis</p>
-                    <p className="text-[10px] text-navy-100/40 mt-0.5">Apex Roofing LLC · last month</p>
-                  </div>
-                </div>
-                <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-1 rounded-full">
-                  Analysis Complete
-                </span>
-              </div>
-
-              <div className="p-5 space-y-5">
-                {/* Rate comparison */}
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { label: "Your Effective Rate", value: "3.15%", sub: "Current processor", accent: false },
-                    { label: "Optimized Rate", value: "2.35%", sub: "After 321 Swipe", accent: true },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="rounded-xl p-3.5"
-                      style={{
-                        background: item.accent
-                          ? "linear-gradient(135deg, rgba(37,99,235,0.15) 0%, rgba(37,99,235,0.06) 100%)"
-                          : "rgba(255,255,255,0.03)",
-                        border: item.accent
-                          ? "1px solid rgba(37,99,235,0.25)"
-                          : "1px solid rgba(255,255,255,0.06)",
-                      }}
-                    >
-                      <p className="text-[9px] font-semibold uppercase tracking-widest text-navy-100/45 mb-1">{item.label}</p>
-                      <p className={`text-2xl font-bold tabular-nums ${item.accent ? "text-accent-400" : "text-white"}`}>
-                        {item.value}
-                      </p>
-                      <p className="text-[9px] text-navy-100/35 mt-0.5">{item.sub}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Fee breakdown bars */}
-                <div>
-                  <p className="text-[9px] font-semibold uppercase tracking-widest text-navy-100/35 mb-3">
-                    Fee Breakdown
-                  </p>
-                  <div className="space-y-3">
-                    {feeRows.map((row, i) => (
-                      <div key={row.label} className="space-y-1.5">
-                        <div className="flex justify-between text-[11px]">
-                          <span className="text-navy-100/60">{row.label}</span>
-                          <span className="font-semibold text-white tabular-nums">{row.amount}</span>
-                        </div>
-                        <div className="h-1 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${row.pct}%` }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.35 + i * 0.13, duration: 0.8, ease: EASE }}
-                            className="h-full rounded-full"
-                            style={{ background: row.color }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Savings callout */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.65, duration: 0.4, ease: EASE }}
-                  className="rounded-xl p-4 flex items-center justify-between"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(37,99,235,0.18) 0%, rgba(37,99,235,0.08) 100%)",
-                    border: "1px solid rgba(37,99,235,0.28)",
-                  }}
-                >
-                  <div>
-                    <p className="text-[9px] font-semibold uppercase tracking-widest text-accent-400/80 mb-1">
-                      Estimated Monthly Savings
-                    </p>
-                    <p className="text-[26px] font-bold text-white tabular-nums leading-none">
-                      $640
-                      <span className="text-sm font-normal text-navy-100/40">/mo</span>
-                    </p>
-                    <p className="text-[10px] text-navy-100/45 mt-1">5 hidden fees identified · 0.80% rate reduction</p>
-                  </div>
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center text-blue-200 shrink-0"
-                    style={{ background: "rgba(37,99,235,0.2)", border: "1px solid rgba(37,99,235,0.3)" }}
-                  >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                      <path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z" />
-                    </svg>
-                  </div>
-                </motion.div>
-
-                {/* Micro action row */}
-                <div
-                  className="flex items-center justify-between pt-1 text-[11px]"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
-                >
-                  <span className="text-navy-100/35">Reviewed by a 321 Swipe analyst</span>
-                  <a
-                    href="https://upload.321swipe.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-accent-400 font-semibold hover:text-accent-300 transition-colors"
-                  >
-                    Get yours →
-                  </a>
-                </div>
-              </div>
-            </div>
+            <AnalysisCard />
           </motion.div>
         </div>
       </div>

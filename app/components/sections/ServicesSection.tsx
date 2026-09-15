@@ -87,9 +87,9 @@ export function ServicesSection({ statementPhoto, porchPhoto }: Props) {
   const featuredPhotos = [
     {
       src: statementPhoto,
-      alt: "An annotated processor statement beside a laptop showing a fee breakdown",
-      brief: "Desk scene: an analyst's annotated statement beside a laptop showing a fee breakdown, pen in hand.",
-      tone: "light" as const,
+      alt: "A 321 Swipe analyst reviewing a processor statement on dual monitors",
+      brief: "Over-the-shoulder: a 321 Swipe analyst at a dual-monitor desk, statement on screen annotated in blue.",
+      tone: "navy" as const,
     },
     {
       src: porchPhoto,

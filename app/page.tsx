@@ -25,7 +25,7 @@ export default function Home() {
         <DiagnosticSection photo={photos.statement} />
         <PartnershipSection advisorPhoto={photos.advisor} tailgatePhoto={photos["van-tailgate"]} />
         <AdvantageSection photo={photos["roofing-crew"]} />
-        <ServicesSection statementPhoto={photos.statement} porchPhoto={photos["porch-payment"]} />
+        <ServicesSection statementPhoto={photos.analyst} porchPhoto={photos["porch-payment"]} />
         <CtaSection photo={photos["van-dusk"]} />
       </main>
     </>
