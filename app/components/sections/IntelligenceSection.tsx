@@ -57,6 +57,22 @@ export function IntelligenceSection({ photo }: { photo: string | null }) {
       className="relative py-28 lg:py-36 overflow-hidden"
       style={{ background: "linear-gradient(180deg, #ffffff 0%, #f1f5f9 5%, #94a3b8 14%, #1e293b 26%, #0d1e3a 38%, #060d1c 52%)" }}
     >
+      {/* Analyst photography — faint, behind everything, fades in from the dark */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[22%] bottom-0 opacity-[0.22]">
+        <PhotoFrame
+          src={photo}
+          alt=""
+          tone="navy"
+          motion="parallax"
+          position="50% 40%"
+          className="absolute inset-0"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(180deg, #060d1c 0%, rgba(6,13,28,0.2) 35%, rgba(6,13,28,0.6) 100%)" }}
+        />
+      </div>
+
       {/* Multi-layer glow system */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div
@@ -157,17 +173,6 @@ export function IntelligenceSection({ photo }: { photo: string | null }) {
             transition={{ duration: 0.65, delay: 0.18, ease: EASE }}
             className="relative"
           >
-            {/* Analyst photo — peeks out from behind the analysis card */}
-            <PhotoFrame
-              src={photo}
-              alt="A 321 Swipe analyst reviewing a processor statement on dual monitors"
-              brief="321 Swipe analyst at a dual-monitor desk, statement on screen annotated in blue. Dark office, monitor glow."
-              tone="navy"
-              motion="parallax"
-              className="hidden lg:block absolute -right-4 -top-14 w-[300px] h-[400px] rounded-[18px] rotate-3"
-              style={{ boxShadow: "0 24px 60px rgba(0,0,0,0.5)" }}
-            />
-
             {/* Deep glow behind card */}
             <div
               aria-hidden
@@ -176,7 +181,7 @@ export function IntelligenceSection({ photo }: { photo: string | null }) {
             />
 
             <div
-              className="relative rounded-2xl overflow-hidden lg:max-w-[480px]"
+              className="relative rounded-2xl overflow-hidden"
               style={{
                 background: "linear-gradient(145deg, #0f1e3a 0%, #0c1524 100%)",
                 boxShadow: "0 0 0 1px rgba(37,99,235,0.2), 0 24px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)",

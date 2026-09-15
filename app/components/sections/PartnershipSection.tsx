@@ -74,61 +74,68 @@ export function PartnershipSection({ advisorPhoto, tailgatePhoto }: Props) {
           </ScrollReveal>
         </div>
 
-        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-12 items-stretch">
+        <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-10 items-stretch">
 
-          {/* ── Advisor photo + overlapping "included" card ── */}
+          {/* ── Left: advisor photo + tailgate photo ── */}
           <ScrollReveal direction="left" className="h-full">
-            <div className="relative h-full">
+            <div className="flex flex-col gap-4 h-full">
               <PhotoFrame
                 src={advisorPhoto}
                 alt="A 321 Swipe advisor on a call with a client, statement and notepad in front of her"
                 brief="A 321 Swipe advisor on a headset call at a bright desk, statement and notepad in front of her, mid-explanation and smiling."
                 tone="navy"
                 motion="parallax"
-                position="22% 40%"
-                className="h-[440px] lg:h-full lg:min-h-[600px] rounded-[20px]"
+                position="46% 35%"
+                className="flex-1 min-h-[420px] lg:min-h-[520px] rounded-[20px]"
                 style={{ boxShadow: "0 24px 60px rgba(12,21,36,0.14)" }}
               />
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: 0.25, duration: 0.55, ease: EASE }}
-                className="absolute left-4 right-4 bottom-4 lg:left-auto lg:right-[-32px] lg:bottom-auto lg:top-10 lg:w-[320px] bg-white rounded-2xl overflow-hidden"
-                style={{ boxShadow: "0 20px 60px rgba(12,21,36,0.18), 0 0 0 1px rgba(12,21,36,0.06)" }}
-              >
-                <div className="px-6 pt-5 pb-3.5 border-b border-slate-100">
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Every account includes</p>
-                </div>
-                <div className="px-6 py-1.5">
-                  {included.map((item, i) => (
-                    <div
-                      key={item.title}
-                      className={`flex items-start gap-3 py-3 ${i < included.length - 1 ? "border-b border-slate-100" : ""}`}
-                    >
-                      <span className="w-6 h-6 rounded-md bg-accent-50 text-accent-500 flex items-center justify-center shrink-0 mt-0.5">
-                        {Check}
-                      </span>
-                      <div>
-                        <p className="text-[12.5px] font-semibold text-navy-900 leading-none">{item.title}</p>
-                        <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">{item.detail}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
+              <PhotoFrame
+                src={tailgatePhoto}
+                alt="An electrician and shop owner reviewing a tablet at the tailgate of their work van"
+                brief="Wide: an electrician and the shop owner reviewing a tablet at the tailgate of a work van, early morning, job site behind."
+                tone="light"
+                motion="parallax"
+                position="50% 20%"
+                className="h-[220px] rounded-2xl"
+              />
             </div>
           </ScrollReveal>
 
-          {/* ── Pillars + tailgate photo ── */}
-          <div className="flex flex-col gap-4 lg:pl-8">
+          {/* ── Right: what's included + pillars ── */}
+          <div className="flex flex-col gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.55, ease: EASE }}
+              className="bg-white rounded-2xl border border-slate-200 overflow-hidden"
+            >
+              <div className="px-6 pt-5 pb-3.5 border-b border-slate-100 flex items-center justify-between">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Every account includes</p>
+                <span className="text-[10px] font-semibold text-accent-500 bg-accent-50 px-2 py-0.5 rounded-full">No extra cost</span>
+              </div>
+              <div className="px-6 py-1.5 grid sm:grid-cols-2 sm:gap-x-8">
+                {included.map((item) => (
+                  <div key={item.title} className="flex items-start gap-3 py-3">
+                    <span className="w-6 h-6 rounded-md bg-accent-50 text-accent-500 flex items-center justify-center shrink-0 mt-0.5">
+                      {Check}
+                    </span>
+                    <div>
+                      <p className="text-[12.5px] font-semibold text-navy-900 leading-none">{item.title}</p>
+                      <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">{item.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
             {pillars.map((pillar, i) => (
               <motion.div
                 key={pillar.number}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: i * 0.1, duration: 0.5, ease: EASE }}
+                transition={{ delay: 0.1 + i * 0.1, duration: 0.5, ease: EASE }}
                 whileHover={{ x: 4, transition: { duration: 0.2, ease: "easeOut" as const } }}
                 className="group bg-white rounded-2xl border border-slate-200 p-6 flex gap-5 hover:border-slate-300 hover:shadow-md hover:shadow-slate-100 transition-shadow cursor-default"
               >
@@ -141,16 +148,6 @@ export function PartnershipSection({ advisorPhoto, tailgatePhoto }: Props) {
                 </div>
               </motion.div>
             ))}
-            <ScrollReveal delay={0.3} className="flex-1 min-h-[160px]">
-              <PhotoFrame
-                src={tailgatePhoto}
-                alt="An electrician and shop owner reviewing a tablet at the tailgate of their work van"
-                brief="Wide: an electrician and the shop owner reviewing a tablet at the tailgate of a work van, early morning, job site behind."
-                tone="light"
-                motion="parallax"
-                className="h-full min-h-[160px] rounded-2xl"
-              />
-            </ScrollReveal>
           </div>
         </div>
       </div>

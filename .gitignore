@@ -44,3 +44,6 @@ next-env.d.ts
 
 # raw generated photos (compressed copies live in public/photos)
 /photos
+
+# Claude desktop app scratch folder
+/Claude outputs

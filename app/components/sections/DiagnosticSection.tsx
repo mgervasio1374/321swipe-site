@@ -148,20 +148,21 @@ export function DiagnosticSection({ photo }: { photo: string | null }) {
                 </a>
               </div>
             </ScrollReveal>
-            <ScrollReveal delay={0.4}>
+          </div>
+
+          {/* Right — 3×2 diagnostic grid + photo */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            <ScrollReveal delay={0.1} className="sm:col-span-2 sm:order-last">
               <PhotoFrame
                 src={photo}
                 alt="Hands marking line items on a printed processor statement with a highlighter"
                 brief="Tight crop: hands with a highlighter marking line items on a printed statement, laptop edge visible. Bright, documentary."
                 tone="warm"
                 motion="parallax"
-                className="mt-8 h-[165px] rounded-2xl"
+                position="50% 45%"
+                className="h-[220px] rounded-2xl"
               />
             </ScrollReveal>
-          </div>
-
-          {/* Right — 3×2 diagnostic grid */}
-          <div className="grid sm:grid-cols-2 gap-4">
             {findings.map((item, i) => (
               <motion.div
                 key={item.title}
