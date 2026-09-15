@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
+import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
+import { CountUp } from "@/app/components/ui/CountUp";
 import { EASE } from "@/app/lib/animations";
 
 const findings = [
@@ -71,14 +73,14 @@ const findings = [
   },
 ];
 
-const stats = [
-  { value: "$250M+", label: "Processed annually" },
-  { value: "300+",   label: "Contractor clients" },
+const stats: { value: React.ReactNode; label: string }[] = [
+  { value: <CountUp to={250} prefix="$" suffix="M+" />, label: "Processed annually" },
+  { value: <CountUp to={300} suffix="+" />,             label: "Contractor clients" },
   { value: "Human-led", label: "Advisor support" },
-  { value: "Monthly", label: "Statement reviews" },
+  { value: "Monthly",   label: "Statement reviews" },
 ];
 
-export function DiagnosticSection() {
+export function DiagnosticSection({ photo }: { photo: string | null }) {
   return (
     <section id="diagnostic" className="py-24 lg:py-32 bg-white border-t border-slate-100">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -148,8 +150,19 @@ export function DiagnosticSection() {
             </ScrollReveal>
           </div>
 
-          {/* Right — 3×2 diagnostic grid */}
+          {/* Right — 3×2 diagnostic grid + photo */}
           <div className="grid sm:grid-cols-2 gap-4">
+            <ScrollReveal delay={0.1} className="sm:col-span-2 sm:order-last">
+              <PhotoFrame
+                src={photo}
+                alt="Hands marking line items on a printed processor statement with a highlighter"
+                brief="Tight crop: hands with a highlighter marking line items on a printed statement, laptop edge visible. Bright, documentary."
+                tone="warm"
+                motion="parallax"
+                position="50% 45%"
+                className="h-[220px] rounded-2xl"
+              />
+            </ScrollReveal>
             {findings.map((item, i) => (
               <motion.div
                 key={item.title}

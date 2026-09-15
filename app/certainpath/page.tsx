@@ -8,7 +8,7 @@ import { EASE } from "@/app/lib/animations";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 const openModal = () => window.dispatchEvent(new Event("open-lead-modal"));
-const openChat  = () => (window as any).Tawk_API?.maximize?.();
+const openChat  = () => window.Tawk_API?.maximize?.();
 const fmt       = (n: number) => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
 // ── Data ──────────────────────────────────────────────────────────────────────

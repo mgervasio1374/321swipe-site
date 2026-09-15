@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
+import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
+import { AnalysisCard } from "@/app/components/sections/AnalysisCard";
 import { EASE } from "@/app/lib/animations";
 
 const features = [
@@ -43,19 +45,29 @@ const features = [
   },
 ];
 
-const feeRows = [
-  { label: "Interchange Pass-Through", amount: "$1,440", pct: 75, color: "#2563eb" },
-  { label: "Processor Markup", amount: "$680", pct: 46, color: "#3b82f6" },
-  { label: "Hidden Markup Fees", amount: "$400", pct: 26, color: "#60a5fa" },
-];
-
-export function IntelligenceSection() {
+export function IntelligenceSection({ photo }: { photo: string | null }) {
   return (
     <section
       id="intelligence"
       className="relative py-28 lg:py-36 overflow-hidden"
       style={{ background: "linear-gradient(180deg, #ffffff 0%, #f1f5f9 5%, #94a3b8 14%, #1e293b 26%, #0d1e3a 38%, #060d1c 52%)" }}
     >
+      {/* Analyst photography — faint, behind everything, fades in from the dark */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[22%] bottom-0 opacity-[0.22]">
+        <PhotoFrame
+          src={photo}
+          alt=""
+          tone="navy"
+          motion="parallax"
+          position="50% 40%"
+          className="absolute inset-0"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(180deg, #060d1c 0%, rgba(6,13,28,0.2) 35%, rgba(6,13,28,0.6) 100%)" }}
+        />
+      </div>
+
       {/* Multi-layer glow system */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div
@@ -148,7 +160,7 @@ export function IntelligenceSection() {
             </ScrollReveal>
           </div>
 
-          {/* ── Right: analysis card ── */}
+          {/* ── Right: cycling analysis card ── */}
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -162,128 +174,7 @@ export function IntelligenceSection() {
               className="absolute -inset-8 rounded-[2rem] blur-3xl opacity-30 pointer-events-none"
               style={{ background: "radial-gradient(ellipse, #3b82f6 0%, #2563eb 40%, transparent 70%)" }}
             />
-
-            <div
-              className="relative rounded-2xl overflow-hidden"
-              style={{
-                background: "linear-gradient(145deg, #0f1e3a 0%, #0c1524 100%)",
-                boxShadow: "0 0 0 1px rgba(37,99,235,0.2), 0 24px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)",
-              }}
-            >
-              {/* Card header */}
-              <div
-                className="flex items-center justify-between px-5 py-4"
-                style={{ borderBottom: "1px solid rgba(37,99,235,0.15)" }}
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <div>
-                    <p className="text-xs font-semibold text-white leading-none">Statement Analysis</p>
-                    <p className="text-[10px] text-navy-100/40 mt-0.5">Apex Roofing LLC · May 2026</p>
-                  </div>
-                </div>
-                <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-1 rounded-full">
-                  Analysis Complete
-                </span>
-              </div>
-
-              <div className="p-5 space-y-5">
-                {/* Rate comparison */}
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { label: "Your Effective Rate", value: "3.15%", sub: "Current processor", accent: false },
-                    { label: "Optimized Rate", value: "2.35%", sub: "After 321 Swipe", accent: true },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="rounded-xl p-3.5"
-                      style={{
-                        background: item.accent
-                          ? "linear-gradient(135deg, rgba(37,99,235,0.15) 0%, rgba(37,99,235,0.06) 100%)"
-                          : "rgba(255,255,255,0.03)",
-                        border: item.accent
-                          ? "1px solid rgba(37,99,235,0.25)"
-                          : "1px solid rgba(255,255,255,0.06)",
-                      }}
-                    >
-                      <p className="text-[9px] font-semibold uppercase tracking-widest text-navy-100/45 mb-1">{item.label}</p>
-                      <p className={`text-2xl font-bold tabular-nums ${item.accent ? "text-accent-400" : "text-white"}`}>
-                        {item.value}
-                      </p>
-                      <p className="text-[9px] text-navy-100/35 mt-0.5">{item.sub}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Fee breakdown bars */}
-                <div>
-                  <p className="text-[9px] font-semibold uppercase tracking-widest text-navy-100/35 mb-3">
-                    Fee Breakdown
-                  </p>
-                  <div className="space-y-3">
-                    {feeRows.map((row, i) => (
-                      <div key={row.label} className="space-y-1.5">
-                        <div className="flex justify-between text-[11px]">
-                          <span className="text-navy-100/60">{row.label}</span>
-                          <span className="font-semibold text-white tabular-nums">{row.amount}</span>
-                        </div>
-                        <div className="h-1 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${row.pct}%` }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.35 + i * 0.13, duration: 0.8, ease: EASE }}
-                            className="h-full rounded-full"
-                            style={{ background: row.color }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Savings callout */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.65, duration: 0.4, ease: EASE }}
-                  className="rounded-xl p-4 flex items-center justify-between"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(37,99,235,0.18) 0%, rgba(37,99,235,0.08) 100%)",
-                    border: "1px solid rgba(37,99,235,0.28)",
-                  }}
-                >
-                  <div>
-                    <p className="text-[9px] font-semibold uppercase tracking-widest text-accent-400/80 mb-1">
-                      Estimated Monthly Savings
-                    </p>
-                    <p className="text-[26px] font-bold text-white tabular-nums leading-none">
-                      $640
-                      <span className="text-sm font-normal text-navy-100/40">/mo</span>
-                    </p>
-                    <p className="text-[10px] text-navy-100/45 mt-1">5 hidden fees identified · 0.80% rate reduction</p>
-                  </div>
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center text-lg shrink-0"
-                    style={{ background: "rgba(37,99,235,0.2)", border: "1px solid rgba(37,99,235,0.3)" }}
-                  >
-                    💡
-                  </div>
-                </motion.div>
-
-                {/* Micro action row */}
-                <div
-                  className="flex items-center justify-between pt-1 text-[11px]"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
-                >
-                  <span className="text-navy-100/35">Report generated May 11, 2026</span>
-                  <span className="text-accent-400 font-semibold cursor-pointer hover:text-accent-300 transition-colors">
-                    View full report →
-                  </span>
-                </div>
-              </div>
-            </div>
+            <AnalysisCard />
           </motion.div>
         </div>
       </div>

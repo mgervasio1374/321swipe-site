@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
+import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
 import { EASE } from "@/app/lib/animations";
 
 // ── Featured (large) services ─────────────────────────────────────────────────
@@ -16,7 +17,6 @@ const featuredServices = [
     subtitle: "Where the money is",
     body: "A human analyst reviews your processor statement every month. We find what you're being overcharged, explain it in plain English, and fix it — without you having to ask.",
     tags: ["Monthly human review", "Hidden fee identification", "Rate optimization"],
-    accent: "from-emerald-50/60 to-teal-50/30",
     iconBg: "bg-emerald-600",
   },
   {
@@ -30,7 +30,6 @@ const featuredServices = [
     subtitle: "The foundation",
     body: "All card types. Interchange-plus pricing with full transparency. Next-day funding. No hidden fees, no rate creep, no surprises on your monthly statement.",
     tags: ["All card types", "Next-day funding", "Interchange-plus", "No hidden fees"],
-    accent: "from-navy-50 to-accent-50/40",
     iconBg: "bg-accent-500",
   },
 ];
@@ -79,9 +78,29 @@ const supportingServices = [
   },
 ];
 
-export function ServicesSection() {
+interface Props {
+  statementPhoto: string | null;
+  porchPhoto: string | null;
+}
+
+export function ServicesSection({ statementPhoto, porchPhoto }: Props) {
+  const featuredPhotos = [
+    {
+      src: statementPhoto,
+      alt: "A 321 Swipe analyst reviewing a processor statement on dual monitors",
+      brief: "Over-the-shoulder: a 321 Swipe analyst at a dual-monitor desk, statement on screen annotated in blue.",
+      tone: "navy" as const,
+    },
+    {
+      src: porchPhoto,
+      alt: "A homeowner tapping a card on a handheld terminal held by a technician on a front porch",
+      brief: "Close: a homeowner tapping a card on a handheld terminal held by a technician on a front porch. Bright daylight.",
+      tone: "warm" as const,
+    },
+  ];
+
   return (
-    <section id="features" className="py-24 lg:py-32 bg-surface border-t border-slate-100">
+    <section id="features" className="py-24 lg:py-28 bg-surface border-t border-slate-100">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         {/* Header */}
@@ -115,26 +134,35 @@ export function ServicesSection() {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: i * 0.12, duration: 0.55, ease: EASE }}
               whileHover={{ y: -5, transition: { duration: 0.2, ease: "easeOut" as const } }}
-              className={`group bg-gradient-to-br ${service.accent} rounded-2xl border border-slate-200 p-7 flex flex-col gap-5 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-100/90 transition-shadow cursor-default`}
+              className="group bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col hover:border-slate-300 hover:shadow-xl hover:shadow-slate-100/90 transition-shadow cursor-default"
             >
-              <div className="flex items-start justify-between">
-                <div className={`w-11 h-11 rounded-xl ${service.iconBg} flex items-center justify-center text-white shadow-md`}>
+              <PhotoFrame
+                src={featuredPhotos[i].src}
+                alt={featuredPhotos[i].alt}
+                brief={featuredPhotos[i].brief}
+                tone={featuredPhotos[i].tone}
+                motion="parallax"
+                className="h-[200px]"
+              >
+                <div className={`absolute left-5 bottom-[-22px] w-11 h-11 rounded-xl ${service.iconBg} flex items-center justify-center text-white shadow-md z-[3]`}>
                   {service.icon}
                 </div>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 bg-white/70 px-2.5 py-1 rounded-full border border-slate-200/60">
-                  {service.subtitle}
-                </span>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-base font-bold text-navy-900 mb-2">{service.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{service.body}</p>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {service.tags.map((tag) => (
-                  <span key={tag} className="text-[10px] font-medium text-slate-500 bg-white/80 border border-slate-200/80 px-2.5 py-1 rounded-full">
-                    {tag}
+              </PhotoFrame>
+              <div className="p-7 pt-9 flex flex-col gap-4 flex-1">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-base font-bold text-navy-900">{service.title}</h3>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 bg-white px-2.5 py-1 rounded-full border border-slate-200/80 whitespace-nowrap">
+                    {service.subtitle}
                   </span>
-                ))}
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed flex-1">{service.body}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {service.tags.map((tag) => (
+                    <span key={tag} className="text-[10px] font-medium text-slate-500 bg-white border border-slate-200/80 px-2.5 py-1 rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

@@ -41,3 +41,9 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# raw generated photos (compressed copies live in public/photos)
+/photos
+
+# Claude desktop app scratch folder
+/Claude outputs

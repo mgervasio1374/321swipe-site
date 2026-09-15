@@ -9,10 +9,28 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://321swipe.com";
+const DESCRIPTION =
+  "321 Swipe helps HVAC, plumbing, electrical, roofing, and home service contractors understand processing costs, review statements, and improve payment workflows.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "321 Swipe | Payment Intelligence for Home Service Contractors",
-  description:
-    "321 Swipe helps HVAC, plumbing, electrical, roofing, and home service contractors understand processing costs, review statements, and improve payment workflows.",
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "321 Swipe",
+    title: "321 Swipe | Payment Intelligence for Home Service Contractors",
+    description: DESCRIPTION,
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "321 Swipe — payment intelligence for the trades" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "321 Swipe | Payment Intelligence for Home Service Contractors",
+    description: DESCRIPTION,
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({

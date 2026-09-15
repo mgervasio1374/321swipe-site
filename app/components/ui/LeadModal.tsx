@@ -112,7 +112,7 @@ export function LeadModal() {
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">Request Received</h3>
                   <p className="text-sm text-navy-100/55 leading-relaxed mb-2 max-w-xs mx-auto">
-                    We'll reach out within one business day. Your advisor will request your processor statement directly when we connect.
+                    We&apos;ll reach out within one business day. Your advisor will request your processor statement directly when we connect.
                   </p>
                   <button
                     onClick={close}
@@ -133,7 +133,7 @@ export function LeadModal() {
                     </div>
                     <h2 className="text-lg font-bold text-white leading-snug">Request a Free Statement Review</h2>
                     <p className="text-xs text-navy-100/50 mt-1.5 leading-relaxed">
-                      We'll analyze your processor statement and show you exactly what you're paying — and where you're overpaying.
+                      We&apos;ll analyze your processor statement and show you exactly what you&apos;re paying — and where you&apos;re overpaying.
                     </p>
                   </div>
 
