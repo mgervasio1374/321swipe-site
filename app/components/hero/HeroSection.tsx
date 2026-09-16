@@ -127,7 +127,7 @@ export function HeroSection({ photo }: HeroSectionProps) {
         </motion.div>
 
         {/* ── Right: photography + floating dashboard ── */}
-        <div className="relative min-h-[640px] lg:min-h-0">
+        <div className="relative flex flex-col lg:block lg:min-h-0">
           <PhotoFrame
             src={photo}
             alt="An HVAC technician taking a card payment from a homeowner in her kitchen"
@@ -137,7 +137,7 @@ export function HeroSection({ photo }: HeroSectionProps) {
             position="70% 40%"
             briefPosition="top-right"
             priority
-            className="absolute inset-0 lg:[clip-path:polygon(9%_0,100%_0,100%_100%,0_100%)]"
+            className="h-[340px] w-full lg:h-auto lg:absolute lg:inset-0 lg:[clip-path:polygon(9%_0,100%_0,100%_100%,0_100%)]"
           />
           {/* blend into the copy side */}
           <div
@@ -145,17 +145,12 @@ export function HeroSection({ photo }: HeroSectionProps) {
             className="absolute inset-0 pointer-events-none hidden lg:block"
             style={{ background: "linear-gradient(90deg, #f3f6fa 0%, rgba(243,246,250,0.6) 8%, transparent 22%)" }}
           />
-          <div
-            aria-hidden
-            className="absolute inset-x-0 bottom-0 h-24 pointer-events-none lg:hidden"
-            style={{ background: "linear-gradient(to top, rgba(6,13,28,0.5), transparent)" }}
-          />
 
           <motion.div
             initial={{ opacity: 0, x: 48, scale: 0.96 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 0.85, delay: 0.18, ease: EASE }}
-            className="absolute left-1/2 -translate-x-1/2 bottom-8 w-[min(92%,340px)] lg:left-[-24px] lg:translate-x-0 lg:bottom-10 lg:w-[300px]"
+            className="relative -mt-14 mx-auto w-[min(92%,340px)] pb-12 lg:absolute lg:mt-0 lg:pb-0 lg:mx-0 lg:left-[-24px] lg:bottom-10 lg:w-[300px]"
           >
             <DashboardVisual />
           </motion.div>

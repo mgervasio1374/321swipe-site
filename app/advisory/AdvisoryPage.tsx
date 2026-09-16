@@ -209,7 +209,7 @@ export function AdvisoryPage({ photos }: { photos: PhotoMap }) {
               </motion.div>
             </div>
 
-            <div className="relative min-h-[420px] lg:min-h-0">
+            <div className="relative flex flex-col lg:block lg:min-h-0">
               <PhotoFrame
                 src={photos.analyst}
                 alt="A 321 Swipe analyst preparing an underwriting file at a dual-monitor desk"
@@ -219,7 +219,7 @@ export function AdvisoryPage({ photos }: { photos: PhotoMap }) {
                 position="55% 40%"
                 briefPosition="top-right"
                 priority
-                className="absolute inset-0 lg:[clip-path:polygon(9%_0,100%_0,100%_100%,0_100%)]"
+                className="h-[300px] w-full lg:h-auto lg:absolute lg:inset-0 lg:[clip-path:polygon(9%_0,100%_0,100%_100%,0_100%)]"
               />
               <div
                 aria-hidden
@@ -229,7 +229,7 @@ export function AdvisoryPage({ photos }: { photos: PhotoMap }) {
               {/* Capability strip overlapping the seam */}
               <motion.div
                 initial={{ opacity: 0, x: 48 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.85, delay: 0.3, ease: EASE }}
-                className="absolute left-1/2 -translate-x-1/2 bottom-8 w-[min(92%,360px)] lg:left-[-24px] lg:translate-x-0 lg:bottom-12 lg:w-[340px] bg-white rounded-2xl overflow-hidden"
+                className="relative -mt-12 mx-auto mb-12 w-[min(92%,360px)] lg:absolute lg:mt-0 lg:mb-0 lg:mx-0 lg:left-[-24px] lg:bottom-12 lg:w-[340px] bg-white rounded-2xl overflow-hidden"
                 style={{ boxShadow: "0 0 0 1px rgba(12,21,36,0.06), 0 16px 48px rgba(12,21,36,0.18), 0 40px 90px rgba(37,99,235,0.12)" }}
               >
                 <div className="px-5 py-3.5 border-b border-slate-100">
