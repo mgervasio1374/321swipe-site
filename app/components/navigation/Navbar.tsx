@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Verian Intelligence", href: "#intelligence" },
   { label: "Services", href: "#features" },
   { label: "Advisory", href: "#advisory" },
+  { label: "Decoder", href: "/statement-decoder" },
 ];
 
 export function Navbar() {
