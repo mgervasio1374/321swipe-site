@@ -7,6 +7,7 @@ import { DiagnosticSection } from "@/app/components/sections/DiagnosticSection";
 import { PartnershipSection } from "@/app/components/sections/PartnershipSection";
 import { AdvantageSection } from "@/app/components/sections/AdvantageSection";
 import { ServicesSection } from "@/app/components/sections/ServicesSection";
+import { AdvisorySection } from "@/app/components/sections/AdvisorySection";
 import { CtaSection } from "@/app/components/sections/CtaSection";
 import { loadPhotos } from "@/app/lib/photos";
 
@@ -26,6 +27,7 @@ export default function Home() {
         <PartnershipSection advisorPhoto={photos.advisor} tailgatePhoto={photos["van-tailgate"]} />
         <AdvantageSection photo={photos["roofing-crew"]} />
         <ServicesSection statementPhoto={photos.analyst} porchPhoto={photos["porch-payment"]} />
+        <AdvisorySection photo={photos.analyst} />
         <CtaSection photo={photos["van-dusk"]} />
       </main>
     </>
