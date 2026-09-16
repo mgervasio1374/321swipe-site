@@ -84,7 +84,7 @@ export function AdvisorySection({ photo }: { photo: string | null }) {
                 tone="navy"
                 motion="parallax"
                 position="55% 40%"
-                className="h-[420px] lg:h-[520px] rounded-[20px]"
+                className="h-[300px] sm:h-[420px] lg:h-[520px] rounded-[20px]"
                 style={{ boxShadow: "0 24px 60px rgba(12,21,36,0.14)" }}
               />
               <motion.div
@@ -92,7 +92,7 @@ export function AdvisorySection({ photo }: { photo: string | null }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.5, ease: EASE }}
-                className="absolute left-4 right-4 bottom-4 lg:left-auto lg:right-6 lg:bottom-6 lg:w-[280px] bg-white rounded-[14px] p-4"
+                className="relative -mt-10 mx-auto w-[min(92%,320px)] lg:absolute lg:mt-0 lg:mx-0 lg:w-[280px] lg:right-6 lg:bottom-6 bg-white rounded-[14px] p-4"
                 style={{ boxShadow: "0 16px 48px rgba(12,21,36,0.16), 0 0 0 1px rgba(12,21,36,0.06)" }}
               >
                 <p className="text-[9.5px] font-semibold uppercase tracking-[0.08em] text-slate-400">Four workstreams</p>

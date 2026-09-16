@@ -82,7 +82,7 @@ export function PhotoFrame({
       ref={ref}
       role={src ? undefined : "img"}
       aria-label={src ? undefined : alt}
-      className={`${/\b(absolute|fixed)\b/.test(className) ? "" : "relative"} overflow-hidden ${className}`}
+      className={`${/(^|\s)(absolute|fixed)(\s|$)/.test(className) ? "" : "relative"} overflow-hidden ${className}`}
       style={style}
     >
       {inner}
