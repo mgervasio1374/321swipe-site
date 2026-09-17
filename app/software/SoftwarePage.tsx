@@ -55,6 +55,9 @@ function Shot({ item, src }: { item: SoftwareItem; src: string | null }) {
         {item.status === "soon" && (
           <span className="rounded-full bg-navy-900/85 backdrop-blur px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white shadow-sm">In progress</span>
         )}
+        {item.status === "demo" && (
+          <span className="rounded-full bg-accent-500/90 backdrop-blur px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white shadow-sm">Pilot demo</span>
+        )}
       </div>
     </div>
   );

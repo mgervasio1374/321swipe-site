@@ -130,14 +130,15 @@ export const SOFTWARE: SoftwareItem[] = [
   },
   {
     slug: "payment-hub",
-    name: "Payment Hub",
-    tagline: "One place for payments, deposits and fees.",
+    name: "321 Payment Hub",
+    tagline: "Create, send, collect and reconcile — in one workflow.",
     description:
-      "A client-facing view of card activity, deposit timing and processing costs across locations, with the monthly review attached. The operating layer for a modern payments relationship rather than a statement in the mail. [Confirm description and add the demo URL.]",
+      "A payment-request and reconciliation layer for home-service businesses. The office creates a payment request in plain fields, the customer gets a merchant-branded invoice that pays comfortably on a phone through a hosted card page (no card data ever touches Payment Hub), and paid invoices land in a guided reconciliation queue for the field-service system. Piloting with a plumbing and heating contractor.",
     category: "Platform",
-    status: "soon",
-    audience: "321 Swipe clients",
-    tags: ["Deposits", "Fees over time", "Multi-location"],
-    tone: "light",
+    status: "demo",
+    href: "https://pay.321swipe.com",
+    audience: "Merchant office staff and their customers",
+    tags: ["Invoice requests", "Branded checkout", "Hosted payments", "Reconciliation queue"],
+    tone: "navy",
   },
 ];
