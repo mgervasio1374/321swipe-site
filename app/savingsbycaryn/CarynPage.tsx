@@ -161,7 +161,7 @@ export function CarynPage({ photos }: { photos: PhotoMap }) {
               Your 321 Swipe rep · Lancaster County &amp; central PA
             </span>
           }
-          lines={["Savings by Caryn.", "Card fees, decoded.", "Neighbor to neighbor."]}
+          lines={["Meet Caryn.", "Card fees, decoded.", "Neighbor to neighbor."]}
           body="Caryn Hales works with the businesses that keep this part of Pennsylvania running — farm markets, shed builders, hydraulic shops, bakeries, ministries. She reads your processor statement with you, line by line, and tells you plainly what's fair and what isn't."
           primary={{ label: "Send Caryn a statement", onClick: goToForm }}
           secondary={{ label: "Ask a question", onClick: goToForm }}

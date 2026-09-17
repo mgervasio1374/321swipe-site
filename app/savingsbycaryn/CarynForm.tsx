@@ -151,11 +151,11 @@ export function CarynForm({ id = "contact" }: { id?: string }) {
               <div className="grid grid-cols-[minmax(0,1fr)] sm:grid-cols-2 gap-4">
                 <div>
                   <label className={LABEL} htmlFor={`${id}-name`}>Your name</label>
-                  <input id={`${id}-name`} required name="name" type="text" placeholder="Jane Stoltzfus" className={INPUT} />
+                  <input id={`${id}-name`} required name="name" type="text" placeholder="Jane Doe" className={INPUT} />
                 </div>
                 <div>
                   <label className={LABEL} htmlFor={`${id}-business`}>Business</label>
-                  <input id={`${id}-business`} required name="business" type="text" placeholder="Stoltzfus Farm Market" className={INPUT} />
+                  <input id={`${id}-business`} required name="business" type="text" placeholder="ABC Company" className={INPUT} />
                 </div>
                 <div>
                   <label className={LABEL} htmlFor={`${id}-email`}>Email</label>
