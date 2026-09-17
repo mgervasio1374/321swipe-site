@@ -42,3 +42,16 @@ function resolve(name: string): string | null {
 export function loadPhotos(): PhotoMap {
   return Object.fromEntries(PHOTO_NAMES.map((n) => [n, resolve(n)])) as PhotoMap;
 }
+
+/** Screenshots for /software live in public/software/<slug>.{jpg,png,webp}. */
+export function loadSoftwareShots(slugs: readonly string[]): Record<string, string | null> {
+  const dir = path.join(process.cwd(), "public", "software");
+  return Object.fromEntries(
+    slugs.map((slug) => {
+      for (const ext of ["jpg", "jpeg", "webp", "png"]) {
+        if (fs.existsSync(path.join(dir, `${slug}.${ext}`))) return [slug, `/software/${slug}.${ext}`];
+      }
+      return [slug, null];
+    }),
+  );
+}

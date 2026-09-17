@@ -14,6 +14,7 @@ const footerColumns = [
       { label: "Grade my statement", href: "/grade-my-statement" },
       { label: "Merchant advisory", href: "/advisory" },
       { label: "Services", href: "/#features" },
+      { label: "Software", href: "/software" },
     ],
   },
   {

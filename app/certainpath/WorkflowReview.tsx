@@ -37,7 +37,7 @@ export function WorkflowReview() {
   const stepLabel = ["", "Your Current Setup", "Payment Workflow", "Opportunities Found"];
 
   return (
-    <section className="py-24 lg:py-28 bg-surface border-t border-slate-100">
+    <section id="workflow-review" className="py-24 lg:py-28 bg-surface border-t border-slate-100">
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-12">
