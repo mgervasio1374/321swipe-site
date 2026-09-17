@@ -55,6 +55,9 @@ function Shot({ item, src }: { item: SoftwareItem; src: string | null }) {
         {item.status === "soon" && (
           <span className="rounded-full bg-navy-900/85 backdrop-blur px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white shadow-sm">In progress</span>
         )}
+        {item.status === "internal" && (
+          <span className="rounded-full bg-amber-500/90 backdrop-blur px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white shadow-sm">Internal tool</span>
+        )}
         {item.status === "demo" && (
           <span className="rounded-full bg-accent-500/90 backdrop-blur px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white shadow-sm">Pilot demo</span>
         )}
@@ -84,7 +87,7 @@ function Card({ item, src, i }: { item: SoftwareItem; src: string | null; i: num
               {external ? "Open" : "Try it"} {arrow}
             </span>
           ) : (
-            <span className="text-[12px] font-semibold text-slate-400 whitespace-nowrap">Demo coming</span>
+            <span className="text-[12px] font-semibold text-slate-400 whitespace-nowrap">{item.status === "internal" ? "Used in every review" : "Demo coming"}</span>
           )}
         </div>
       </div>
@@ -116,7 +119,7 @@ function Card({ item, src, i }: { item: SoftwareItem; src: string | null; i: num
 export function SoftwarePage({ photos, shots }: { photos: PhotoMap; shots: Record<string, string | null> }) {
   const [cat, setCat] = useState<(typeof CATEGORIES)[number]>("All");
   const items = SOFTWARE.filter((s) => cat === "All" || s.category === cat);
-  const live = SOFTWARE.filter((s) => s.status !== "soon").length;
+  const live = SOFTWARE.filter((s) => s.status === "live" || s.status === "demo").length;
 
   return (
     <>
@@ -143,7 +146,7 @@ export function SoftwarePage({ photos, shots }: { photos: PhotoMap; shots: Recor
               <motion.div {...fade(0.28)} className="lg:pb-2">
                 <p className="text-[1rem] text-slate-500 leading-[1.72] max-w-[460px]">
                   Most processors sell a rate. We build software that shows a business what it is actually paying and why.
-                  Everything here is real and working — open any of them. {live} are live today; the rest are on the bench.
+                  Everything here is real and working. {live} of them you can open right now; the rest run on our own desks, behind every review we deliver.
                 </p>
               </motion.div>
             </div>

@@ -3,9 +3,10 @@
  *
  * Each entry renders as a card with a screenshot (public/software/<slug>.jpg),
  * a short description and a link that opens the live tool in a new tab.
- * Entries with status "soon" render without a link until `href` is filled in.
+ * Entries with status "soon" render without a link until `href` is filled in;
+ * "internal" tools are shown but never linked (they run on our own machines).
  */
-export type SoftwareStatus = "live" | "demo" | "soon";
+export type SoftwareStatus = "live" | "demo" | "soon" | "internal";
 
 export interface SoftwareItem {
   slug: string;
@@ -105,28 +106,16 @@ export const SOFTWARE: SoftwareItem[] = [
   },
   // ── Tools built outside this site — fill in href + description, drop a screenshot in public/software/ ──
   {
-    slug: "statement-analyzer",
-    name: "Statement Analyzer",
-    tagline: "The engine behind the monthly review.",
-    description:
-      "Reads a processor statement, classifies every line as pass-through, markup or avoidable, benchmarks the effective rate against businesses of the same size and trade, and produces the marked-up review a client receives each month. [Confirm description and add the demo URL.]",
-    category: "Analysis",
-    status: "soon",
-    audience: "321 Swipe analysts and clients",
-    tags: ["Line classification", "Benchmarking", "Monthly review"],
-    tone: "navy",
-  },
-  {
     slug: "pricing-model-lab",
-    name: "Pricing Model Lab",
-    tagline: "Interchange-plus, flat and tiered, side by side.",
+    name: "Pricing Lab & Statement Analyzer",
+    tagline: "Import a statement. Model every pricing structure. Print the proposal.",
     description:
-      "Models what the same month of card volume costs under each pricing structure, with the card mix, average ticket and acceptance method dialed in. Built to show a business owner, in one screen, why the advertised rate and the effective rate are different numbers. [Confirm description and add the demo URL.]",
-    category: "Pricing",
-    status: "soon",
-    audience: "Prospects and reps",
-    tags: ["Three models", "Card-mix inputs", "Effective-rate comparison"],
-    tone: "warm",
+      "The engine behind a 321 Swipe review. It imports a merchant's PDF statement and reads the volumes, card mix and fees line by line — every extracted number cites the statement line it came from — then prices the same month under interchange-plus, tiered, flat-rate and surcharge programs using the processor's own interchange tables and fee schedules (more than 20,000 formulas, verified one-to-one against the source workbook). One click produces a branded, print-ready proposal; a compliance gate checks surcharge rules state by state before a surcharging document can be generated.",
+    category: "Analysis",
+    status: "internal",
+    audience: "321 Swipe analysts and reps",
+    tags: ["PDF statement import", "IC+ / tiered / flat / surcharge", "Glass-box extraction report", "Proposal generator"],
+    tone: "navy",
   },
   {
     slug: "payment-hub",
