@@ -18,6 +18,14 @@ export const PHOTO_NAMES = [
   "roofing-crew",
   "porch-payment",
   "van-dusk",
+  // Savings by Caryn (/savingsbycaryn) — see photo-prompts-caryn.md
+  "caryn-hero",
+  "caryn-farm-market",
+  "caryn-sheds",
+  "caryn-machine-shop",
+  "caryn-equipment",
+  "caryn-country-store",
+  "caryn-ministry",
 ] as const;
 
 export type PhotoName = (typeof PHOTO_NAMES)[number];

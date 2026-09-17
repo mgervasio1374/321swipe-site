@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
@@ -134,7 +135,7 @@ export function DiagnosticSection({ photo }: { photo: string | null }) {
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.32}>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <a
                   href="https://upload.321swipe.com"
                   target="_blank"
@@ -146,6 +147,15 @@ export function DiagnosticSection({ photo }: { photo: string | null }) {
                     <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
                   </svg>
                 </a>
+                <Link
+                  href="/statement-decoder"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-600 hover:text-accent-500 transition-colors"
+                >
+                  See a statement decoded
+                  <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5 opacity-70">
+                    <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
+                  </svg>
+                </Link>
               </div>
             </ScrollReveal>
           </div>

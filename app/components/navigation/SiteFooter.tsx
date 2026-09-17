@@ -9,6 +9,8 @@ const footerColumns = [
     links: [
       { label: "Why 321 Swipe", href: "/#about" },
       { label: "Statement review", href: "/#diagnostic" },
+      { label: "Statement Decoder", href: "/statement-decoder" },
+      { label: "Fee dictionary", href: "/fees" },
       { label: "Merchant advisory", href: "/advisory" },
       { label: "Services", href: "/#features" },
     ],
