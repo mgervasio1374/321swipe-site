@@ -11,6 +11,7 @@ const footerColumns = [
       { label: "Statement review", href: "/#diagnostic" },
       { label: "Statement Decoder", href: "/statement-decoder" },
       { label: "Fee dictionary", href: "/fees" },
+      { label: "Grade my statement", href: "/grade-my-statement" },
       { label: "Merchant advisory", href: "/advisory" },
       { label: "Services", href: "/#features" },
     ],

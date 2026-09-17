@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { SubpageHeader } from "@/app/components/navigation/SubpageHeader";
 import { ClosingCta } from "@/app/components/sections/ClosingCta";
@@ -8,6 +9,8 @@ import { EASE } from "@/app/lib/animations";
 import { TOTALS, money } from "@/app/lib/fees";
 import type { PhotoMap } from "@/app/lib/photos";
 import { StatementDecoder } from "./StatementDecoder";
+import type { DecoderVariant } from "@/app/lib/partners";
+import Image from "next/image";
 
 const openModal = () => window.dispatchEvent(new Event("open-lead-modal"));
 
@@ -32,10 +35,11 @@ const takeaways = [
   },
 ];
 
-export function StatementDecoderPage({ photos }: { photos: PhotoMap }) {
+export function StatementDecoderPage({ photos, variant }: { photos: PhotoMap; variant?: DecoderVariant }) {
+  const trade = variant?.tradePhrase ?? "a roofing company";
   return (
     <>
-      <SubpageHeader label="Statement Decoder" cta={{ label: "Decode my statement", onClick: openModal }} />
+      <SubpageHeader label={variant?.headerLabel ?? "Statement Decoder"} partnerLogo={variant?.logo} cta={{ label: "Decode my statement", onClick: openModal }} />
 
       <main>
         {/* ── Hero: short, copy-led; the statement itself is the visual ── */}
@@ -54,8 +58,14 @@ export function StatementDecoderPage({ photos }: { photos: PhotoMap }) {
                 <motion.div {...fade(0.05)}>
                   <span className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-navy-50/90 px-3.5 py-1.5 text-xs font-semibold text-navy-700 shadow-sm">
                     <span className="h-1.5 w-1.5 rounded-full bg-accent-500" />
-                    Statement Decoder
+                    {variant?.badge ?? "Statement Decoder"}
                   </span>
+                  {variant && (
+                    <span className="ml-3 inline-flex items-center gap-2 align-middle text-[12px] text-slate-400">
+                      {variant.logo && <Image src={variant.logo.src} alt={variant.logo.alt} width={100} height={24} style={{ height: "16px", width: "auto", opacity: 0.8 }} />}
+                      <Link href={variant.home} className="hover:text-navy-900">← Back to the {variant.name} page</Link>
+                    </span>
+                  )}
                 </motion.div>
                 <motion.h1
                   {...fade(0.15)}
@@ -77,12 +87,13 @@ export function StatementDecoderPage({ photos }: { photos: PhotoMap }) {
               </div>
               <motion.div {...fade(0.28)} className="lg:pb-2">
                 <p className="text-[1rem] text-slate-500 leading-[1.72] max-w-[440px]">
-                  A realistic statement for a roofing company on a tiered plan. Hover or tap any line to see
+                  A realistic statement for {trade}{" "}on a tiered plan. Hover or tap any line to see
                   what it is, what a fair version looks like, and what we&apos;d do about it. Then flip the
                   switch to see what we&apos;d flag.
                 </p>
                 <p className="mt-4 text-[12px] text-slate-400">
                   Fictional business, real fee structure. Amounts are typical for ~{money(82000).replace(".00", "")}/month in card volume.
+                  {" "}Want a quick read on yours? <Link href="/grade-my-statement" className="font-semibold text-accent-600 hover:text-accent-500">Grade your statement in two minutes →</Link>
                 </p>
               </motion.div>
             </div>
@@ -94,7 +105,7 @@ export function StatementDecoderPage({ photos }: { photos: PhotoMap }) {
           {/* the hero gradient runs a little way behind the statement so it reads as paper on a desk */}
           <div aria-hidden className="absolute inset-x-0 top-0 h-32" style={{ background: "linear-gradient(180deg, #f1f5f9 0%, transparent 100%)" }} />
           <motion.div {...fade(0.4)} className="relative pt-2">
-            <StatementDecoder />
+            <StatementDecoder sample={variant?.sample} tradePhrase={trade} cta={variant?.cta} />
           </motion.div>
         </section>
 
@@ -122,10 +133,10 @@ export function StatementDecoderPage({ photos }: { photos: PhotoMap }) {
 
         <ClosingCta
           photo={photos["van-dusk"]}
-          badge="Free statement review"
-          title="Now decode yours."
-          body="Send one recent statement — a photo from your phone is fine. Within a few business days you'll get it back marked up exactly like this one: every line labeled, every avoidable fee totaled, and a plain answer on what to do next."
-          primary={{ label: "Request a statement review", href: "https://upload.321swipe.com" }}
+          badge={variant?.closing.badge ?? "Free statement review"}
+          title={variant?.closing.title ?? "Now decode yours."}
+          body={variant?.closing.body ?? "Send one recent statement — a photo from your phone is fine. Within a few business days you'll get it back marked up exactly like this one: every line labeled, every avoidable fee totaled, and a plain answer on what to do next."}
+          primary={variant ? variant.cta : { label: "Request a statement review", href: "https://upload.321swipe.com" }}
           trustPoints={["No obligation", "Nothing to install", "Reviewed by a person, not a form", "Month-to-month if you switch"]}
         />
       </main>

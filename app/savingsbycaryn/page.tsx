@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
 import { loadPhotos } from "@/app/lib/photos";
-import { CarynPage } from "./CarynPage";
+import { CARYN } from "@/app/lib/reps";
+import { RepPage } from "@/app/components/rep/RepPage";
 
 export const metadata: Metadata = {
-  title: "Savings by Caryn | 321 Swipe — Card Processing for Lancaster County Businesses",
-  description:
-    "Caryn Hales is 321 Swipe's payment advisor for Lancaster County and central Pennsylvania — farm markets, shed builders, machine shops, garages, bakeries and ministries. Send her one statement for a free line-by-line review.",
-  alternates: { canonical: "https://321swipe.com/savingsbycaryn" },
-  openGraph: {
-    title: "Savings by Caryn | 321 Swipe",
-    description: "Card processing, explained by a neighbor. Free statement review for Lancaster County and central PA businesses.",
-    url: "https://321swipe.com/savingsbycaryn",
-  },
+  title: CARYN.metadata.title,
+  description: CARYN.metadata.description,
+  alternates: { canonical: `https://321swipe.com/${CARYN.slug}` },
+  openGraph: { title: `${CARYN.pageName} | 321 Swipe`, description: CARYN.metadata.ogDescription, url: `https://321swipe.com/${CARYN.slug}` },
 };
 
 export default function Page() {
-  return <CarynPage photos={loadPhotos()} />;
+  return <RepPage rep={CARYN} photos={loadPhotos()} />;
 }

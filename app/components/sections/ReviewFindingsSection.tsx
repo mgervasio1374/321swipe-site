@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
@@ -18,11 +19,13 @@ interface Props {
   note?: string;
   findings: Finding[];
   cta: { label: string; onClick?: () => void; href?: string };
+  /** Optional secondary text link, e.g. to a partner Statement Decoder. */
+  secondary?: { label: string; href: string };
   background?: "white" | "surface";
 }
 
 /** "What a review finds" — sticky copy on the left, 3×2 findings grid with a photo beneath. */
-export function ReviewFindingsSection({ photo, title, body, note, findings, cta, background = "white" }: Props) {
+export function ReviewFindingsSection({ photo, title, body, note, findings, cta, secondary, background = "white" }: Props) {
   const arrow = (
     <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5 opacity-70">
       <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
@@ -52,7 +55,7 @@ export function ReviewFindingsSection({ photo, title, body, note, findings, cta,
               </ScrollReveal>
             )}
             <ScrollReveal delay={0.32}>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                 {cta.href ? (
                   <a href={cta.href} target="_blank" rel="noopener noreferrer" className={btn}>
                     {cta.label} {arrow}
@@ -61,6 +64,11 @@ export function ReviewFindingsSection({ photo, title, body, note, findings, cta,
                   <button onClick={cta.onClick} className={btn}>
                     {cta.label} {arrow}
                   </button>
+                )}
+                {secondary && (
+                  <Link href={secondary.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-600 hover:text-accent-500 transition-colors">
+                    {secondary.label} {arrow}
+                  </Link>
                 )}
               </div>
             </ScrollReveal>

@@ -232,6 +232,7 @@ export function BcsgPage({ photos }: { photos: PhotoMap }) {
           body="Most contractors don't need another processor pitch. They need someone to translate the statement, identify the leaks, and explain what should change."
           findings={diagnostics}
           cta={{ label: "Get your free review", onClick: openModal }}
+          secondary={{ label: "See a member statement decoded", href: "/blue-collar-success-group/statement-decoder" }}
           background="surface"
         />
 
