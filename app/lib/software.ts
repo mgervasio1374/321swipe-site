@@ -130,4 +130,16 @@ export const SOFTWARE: SoftwareItem[] = [
     tags: ["Invoice requests", "Branded checkout", "Hosted payments", "Reconciliation queue"],
     tone: "navy",
   },
+  {
+    slug: "jobber-authorize-net",
+    name: "Jobber → Authorize.net",
+    tagline: "Get paid through 321 Swipe pricing without leaving Jobber.",
+    description:
+      "An integration for contractors who run their business in Jobber but don't want to be locked into its built-in payments. Invoices and customers stay in Jobber; card and ACH payments route through an Authorize.net gateway on 321 Swipe's interchange-plus pricing, and payment status syncs back to the job so the office never reconciles twice.",
+    category: "Platform",
+    status: "soon",
+    audience: "Contractors on Jobber",
+    tags: ["Jobber invoices", "Authorize.net gateway", "Interchange-plus", "Status sync"],
+    tone: "navy",
+  },
 ];
