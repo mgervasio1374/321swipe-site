@@ -45,8 +45,8 @@ function StatCounter({
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const stats = [
-  { label: "Processed annually", value: 250, prefix: "$", suffix: "M+", desc: "in contractor payments" },
-  { label: "Contractor clients", value: 300, prefix: "", suffix: "+", desc: "active businesses" },
+  { label: "Processed annually", value: 180, prefix: "$", suffix: "M+", desc: "in contractor payments" },
+  { label: "Active merchants", value: 250, prefix: "", suffix: "+", desc: "processing today" },
   { label: "Avg. monthly savings", value: 480, prefix: "$", suffix: "", desc: "per client found" },
   { label: "Client retention", value: 97, prefix: "", suffix: "%", desc: "year-over-year" },
 ];

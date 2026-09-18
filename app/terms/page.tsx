@@ -15,8 +15,8 @@ export const metadata: Metadata = {
  */
 
 const COMPANY = "321 Swipe"; // [Legal entity name]
-const CONTACT_EMAIL = "[hello@321swipe.com]";
-const STATE = "[Pennsylvania]";
+const CONTACT_EMAIL = "sales@321swipe.com";
+const STATE = "Florida"; // [Confirm governing law — set to Florida from the Sarasota address]
 const UPDATED = "September 18, 2026";
 
 export default function Page() {
@@ -114,7 +114,7 @@ export default function Page() {
           title: "Governing law and disputes",
           body: (
             <>
-              <p>These terms are governed by the laws of the State of {STATE}, without regard to its conflict-of-law rules. Any dispute about the site or these terms will be brought in the state or federal courts located in [County], {STATE}, and you consent to their jurisdiction. Before filing, please write to us at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> — most problems can be solved with a conversation.</p>
+              <p>These terms are governed by the laws of the State of {STATE}, without regard to its conflict-of-law rules. Any dispute about the site or these terms will be brought in the state or federal courts located in Sarasota County, {STATE}, and you consent to their jurisdiction. Before filing, please write to us at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> — most problems can be solved with a conversation.</p>
             </>
           ),
         },

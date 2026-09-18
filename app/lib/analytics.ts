@@ -18,7 +18,10 @@ export type AnalyticsEvent =
   | { name: "rep_form_submit"; rep: string; mode: "statement" | "message"; attachment: boolean }
   | { name: "lead_modal_submit"; page: string }
   | { name: "software_open"; tool: string; status: string }
-  | { name: "review_cta"; page: string; placement: string };
+  | { name: "review_cta"; page: string; placement: string }
+  | { name: "funding_cta"; placement: string }
+  | { name: "apply_step"; step: string }
+  | { name: "apply_submit"; files: number };
 
 export function track(event: AnalyticsEvent) {
   try {

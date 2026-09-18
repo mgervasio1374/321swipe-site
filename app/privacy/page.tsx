@@ -15,8 +15,8 @@ export const metadata: Metadata = {
  */
 
 const COMPANY = "321 Swipe"; // [Legal entity name, e.g. "321 Swipe LLC"]
-const CONTACT_EMAIL = "[privacy@321swipe.com]";
-const ADDRESS = "[Street address, City, State ZIP]";
+const CONTACT_EMAIL = "sales@321swipe.com";
+const ADDRESS = "13227 Palmers Creek Ter, Sarasota, FL 34202";
 const UPDATED = "September 18, 2026";
 
 export default function Page() {

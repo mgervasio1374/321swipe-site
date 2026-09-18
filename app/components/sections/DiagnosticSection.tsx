@@ -75,8 +75,8 @@ const findings = [
 ];
 
 const stats: { value: React.ReactNode; label: string }[] = [
-  { value: <CountUp to={250} prefix="$" suffix="M+" />, label: "Processed annually" },
-  { value: <CountUp to={300} suffix="+" />,             label: "Contractor clients" },
+  { value: <CountUp to={180} prefix="$" suffix="M+" />, label: "Processed annually" },
+  { value: <CountUp to={250} suffix="+" />,             label: "Active merchants" },
   { value: "Human-led", label: "Advisor support" },
   { value: "Monthly",   label: "Statement reviews" },
 ];
