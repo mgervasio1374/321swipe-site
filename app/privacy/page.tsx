@@ -56,7 +56,7 @@ export default function Page() {
             <>
               <p><strong>Information you give us.</strong> When you request a statement review, contact a representative or use the chat, we collect what you enter: typically your name, business name, email address, phone number, your current processor, and any message you write.</p>
               <p><strong>Processing statements.</strong> If you send us a merchant statement — through the upload portal, a rep&apos;s contact form or by email — we receive whatever is on that document. Statements usually include your business name and address, your merchant ID, monthly card volume and transaction counts, and the fees you were charged. They should not include customer card numbers, and we ask that you never send us full card numbers or bank account numbers. If a statement contains them, we redact or delete it.</p>
-              <p><strong>Information collected automatically.</strong> Like most websites, our hosting provider records basic technical information when you visit: your IP address, browser type, the pages you view and the time of your visit. The live-chat widget we use also sets cookies so that a conversation can continue across pages. We do not currently run advertising trackers or sell any of this information. [Confirm: no Google Analytics, Meta Pixel or similar is installed. If one is added, this section must be updated.]</p>
+              <p><strong>Information collected automatically.</strong> Like most websites, our hosting provider records basic technical information when you visit: your IP address, browser type, the pages you view and the time of your visit. The live-chat widget we use also sets cookies so that a conversation can continue across pages. We also use Vercel Web Analytics, a privacy-focused measurement tool that counts page views and which site features are used (for example, which fees people look up in the Statement Decoder). It does not use cookies, does not track you across other sites, and does not collect your name, email or statement contents. We do not run advertising trackers and we do not sell any of this information.</p>
               <p><strong>Information from partners.</strong> If you reach us through a partner organization such as CertainPath or Blue Collar Success Group, that partner may tell us you are a member so that we can apply the member program. We do not receive your account details from partners.</p>
             </>
           ),
@@ -120,7 +120,7 @@ export default function Page() {
           body: (
             <>
               <p>You can ask us at any time to show you what we hold about you, correct it, delete it, or stop contacting you. Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and we will respond within [30 days]. We will need to confirm it is you before acting on a request that involves a statement.</p>
-              <p>You can decline the live-chat cookies by not using the chat, or by blocking cookies in your browser; the rest of the site works without them. You can opt out of marketing email using the unsubscribe link in any message, or by telling us. We will still send you messages about a review or account you have asked for.</p>
+              <p>You can decline the live-chat cookies by not using the chat, or by blocking cookies in your browser; the rest of the site works without them. Our analytics are cookie-free and anonymous, so there is nothing to opt out of there. You can opt out of marketing email using the unsubscribe link in any message, or by telling us. We will still send you messages about a review or account you have asked for.</p>
               <p>If you are a California resident, the rights above cover what the California Consumer Privacy Act requires, including the right to know, delete and correct, and the right not to be discriminated against for exercising them. We do not sell or share personal information as those terms are defined in that law.</p>
             </>
           ),
@@ -134,7 +134,7 @@ export default function Page() {
           id: "changes",
           title: "Changes to this policy",
           body: (
-            <p>If we change how we handle your information, we will update this page and the date at the top. For a significant change — for instance, adding analytics or a new category of sharing — we will also note it on this page for at least 30 days.</p>
+            <p>If we change how we handle your information, we will update this page and the date at the top. For a significant change — for instance, a new category of sharing — we will also note it on this page for at least 30 days.</p>
           ),
         },
         {

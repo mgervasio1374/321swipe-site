@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE } from "@/app/lib/animations";
 import type { Rep } from "@/app/lib/reps";
+import { track } from "@/app/lib/analytics";
 
 /**
  * Contact / statement form for rep pages (see lib/reps.ts).
@@ -51,6 +52,7 @@ export function RepForm({ rep, id = "contact" }: { rep: Rep; id?: string }) {
     const fd = new FormData(form);
     const file = fd.get("statement");
     const hasFile = file instanceof File && file.size > 0;
+    track({ name: "rep_form_submit", rep: rep.slug, mode, attachment: hasFile });
     if (hasFile) return; // let the browser POST natively so the attachment goes through
 
     e.preventDefault();

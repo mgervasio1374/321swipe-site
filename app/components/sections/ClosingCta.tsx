@@ -5,6 +5,7 @@ import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
 import { Button } from "@/app/components/ui/Button";
 import { SiteFooter } from "@/app/components/navigation/SiteFooter";
+import { track } from "@/app/lib/analytics";
 
 interface ClosingCtaProps {
   photo: string | null;
@@ -81,6 +82,7 @@ export function ClosingCta({
             {primary.href ? (
               <motion.a
                 href={primary.href}
+                onClick={() => track({ name: "review_cta", page: window.location.pathname, placement: "closing" })}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.025 }}
@@ -91,7 +93,7 @@ export function ClosingCta({
               </motion.a>
             ) : (
               <motion.button
-                onClick={primary.onClick}
+                onClick={() => { track({ name: "review_cta", page: window.location.pathname, placement: "closing" }); primary.onClick?.(); }}
                 whileHover={{ scale: 1.025 }}
                 whileTap={{ scale: 0.97 }}
                 className={primaryClass}

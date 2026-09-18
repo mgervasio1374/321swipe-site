@@ -9,6 +9,7 @@ import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import { EASE } from "@/app/lib/animations";
 import type { PhotoMap } from "@/app/lib/photos";
 import { SOFTWARE, type SoftwareItem } from "@/app/lib/software";
+import { track } from "@/app/lib/analytics";
 
 const openModal = () => window.dispatchEvent(new Event("open-lead-modal"));
 const fade = (delay: number) => ({ initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.6, delay, ease: EASE } });
@@ -94,6 +95,7 @@ function Card({ item, src, i }: { item: SoftwareItem; src: string | null; i: num
     </>
   );
   const cls = "group flex flex-col h-full rounded-2xl border border-slate-200 bg-white overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:border-slate-300 transition-all";
+  const onOpen = () => track({ name: "software_open", tool: item.slug, status: item.status });
   return (
     <motion.div
       layout
@@ -105,9 +107,9 @@ function Card({ item, src, i }: { item: SoftwareItem; src: string | null; i: num
     >
       {item.href ? (
         external ? (
-          <a href={item.href} target="_blank" rel="noopener noreferrer" className={cls}>{body}</a>
+          <a href={item.href} target="_blank" rel="noopener noreferrer" className={cls} onClick={onOpen}>{body}</a>
         ) : (
-          <Link href={item.href} className={cls}>{body}</Link>
+          <Link href={item.href} className={cls} onClick={onOpen}>{body}</Link>
         )
       ) : (
         <div className={`${cls} cursor-default`}>{body}</div>

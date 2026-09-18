@@ -7,6 +7,7 @@ import { Button } from "@/app/components/ui/Button";
 import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
 import { DashboardVisual } from "@/app/components/hero/DashboardVisual";
 import { EASE } from "@/app/lib/animations";
+import { track } from "@/app/lib/analytics";
 
 function fadeUp(delay = 0): Pick<HTMLMotionProps<"div">, "initial" | "animate" | "transition"> {
   return {
@@ -91,6 +92,7 @@ export function HeroSection({ photo }: HeroSectionProps) {
               href="https://upload.321swipe.com"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track({ name: "review_cta", page: "/", placement: "hero" })}
               whileHover={{ scale: 1.025 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center justify-center gap-2 rounded-lg text-white font-semibold text-sm px-6 py-3 transition-colors"

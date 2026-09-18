@@ -105,7 +105,7 @@ export function StatementDecoderPage({ photos, variant }: { photos: PhotoMap; va
           {/* the hero gradient runs a little way behind the statement so it reads as paper on a desk */}
           <div aria-hidden className="absolute inset-x-0 top-0 h-32" style={{ background: "linear-gradient(180deg, #f1f5f9 0%, transparent 100%)" }} />
           <motion.div {...fade(0.4)} className="relative pt-2">
-            <StatementDecoder sample={variant?.sample} tradePhrase={trade} cta={variant?.cta} />
+            <StatementDecoder sample={variant?.sample} tradePhrase={trade} cta={variant?.cta} variant={variant?.key ?? "default"} />
           </motion.div>
         </section>
 
