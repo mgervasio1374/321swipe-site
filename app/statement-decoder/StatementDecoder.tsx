@@ -4,7 +4,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { EASE } from "@/app/lib/animations";
-import { FEES, GROUPS, SAMPLE, TOTALS, VERDICTS, feeBySlug, money, type Fee, type Verdict } from "@/app/lib/fees";
+import { FEES, GROUPS, SAMPLE as DEFAULT_SAMPLE, TOTALS, VERDICTS, feeBySlug, money, type Fee, type Verdict } from "@/app/lib/fees";
+
+export interface DecoderProps {
+  sample?: Partial<typeof DEFAULT_SAMPLE>;
+  /** "a roofing company" — used in the intro sentence. */
+  tradePhrase?: string;
+  cta?: { label: string; href: string };
+}
 
 // ── Small helpers ─────────────────────────────────────────────────────────────
 
@@ -136,7 +143,7 @@ function Explainer({ fee, onPick }: { fee: Fee; onPick: (slug: string) => void }
   );
 }
 
-function ExplainerEmpty() {
+function ExplainerEmpty({ SAMPLE, tradePhrase }: { SAMPLE: typeof DEFAULT_SAMPLE; tradePhrase: string }) {
   return (
     <div>
       <p className="text-[9.5px] font-semibold uppercase tracking-[0.1em] text-slate-400">How to use this</p>
@@ -144,7 +151,7 @@ function ExplainerEmpty() {
         Hover any line on the statement.
       </h3>
       <p className="mt-3 text-[14px] text-slate-600 leading-[1.7]">
-        This is a realistic statement for a roofing company doing about{" "}
+        This is a realistic statement for {tradePhrase} doing about{" "}
         {money(SAMPLE.volume).replace(".00", "")}{" "}
         a month on a tiered plan. Every line is real, in the sense that contractors receive one just like it.
         Point at a line and we&apos;ll tell you what it is, what a fair version looks like, and what we&apos;d do about it.
@@ -228,7 +235,8 @@ function StatementRow({ fee, index, active, flagOn, onHover, onSelect }: RowProp
 
 // ── The decoder ───────────────────────────────────────────────────────────────
 
-export function StatementDecoder() {
+export function StatementDecoder({ sample, tradePhrase = "a roofing company", cta = { label: "Decode my statement", href: "https://upload.321swipe.com" } }: DecoderProps = {}) {
+  const SAMPLE = { ...DEFAULT_SAMPLE, ...sample };
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const [pinned, setPinned] = useState<string | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -454,12 +462,12 @@ export function StatementDecoder() {
                       </p>
                     </div>
                     <a
-                      href="https://upload.321swipe.com"
+                      href={cta.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 rounded-lg bg-white text-navy-900 font-semibold text-[13px] px-5 py-3 hover:bg-slate-50 transition-colors shadow-lg shadow-black/30 whitespace-nowrap"
                     >
-                      Decode my statement
+                      {cta.label}
                     </a>
                   </div>
                 </div>
@@ -482,7 +490,7 @@ export function StatementDecoder() {
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.22, ease: EASE }}
             >
-              {shown ? <Explainer fee={shown} onPick={pickRelated} /> : <ExplainerEmpty />}
+              {shown ? <Explainer fee={shown} onPick={pickRelated} /> : <ExplainerEmpty SAMPLE={SAMPLE} tradePhrase={tradePhrase} />}
             </motion.div>
           </AnimatePresence>
         </aside>

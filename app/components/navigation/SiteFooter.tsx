@@ -11,8 +11,10 @@ const footerColumns = [
       { label: "Statement review", href: "/#diagnostic" },
       { label: "Statement Decoder", href: "/statement-decoder" },
       { label: "Fee dictionary", href: "/fees" },
+      { label: "Grade my statement", href: "/grade-my-statement" },
       { label: "Merchant advisory", href: "/advisory" },
       { label: "Services", href: "/#features" },
+      { label: "Software", href: "/software" },
     ],
   },
   {
@@ -95,8 +97,8 @@ export function SiteFooter() {
         <p>© {new Date().getFullYear()} 321 Swipe. All rights reserved.</p>
         {/* TODO: point these at real pages once Privacy and Terms copy exists. */}
         <div className="flex gap-5">
-          <a href="#" className="hover:text-navy-100/60 transition-colors">Privacy</a>
-          <a href="#" className="hover:text-navy-100/60 transition-colors">Terms</a>
+          <Link href="/privacy" className="hover:text-navy-100/60 transition-colors">Privacy</Link>
+          <Link href="/terms" className="hover:text-navy-100/60 transition-colors">Terms</Link>
         </div>
       </div>
     </footer>

@@ -3,23 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE } from "@/app/lib/animations";
+import type { Rep } from "@/app/lib/reps";
 
 /**
- * Contact / statement form for Caryn's page.
+ * Contact / statement form for rep pages (see lib/reps.ts).
  *
- * Delivery is FormSubmit (formsubmit.co) → CARYN_EMAIL. No account needed;
+ * Delivery is FormSubmit (formsubmit.co) → rep.email. No account needed;
  * the first submission triggers a one-time activation email to that inbox.
  *
  * - No file attached → AJAX endpoint, in-page success state.
  * - File attached   → native multipart POST (attachments only work that way),
- *                     FormSubmit redirects back to /savingsbycaryn?sent=1.
+ *                     FormSubmit redirects back to /<slug>?sent=1.
  *
  * After activation, FormSubmit offers a random alias in place of the address
  * (Settings → "Unique form string"); swap it into ENDPOINT to keep the address
  * out of the page source.
  */
-const CARYN_EMAIL = "savingsbycaryn@gmail.com";
-const ENDPOINT = `https://formsubmit.co/${CARYN_EMAIL}`;
 const SITE = "https://321swipe.com";
 
 type Mode = "message" | "statement";
@@ -29,7 +28,9 @@ const INPUT =
   "w-full min-w-0 rounded-lg bg-white border border-slate-200 px-3.5 py-2.5 text-[14px] text-navy-900 placeholder:text-slate-400 focus:outline-none focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20 transition-colors";
 const LABEL = "block text-[10.5px] font-semibold uppercase tracking-wide text-slate-500 mb-1.5";
 
-export function CarynForm({ id = "contact" }: { id?: string }) {
+export function RepForm({ rep, id = "contact" }: { rep: Rep; id?: string }) {
+  const EMAIL = rep.email;
+  const ENDPOINT = `https://formsubmit.co/${EMAIL}`;
   const [mode, setMode] = useState<Mode>("statement");
   const [step, setStep] = useState<Step>("idle");
   const [fileName, setFileName] = useState<string | null>(null);
@@ -56,7 +57,7 @@ export function CarynForm({ id = "contact" }: { id?: string }) {
     setStep("submitting");
     fd.delete("statement");
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${CARYN_EMAIL}`, {
+      const res = await fetch(`https://formsubmit.co/ajax/${EMAIL}`, {
         method: "POST",
         headers: { Accept: "application/json" },
         body: fd,
@@ -78,8 +79,8 @@ export function CarynForm({ id = "contact" }: { id?: string }) {
       <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] border-b border-slate-100 bg-slate-50/70">
         {(
           [
-            { k: "statement", label: "Send Caryn a statement", sub: "Free line-by-line review" },
-            { k: "message", label: "Ask Caryn a question", sub: "She replies personally" },
+            { k: "statement", label: `Send ${rep.firstName} a statement`, sub: "Free line-by-line review" },
+            { k: "message", label: `Ask ${rep.firstName} a question`, sub: "A personal reply, not a queue" },
           ] as { k: Mode; label: string; sub: string }[]
         ).map((t) => (
           <button
@@ -91,7 +92,7 @@ export function CarynForm({ id = "contact" }: { id?: string }) {
             <span className={`block text-[14px] font-semibold ${mode === t.k ? "text-navy-900" : "text-slate-500"}`}>{t.label}</span>
             <span className="block text-[11.5px] text-slate-400 mt-0.5">{t.sub}</span>
             {mode === t.k && (
-              <motion.span layoutId="caryn-tab" className="absolute left-0 right-0 -bottom-px h-[2px] bg-accent-500" />
+              <motion.span layoutId={`${rep.slug}-tab`} className="absolute left-0 right-0 -bottom-px h-[2px] bg-accent-500" />
             )}
           </button>
         ))}
@@ -113,7 +114,7 @@ export function CarynForm({ id = "contact" }: { id?: string }) {
                   <path d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="mt-4 text-[20px] font-bold text-navy-900 tracking-tight">Got it — Caryn has your message.</h3>
+              <h3 className="mt-4 text-[20px] font-bold text-navy-900 tracking-tight">Got it — {rep.firstName} has your message.</h3>
               <p className="mt-2 text-[14px] text-slate-500 leading-relaxed max-w-sm mx-auto">
                 She&apos;ll reach out within one business day. If you sent a statement, she&apos;ll come back with it marked
                 up line by line.
@@ -141,11 +142,11 @@ export function CarynForm({ id = "contact" }: { id?: string }) {
               className="grid grid-cols-[minmax(0,1fr)] gap-4"
             >
               {/* FormSubmit config */}
-              <input type="hidden" name="_subject" value={mode === "statement" ? "Statement for review — Savings by Caryn" : "Question — Savings by Caryn"} />
+              <input type="hidden" name="_subject" value={mode === "statement" ? `Statement for review — ${rep.pageName}` : `Question — ${rep.pageName}`} />
               <input type="hidden" name="_template" value="table" />
               <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value={`${SITE}/savingsbycaryn?sent=1`} />
-              <input type="hidden" name="source" value="321swipe.com/savingsbycaryn" />
+              <input type="hidden" name="_next" value={`${SITE}/${rep.slug}?sent=1`} />
+              <input type="hidden" name="source" value={`321swipe.com/${rep.slug}`} />
               <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden />
 
               <div className="grid grid-cols-[minmax(0,1fr)] sm:grid-cols-2 gap-4">
@@ -203,7 +204,7 @@ export function CarynForm({ id = "contact" }: { id?: string }) {
                 </>
               ) : (
                 <div>
-                  <label className={LABEL} htmlFor={`${id}-message`}>What can Caryn help with?</label>
+                  <label className={LABEL} htmlFor={`${id}-message`}>What can {rep.firstName} help with?</label>
                   <textarea
                     id={`${id}-message`}
                     required
@@ -217,8 +218,8 @@ export function CarynForm({ id = "contact" }: { id?: string }) {
 
               {step === "error" && (
                 <p className="text-[13px] text-red-600">
-                  Something went wrong sending that. You can email Caryn directly at{" "}
-                  <a className="underline" href={`mailto:${CARYN_EMAIL}`}>{CARYN_EMAIL}</a>.
+                  Something went wrong sending that. You can email {rep.firstName} directly at{" "}
+                  <a className="underline" href={`mailto:${EMAIL}`}>{EMAIL}</a>.
                 </p>
               )}
 
@@ -234,10 +235,10 @@ export function CarynForm({ id = "contact" }: { id?: string }) {
                     boxShadow: "0 1px 4px rgba(12,21,36,0.28), 0 6px 20px rgba(12,21,36,0.14), inset 0 1px 0 rgba(255,255,255,0.06)",
                   }}
                 >
-                  {step === "submitting" ? "Sending…" : mode === "statement" ? "Send to Caryn" : "Send message"}
+                  {step === "submitting" ? "Sending…" : mode === "statement" ? `Send to ${rep.firstName}` : "Send message"}
                 </motion.button>
                 <p className="text-[11.5px] text-slate-400 leading-relaxed">
-                  Goes straight to Caryn&apos;s inbox. Statements are used for your review only and never shared.
+                  Goes straight to {rep.firstName}&apos;s inbox. Statements are used for your review only and never shared.
                 </p>
               </div>
             </motion.form>

@@ -114,7 +114,8 @@ export function HeroSection({ photo }: HeroSectionProps) {
             className="mt-8 pt-5 border-t border-slate-200/70 flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-400"
           >
             {[
-              { strong: "300+", label: "contractor clients" },
+              { strong: "$15M+", label: "processed every month" },
+              { strong: "250+", label: "active merchants" },
               { strong: "Independent,", label: "not PE-owned" },
               { strong: "Month-to-month", label: "relationships" },
             ].map((item) => (

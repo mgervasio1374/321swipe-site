@@ -13,6 +13,7 @@ const navLinks = [
   { label: "Services", href: "#features" },
   { label: "Advisory", href: "#advisory" },
   { label: "Decoder", href: "/statement-decoder" },
+  { label: "Software", href: "/software" },
 ];
 
 export function Navbar() {

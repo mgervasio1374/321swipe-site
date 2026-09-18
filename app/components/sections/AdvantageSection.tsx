@@ -79,6 +79,7 @@ export function AdvantageSection({ photo }: { photo: string | null }) {
             <ScrollReveal delay={0.24}>
               <div className="mt-10 flex flex-col gap-5">
                 {[
+                  { stat: "$15M+", label: "Processed every month for 250+ active merchants" },
                   { stat: "$0", label: "Setup or cancellation fees" },
                   { stat: "Month-to-month", label: "No long-term contracts, ever" },
                   { stat: "Same-day", label: "Response from your advisor" },
