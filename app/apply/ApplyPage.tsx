@@ -85,7 +85,9 @@ export function ApplyPage() {
                 ))}
               </ul>
               <p className="mt-4 text-[12.5px] text-slate-500 leading-relaxed">
-                Prefer paper? <a href="/321-swipe-merchant-application.pdf" className="font-semibold text-accent-600 hover:text-accent-500">Download the PDF</a> and email it to sales@321swipe.com.
+                Prefer a PDF? <a href="/321-swipe-merchant-application-fillable.pdf" className="font-semibold text-accent-600 hover:text-accent-500">Download the fillable application</a>, complete it on your computer, and return it through our{" "}
+                <a href="https://upload.321swipe.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent-600 hover:text-accent-500">secure upload portal</a>. A{" "}
+                <a href="/321-swipe-merchant-application.pdf" className="underline">print version</a> is available too.
               </p>
             </div>
 

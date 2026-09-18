@@ -41,6 +41,6 @@ Online version of the merchant application, delivered to sales as an encrypted P
 
 - Page: `app/apply/` (multi-step client form). Field model + validation: `app/lib/application/schema.ts`.
 - Handler: `app/api/apply/route.ts` — validates, renders the PDF (`app/lib/application/pdf.ts`, AES-256 with `APPLICATION_PDF_PASSWORD`), emails it via Resend with masked values in the body, and sends the applicant a confirmation.
-- Blank printable PDF: `public/321-swipe-merchant-application.pdf` — regenerate with `npx tsx scripts/blank-application.ts` after changing the layout.
+- Blank PDFs: `public/321-swipe-merchant-application.pdf` (print) and `…-fillable.pdf` (AcroForm fields, for emailing to merchants) — regenerate both with `npx tsx scripts/blank-application.ts` after changing the layout.
 - Env vars: see `.env.example`. The route returns 503 until `RESEND_API_KEY` and `APPLICATION_PDF_PASSWORD` are set.
 - Nothing is stored server-side; the site is no longer a static export (`output: "export"` was removed so the route can run on Vercel).
