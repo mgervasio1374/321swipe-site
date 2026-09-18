@@ -130,8 +130,8 @@ export function DiagnosticSection({ photo }: { photo: string | null }) {
             </ScrollReveal>
             <ScrollReveal delay={0.24}>
               <p className="mt-4 text-sm text-slate-400 leading-relaxed max-w-sm">
-                Every 321 Swipe client gets a monthly review by a human analyst — not an
-                algorithm. We flag what we find, explain it in plain English, and help you act on it.
+                Every client gets that same read every month, from an analyst rather than an
+                algorithm. We flag what we find and help you act on it.
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.32}>

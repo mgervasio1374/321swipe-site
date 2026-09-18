@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { EASE } from "@/app/lib/animations";
+import { track } from "@/app/lib/analytics";
 import { QUESTIONS, score, gradeFor, encode, decode, type Answers } from "@/app/lib/grader";
 import { feeBySlug } from "@/app/lib/fees";
 
@@ -65,9 +66,12 @@ export function Grader() {
   };
 
   const next = () => {
+    if (step === 0) track({ name: "grader_start" });
     if (step < QUESTIONS.length - 1) setStep(step + 1);
     else {
       setDone(true);
+      const r = score(answers);
+      track({ name: "grader_complete", grade: gradeFor(r.total).letter, score: r.total });
       try {
         const url = new URL(window.location.href);
         url.searchParams.set("a", encode(answers));
@@ -86,6 +90,7 @@ export function Grader() {
   const shareUrl = `${SITE}/grade-my-statement?a=${encode(answers)}`;
 
   const copy = async () => {
+    if (grade) track({ name: "grader_share", grade: grade.letter });
     try { await navigator.clipboard.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
   };
 
@@ -154,6 +159,7 @@ export function Grader() {
                 href="https://upload.321swipe.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track({ name: "grader_cta", grade: grade.letter })}
                 className="inline-flex items-center justify-center gap-2 rounded-lg text-white font-semibold text-sm px-6 py-3"
                 style={{ background: "linear-gradient(135deg, #0c1524 0%, #132040 100%)", boxShadow: "0 1px 4px rgba(12,21,36,0.28), 0 6px 20px rgba(12,21,36,0.14)" }}
               >

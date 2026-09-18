@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { EASE } from "@/app/lib/animations";
+import { track } from "@/app/lib/analytics";
 
 type Step = "idle" | "submitting" | "success" | "error";
 
@@ -44,6 +45,7 @@ export function LeadModal() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStep("submitting");
+    track({ name: "lead_modal_submit", page: typeof window !== "undefined" ? window.location.pathname : "" });
     const fd = new FormData();
     fd.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "");
     fd.append("subject", `Statement Review Request — ${form.company || form.name}`);

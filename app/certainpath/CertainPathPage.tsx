@@ -66,7 +66,7 @@ const diagnostics = [
 const verianBullets = ["Monthly statement review", "Hidden fee detection", "Effective rate visibility", "Funding and deposit clarity", "Workflow improvement opportunities", "Human-reviewed findings"];
 
 const pillars = [
-  { number: "01", title: "A named advisor. Not a call center.", body: "Every client gets a dedicated account manager who knows your business and picks up the phone directly — not a 1-800 number or a support ticket." },
+  { number: "01", title: "One advisor who picks up.", body: "Every client gets a dedicated account manager who knows your business and picks up the phone directly — not a 1-800 number or a support ticket." },
   { number: "02", title: "Monthly statement reviews. Without being asked.", body: "We review your processor statement every month and bring findings to you — fee changes, rate movements, unusual items — before you have to ask." },
   { number: "03", title: "Workflow guidance around your systems.", body: "CertainPath members run complex operations. We help payment workflows fit the systems and processes your team already relies on." },
   { number: "04", title: "Ongoing strategy. Not a one-time sale.", body: "As your business grows, your payment setup should evolve. We check in regularly and make sure you are never paying more than you should." },
@@ -328,7 +328,7 @@ export function CertainPathPage({ photos }: { photos: PhotoMap }) {
         <ReviewFindingsSection
           photo={photos.statement}
           title="What a 321 Swipe review actually looks for."
-          body="Most contractors don't need another processor pitch. They need someone to translate the statement, identify the leaks, and explain what should change."
+          body="Members don't need another processor pitch. They need someone to sit with the statement, point at the leaks, and say in plain terms what should change."
           findings={diagnostics}
           cta={{ label: "Get your free review", onClick: openModal }}
           secondary={{ label: "See a member statement decoded", href: "/certainpath/statement-decoder" }}
@@ -360,8 +360,8 @@ export function CertainPathPage({ photos }: { photos: PhotoMap }) {
               iconBg: "bg-emerald-600",
               title: "Statement analysis",
               subtitle: "Intelligence first",
-              body: "Monthly reviews that translate fees, rates, and changes into plain English — with a human analyst on every review.",
-              tags: ["Monthly human review", "Fee identification", "Rate guidance"],
+              body: "Each month an analyst reads the statement, marks what changed, and tells the office what it means — before anyone has to ask.",
+              tags: ["Monthly review", "Fee identification", "Rate guidance"],
               photo: { src: photos.analyst, alt: "A 321 Swipe analyst reviewing a processor statement on dual monitors", tone: "navy" },
             },
             {
@@ -384,7 +384,7 @@ export function CertainPathPage({ photos }: { photos: PhotoMap }) {
           title="CertainPath members: see what your payment setup is really costing you."
           body="Send us a recent processor statement and tell us how your payment workflow is set up. We'll review the numbers, look for hidden fees and pricing issues, and show where your payment operation can become clearer, cleaner, and more profitable."
           primary={{ label: "Request a Free CertainPath Member Review", onClick: openModal }}
-          trustPoints={["Free review", "Human-reviewed", "Built for contractors", "Software-connected workflow support", "No long-term contracts"]}
+          trustPoints={["Free for members", "Reviewed by an analyst", "Built for the trades", "Month-to-month terms"]}
         />
       </main>
     </>

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const COMPANY = "321 Swipe"; // [Legal entity name]
 const CONTACT_EMAIL = "[hello@321swipe.com]";
 const STATE = "[Pennsylvania]";
-const UPDATED = "September 17, 2026";
+const UPDATED = "September 18, 2026";
 
 export default function Page() {
   return (
@@ -104,7 +104,7 @@ export default function Page() {
           body: (
             <>
               <p>The site and its tools are provided &ldquo;as is.&rdquo; We work to keep the site accurate and available, but we do not promise that it will be error-free, uninterrupted or free of viruses, or that any figure on it is current.</p>
-              <p>To the fullest extent the law allows, {COMPANY} and its owners, employees and representatives will not be liable for indirect, incidental, special or consequential damages, or for lost profits or revenue, arising from your use of the site, its tools or a free review, even if we were told they were possible. Our total liability for any claim relating to the site or a free review will not exceed [one hundred dollars ($100)]. Some jurisdictions do not allow these limits, so they may not apply to you in full.</p>
+              <p>To the fullest extent the law allows, {COMPANY} and its owners, employees and representatives will not be liable for indirect, incidental, special or consequential damages, or for lost profits or revenue, arising from your use of the site, its tools or a free review, even if we were told they were possible. Our total liability for any claim relating to the site or a free review will not exceed one hundred dollars ($100). Some jurisdictions do not allow these limits, so they may not apply to you in full.</p>
               <p>This section applies to the site and free reviews. Liability for a processing account or a paid advisory engagement is set by the agreement that covers it.</p>
             </>
           ),

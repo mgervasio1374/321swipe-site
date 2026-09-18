@@ -46,7 +46,7 @@ const diagnostics = [
 const verianBullets = ["Monthly statement review", "Hidden fee detection", "Rate optimization guidance", "Funding and deposit visibility", "Human-reviewed findings"];
 
 const pillars = [
-  { number: "01", title: "A named advisor. Not a call center.", body: "Every client gets a dedicated account manager who knows your business. When you have a question, you call them directly — not a 1-800 number." },
+  { number: "01", title: "One advisor who knows your business.", body: "Every client gets a dedicated account manager who knows your business. When you have a question, you call them directly — not a 1-800 number." },
   { number: "02", title: "Monthly statement reviews. Without being asked.", body: "We review your processor statement every month and bring findings to you — new fees, rate changes, unusual activity — before you have to ask." },
   { number: "03", title: "Setup done right. Fast.", body: "We handle equipment, integrations, and testing. Most clients are live in under a week with zero downtime." },
   { number: "04", title: "Ongoing strategy. Not a one-time sale.", body: "As your business grows, your payment setup should evolve. We check in regularly and adjust so you're never paying more than you should." },
@@ -229,7 +229,7 @@ export function BcsgPage({ photos }: { photos: PhotoMap }) {
         <ReviewFindingsSection
           photo={photos.statement}
           title="What a 321 Swipe review actually looks for."
-          body="Most contractors don't need another processor pitch. They need someone to translate the statement, identify the leaks, and explain what should change."
+          body="The review is the same one every 321 Swipe client gets: read the statement, find the leaks, explain the fix — and put a number on it."
           findings={diagnostics}
           cta={{ label: "Get your free review", onClick: openModal }}
           secondary={{ label: "See a member statement decoded", href: "/blue-collar-success-group/statement-decoder" }}
@@ -262,8 +262,8 @@ export function BcsgPage({ photos }: { photos: PhotoMap }) {
               iconBg: "bg-emerald-600",
               title: "Statement analysis",
               subtitle: "Intelligence first",
-              body: "Monthly reviews that translate fees, rates, and changes into plain English — with a human analyst on every review.",
-              tags: ["Monthly human review", "Fee identification", "Rate guidance"],
+              body: "A monthly read of the statement by a person who knows the trades: what moved, why, and whether it was fair.",
+              tags: ["Monthly review", "Fee identification", "Rate guidance"],
               photo: { src: photos.analyst, alt: "A 321 Swipe analyst reviewing a processor statement on dual monitors", tone: "navy" },
             },
             {
@@ -285,7 +285,7 @@ export function BcsgPage({ photos }: { photos: PhotoMap }) {
           title="Blue Collar Success Group members: see what your processor statement is really telling you."
           body="Send us a recent statement. We'll review it, explain what you're paying, identify potential savings opportunities, and show you where your payment setup can improve."
           primary={{ label: "Request a Free Statement Review", onClick: openModal }}
-          trustPoints={["No long-term contracts", "Free review", "Human-reviewed", "Built for contractors"]}
+          trustPoints={["Free for members", "A person reads every statement", "No exit fees", "Built for the trades"]}
         />
       </main>
     </>
