@@ -92,6 +92,19 @@ export const SOFTWARE: SoftwareItem[] = [
     tone: "warm",
   },
   {
+    slug: "merchant-application",
+    name: "Secure Merchant Application",
+    tagline: "The onboarding paperwork, without the paper.",
+    description:
+      "A six-step online application a rep can send as a link: company profile, ownership, processing history, banking, supporting documents and an electronic signature. Everything travels over TLS to our own server, is sealed into an AES-256 encrypted PDF with any check or ID photos embedded, and lands with sales — nothing is stored on the site. A fillable PDF version is available for merchants who'd rather not use a web form.",
+    category: "Operations",
+    status: "live",
+    href: "/apply",
+    audience: "New merchants and the reps onboarding them",
+    tags: ["Six guided steps", "Encrypted PDF delivery", "Photo & statement uploads", "E-signature"],
+    tone: "light",
+  },
+  {
     slug: "statement-upload",
     name: "Secure Statement Upload",
     tagline: "The front door for every free review.",

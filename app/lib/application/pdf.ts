@@ -44,6 +44,8 @@ export interface RenderOptions {
   images?: EmbeddedImage[];
   /** When set, the PDF is encrypted (AES-256) and needs this password to open. */
   password?: string;
+  /** Blank mode only: add AcroForm fields so the PDF can be filled in Acrobat / Preview / a browser. */
+  fillable?: boolean;
   logoPath?: string;
 }
 
@@ -76,7 +78,13 @@ interface Field {
 
 class Layout {
   y = M;
-  constructor(public doc: Doc, public blank: boolean) {}
+  private fieldN = 0;
+  constructor(public doc: Doc, public blank: boolean, public fillable = false) {}
+
+  private fieldName(label: string) {
+    this.fieldN += 1;
+    return `${this.fieldN}_${label.replace(/[^A-Za-z0-9]+/g, "_").replace(/^_|_$/g, "").slice(0, 40)}`;
+  }
 
   ensure(h: number) {
     if (this.y + h > PAGE_H - M - 24) {
@@ -124,6 +132,15 @@ class Layout {
       if (!this.blank) {
         const v = f.value && f.value.trim() ? f.value : "—";
         d.fillColor(v === "—" ? MUTED : INK).font("Helvetica").fontSize(9.5).text(v, x + 1, this.y + labelH + 6, { width: w - 4 });
+      } else if (this.fillable) {
+        const fy = this.y + labelH + 4;
+        const fh = h - labelH - 5;
+        d.formText(this.fieldName(f.label), x, fy, w, fh, {
+          multiline: !!(f.lines && f.lines > 1),
+          fontSize: fh > 24 ? 9 : 9.5,
+          backgroundColor: "#f4f8ff",
+          borderColor: "#f4f8ff",
+        });
       }
       d.moveTo(x, this.y + h).lineTo(x + w, this.y + h).lineWidth(0.6).strokeColor(RULE).stroke();
       x += w + GUTTER;
@@ -146,7 +163,11 @@ class Layout {
     opts.forEach((o, i) => {
       const cx = M + (i % perRow) * cw;
       const cy = this.y + 13 + Math.floor(i / perRow) * 13;
-      d.rect(cx, cy, 8, 8).lineWidth(0.7).strokeColor("#9aa5b5").stroke();
+      if (this.fillable) {
+        d.formCheckbox(this.fieldName(`${label}_${o}`), cx - 0.5, cy - 0.5, 9, 9, { backgroundColor: "#f4f8ff", borderColor: "#9aa5b5" });
+      } else {
+        d.rect(cx, cy, 8, 8).lineWidth(0.7).strokeColor("#9aa5b5").stroke();
+      }
       d.fillColor(INK).font("Helvetica").fontSize(8).text(o, cx + 12, cy - 0.5, { width: cw - 14, lineBreak: false });
     });
     this.y += h + 6;
@@ -177,12 +198,16 @@ const dobText = (dob: string) => {
   return m ? `${m[2]}/${m[3]}/${m[1]}` : dob;
 };
 
-function header(d: Doc, L: Layout, blank: boolean, meta?: RenderMeta, logoPath?: string) {
+function header(d: Doc, L: Layout, blank: boolean, meta?: RenderMeta, logoPath?: string, fillable = false) {
   const logo = logoPath && fs.existsSync(logoPath) ? logoPath : null;
   if (logo) d.image(logo, M, M - 6, { height: 34 });
   d.fillColor(NAVY).font("Helvetica-Bold").fontSize(15).text("Merchant Application", M + 110, M - 2, { width: CONTENT_W - 110, align: "right", lineBreak: false });
   d.fillColor(MUTED).font("Helvetica").fontSize(8).text(
-    blank ? "Complete online at 321swipe.com/apply, or email this form to sales@321swipe.com" : `Reference ${meta?.reference ?? ""}  ·  Submitted ${meta ? fmtDate(meta.submittedAt) : ""}`,
+    blank
+      ? fillable
+        ? "Fill in, save, and return securely at upload.321swipe.com — or apply online at 321swipe.com/apply"
+        : "Complete online at 321swipe.com/apply, or email this form to sales@321swipe.com"
+      : `Reference ${meta?.reference ?? ""}  ·  Submitted ${meta ? fmtDate(meta.submittedAt) : ""}`,
     M + 110, M + 17, { width: CONTENT_W - 110, align: "right", lineBreak: false },
   );
   d.moveTo(M, M + 36).lineTo(M + CONTENT_W, M + 36).lineWidth(1).strokeColor(NAVY).stroke();
@@ -198,7 +223,7 @@ function footer(d: Doc, blank: boolean, password?: string) {
     d.page.margins.bottom = 0;
     d.fillColor(MUTED).font("Helvetica").fontSize(7);
     const left = blank
-      ? "321 Swipe · sales@321swipe.com · 321swipe.com"
+      ? "321 Swipe · sales@321swipe.com · Contains personal and banking details — return via upload.321swipe.com rather than plain email when possible."
       : password
         ? "CONFIDENTIAL — contains personal and banking information. Encrypted; do not forward outside 321 Swipe."
         : "CONFIDENTIAL — contains personal and banking information.";
@@ -271,9 +296,11 @@ export function renderApplicationPdf(opts: RenderOptions): Promise<Buffer> {
     doc.on("error", reject);
   });
 
-  const L = new Layout(doc, blank);
+  const fillable = blank && !!opts.fillable;
+  if (fillable) doc.initForm();
+  const L = new Layout(doc, blank, fillable);
   const logoPath = opts.logoPath ?? path.join(process.cwd(), "public", "logo-print.png");
-  header(doc, L, blank, meta, logoPath);
+  header(doc, L, blank, meta, logoPath, fillable);
 
   const c = app.company;
   const b = app.business;
