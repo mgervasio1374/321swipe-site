@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { EASE } from "@/app/lib/animations";
+import { track } from "@/app/lib/analytics";
 import { FEES, GROUPS, SAMPLE as DEFAULT_SAMPLE, TOTALS, VERDICTS, feeBySlug, money, type Fee, type Verdict } from "@/app/lib/fees";
 
 export interface DecoderProps {
@@ -11,6 +12,8 @@ export interface DecoderProps {
   /** "a roofing company" — used in the intro sentence. */
   tradePhrase?: string;
   cta?: { label: string; href: string };
+  /** Analytics label, e.g. "default" | "certainpath". */
+  variant?: string;
 }
 
 // ── Small helpers ─────────────────────────────────────────────────────────────
@@ -235,7 +238,7 @@ function StatementRow({ fee, index, active, flagOn, onHover, onSelect }: RowProp
 
 // ── The decoder ───────────────────────────────────────────────────────────────
 
-export function StatementDecoder({ sample, tradePhrase = "a roofing company", cta = { label: "Decode my statement", href: "https://upload.321swipe.com" } }: DecoderProps = {}) {
+export function StatementDecoder({ sample, tradePhrase = "a roofing company", cta = { label: "Decode my statement", href: "https://upload.321swipe.com" }, variant = "default" }: DecoderProps = {}) {
   const SAMPLE = { ...DEFAULT_SAMPLE, ...sample };
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const [pinned, setPinned] = useState<string | null>(null);
@@ -251,17 +254,31 @@ export function StatementDecoder({ sample, tradePhrase = "a roofing company", ct
   const flaggedTotal = useCountUp(TOTALS.flagged, flagOn);
   const avoidableTotal = useCountUp(TOTALS.avoidable, flagOn, 2200);
 
-  const onHover = useCallback((slug: string) => setActiveSlug(slug), []);
+  const seen = useRef<Set<string>>(new Set());
+  const onHover = useCallback((slug: string) => {
+    setActiveSlug(slug);
+    if (!seen.current.has(slug)) {
+      seen.current.add(slug);
+      const f = feeBySlug(slug);
+      if (f) track({ name: "decoder_line", fee: slug, verdict: f.verdict, variant, via: "hover" });
+    }
+  }, [variant]);
   const onSelect = useCallback((slug: string) => {
     setPinned(slug);
     setActiveSlug(slug);
     setSheetOpen(true);
-  }, []);
+    if (!seen.current.has(slug)) {
+      seen.current.add(slug);
+      const f = feeBySlug(slug);
+      if (f) track({ name: "decoder_line", fee: slug, verdict: f.verdict, variant, via: "tap" });
+    }
+  }, [variant]);
   const onLeaveStatement = useCallback(() => setActiveSlug(null), []);
 
   const toggleFlags = () => {
     setFlagOn((v) => {
       if (!v) setScanKey((k) => k + 1);
+      track({ name: "decoder_flag_toggle", on: !v, variant });
       return !v;
     });
   };
@@ -465,6 +482,7 @@ export function StatementDecoder({ sample, tradePhrase = "a roofing company", ct
                       href={cta.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => track({ name: "decoder_cta", variant })}
                       className="inline-flex items-center justify-center gap-2 rounded-lg bg-white text-navy-900 font-semibold text-[13px] px-5 py-3 hover:bg-slate-50 transition-colors shadow-lg shadow-black/30 whitespace-nowrap"
                     >
                       {cta.label}

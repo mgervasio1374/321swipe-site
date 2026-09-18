@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { LeadModal } from "@/app/components/ui/LeadModal";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-white text-navy-900">
         {children}
         <LeadModal />
+        <Analytics />
 
         {/*
           Tawk.to live chat — replace YOUR_PROPERTY_ID/YOUR_WIDGET_ID with
