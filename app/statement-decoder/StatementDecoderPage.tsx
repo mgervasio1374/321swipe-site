@@ -105,7 +105,7 @@ export function StatementDecoderPage({ photos, variant }: { photos: PhotoMap; va
           {/* the hero gradient runs a little way behind the statement so it reads as paper on a desk */}
           <div aria-hidden className="absolute inset-x-0 top-0 h-32" style={{ background: "linear-gradient(180deg, #f1f5f9 0%, transparent 100%)" }} />
           <motion.div {...fade(0.4)} className="relative pt-2">
-            <StatementDecoder sample={variant?.sample} tradePhrase={trade} cta={variant?.cta} />
+            <StatementDecoder sample={variant?.sample} tradePhrase={trade} cta={variant?.cta} variant={variant?.key ?? "default"} />
           </motion.div>
         </section>
 
@@ -137,7 +137,7 @@ export function StatementDecoderPage({ photos, variant }: { photos: PhotoMap; va
           title={variant?.closing.title ?? "Now decode yours."}
           body={variant?.closing.body ?? "Send one recent statement — a photo from your phone is fine. Within a few business days you'll get it back marked up exactly like this one: every line labeled, every avoidable fee totaled, and a plain answer on what to do next."}
           primary={variant ? variant.cta : { label: "Request a statement review", href: "https://upload.321swipe.com" }}
-          trustPoints={["No obligation", "Nothing to install", "Reviewed by a person, not a form", "Month-to-month if you switch"]}
+          trustPoints={["Free, no obligation", "Marked up like the sample above", "Reviewed by a person, not a form", "Month-to-month if you switch"]}
         />
       </main>
     </>

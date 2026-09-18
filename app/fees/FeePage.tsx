@@ -6,6 +6,7 @@ import { SubpageHeader } from "@/app/components/navigation/SubpageHeader";
 import { ClosingCta } from "@/app/components/sections/ClosingCta";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import { EASE } from "@/app/lib/animations";
+import { track } from "@/app/lib/analytics";
 import { GROUPS, VERDICTS, feeBySlug, feesInGroup, money, type Fee } from "@/app/lib/fees";
 import type { PhotoMap } from "@/app/lib/photos";
 
@@ -118,6 +119,7 @@ export function FeePage({ fee, photos }: { fee: Fee; photos: PhotoMap }) {
                   </div>
                   <Link
                     href="/statement-decoder"
+                    onClick={() => track({ name: "fee_page_to_decoder", fee: fee.slug })}
                     className="inline-flex items-center justify-center gap-2 rounded-lg bg-navy-900 text-white text-sm font-semibold px-5 py-2.5 hover:bg-navy-800 transition-colors whitespace-nowrap"
                   >
                     Open the Statement Decoder
@@ -179,9 +181,9 @@ export function FeePage({ fee, photos }: { fee: Fee; photos: PhotoMap }) {
           photo={photos["van-dusk"]}
           badge="Free statement review"
           title={<>Is this on your statement?</>}
-          body="Send one recent statement — a photo from your phone is fine. We'll mark up every line, total what's avoidable, and tell you plainly what to do next."
+          body="Send it and we'll tell you — along with everything else on there that shouldn't be. A phone photo of the fee page is enough."
           primary={{ label: "Request a statement review", href: "https://upload.321swipe.com" }}
-          trustPoints={["No obligation", "Nothing to install", "Reviewed by a person, not a form", "Month-to-month if you switch"]}
+          trustPoints={["Free", "Nothing to sign", "An analyst reads it, not software"]}
         />
       </main>
     </>

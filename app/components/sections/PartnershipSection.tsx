@@ -32,7 +32,7 @@ const included = [
   { title: "A dedicated account advisor", detail: "A named person with a direct line — not a ticket queue." },
   { title: "Monthly statement review",     detail: "Every month, without you having to ask." },
   { title: "Same-day response",            detail: "On any business day. You won't sit on hold." },
-  { title: "Month-to-month terms",         detail: "No long-term contracts. Stay because it works." },
+  { title: "Month-to-month terms",         detail: "No term, no exit fee, no auto-renewal window to miss." },
 ];
 
 const Check = (

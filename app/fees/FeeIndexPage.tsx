@@ -119,10 +119,10 @@ export function FeeIndexPage({ photos }: { photos: PhotoMap }) {
         <ClosingCta
           photo={photos["van-dusk"]}
           badge="Free statement review"
-          title="Now decode yours."
-          body="Send one recent statement — a photo from your phone is fine. We'll mark up every line, total what's avoidable, and tell you plainly what to do next."
+          title="Which of these are you paying?"
+          body="Send a recent statement and we'll show you which of these lines are on it, which are fair, and which shouldn't be there at all."
           primary={{ label: "Request a statement review", href: "https://upload.321swipe.com" }}
-          trustPoints={["No obligation", "Nothing to install", "Reviewed by a person, not a form", "Month-to-month if you switch"]}
+          trustPoints={["Free", "Every line labeled", "No sales pitch on the first call"]}
         />
       </main>
     </>

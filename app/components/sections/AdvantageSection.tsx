@@ -34,7 +34,7 @@ const advantages = [
     ),
     label: "Relationship-driven",
     title: "A real person who knows your business.",
-    body: "Not a call center. Not a chatbot. A dedicated account manager who reviews your statements, spots issues, and proactively brings you savings.",
+    body: "One account manager who knows your volume, your season and your software — and reads your statement before you have to ask.",
   },
   {
     icon: (
@@ -81,7 +81,7 @@ export function AdvantageSection({ photo }: { photo: string | null }) {
                 {[
                   { stat: "$15M+", label: "Processed every month for 250+ active merchants" },
                   { stat: "$0", label: "Setup or cancellation fees" },
-                  { stat: "Month-to-month", label: "No long-term contracts, ever" },
+                  { stat: "Month-to-month", label: "Stay because it works" },
                   { stat: "Same-day", label: "Response from your advisor" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-baseline gap-3">

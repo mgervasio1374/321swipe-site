@@ -35,7 +35,7 @@ export const PARTNER_DECODERS: Record<string, DecoderVariant> = {
     closing: {
       badge: "Free for CertainPath members",
       title: "Now decode yours.",
-      body: "Send one recent statement — a photo from your phone is fine. As a CertainPath member you'll get it back marked up exactly like this one, with the member pricing already applied to the numbers.",
+      body: "As a CertainPath member, send one recent statement and get it back marked up like the one above — with member pricing already applied to the numbers.",
     },
   },
   "blue-collar-success-group": {
@@ -54,7 +54,7 @@ export const PARTNER_DECODERS: Record<string, DecoderVariant> = {
     closing: {
       badge: "Free for Blue Collar Success Group members",
       title: "Now decode yours.",
-      body: "Send one recent statement — a photo from your phone is fine. As a Blue Collar Success Group member you'll get it back marked up exactly like this one, with the member pricing already applied to the numbers.",
+      body: "Members: send one statement and we'll return it marked up like the one above, with the group pricing already worked into the totals.",
     },
   },
 };
