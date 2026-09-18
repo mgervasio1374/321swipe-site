@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
@@ -190,6 +191,38 @@ export function ServicesSection({ statementPhoto, porchPhoto }: Props) {
             </motion.div>
           ))}
         </div>
+
+        {/* Funding band */}
+        <ScrollReveal delay={0.1}>
+          <Link
+            href="/funding"
+            className="group mt-5 grid grid-cols-[minmax(0,1fr)] md:grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-5 md:gap-8 rounded-2xl bg-navy-900 text-white p-6 md:px-8 hover:bg-navy-800 transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <span className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-emerald-300">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg>
+              </span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-blue-200 md:hidden">Funding &amp; financing</span>
+            </div>
+            <div>
+              <p className="hidden md:block text-[10px] font-semibold uppercase tracking-[0.1em] text-blue-200">Funding &amp; financing</p>
+              <p className="md:mt-1 text-[15px] font-semibold tracking-tight">
+                Today&apos;s batch in your bank in minutes, and financing so customers can pay over time.
+              </p>
+              <p className="mt-1 text-[13px] text-blue-100/65">
+                On Demand Funding: flat 1.5%, up to $50,000 a day, weekends included. Customer financing from $300 to $25,000 through U.S. Bank.
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-white whitespace-nowrap">
+              See how it works
+              <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5">
+                <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
+              </svg>
+            </span>
+          </Link>
+        </ScrollReveal>
       </div>
     </section>
   );

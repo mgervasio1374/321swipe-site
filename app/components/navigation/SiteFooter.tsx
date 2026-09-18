@@ -13,6 +13,7 @@ const footerColumns = [
       { label: "Fee dictionary", href: "/fees" },
       { label: "Grade my statement", href: "/grade-my-statement" },
       { label: "Merchant advisory", href: "/advisory" },
+      { label: "Funding & financing", href: "/funding" },
       { label: "Services", href: "/#features" },
       { label: "Software", href: "/software" },
     ],
