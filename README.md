@@ -34,3 +34,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Merchant application (`/apply`)
+
+Online version of the merchant application, delivered to sales as an encrypted PDF.
+
+- Page: `app/apply/` (multi-step client form). Field model + validation: `app/lib/application/schema.ts`.
+- Handler: `app/api/apply/route.ts` — validates, renders the PDF (`app/lib/application/pdf.ts`, AES-256 with `APPLICATION_PDF_PASSWORD`), emails it via Resend with masked values in the body, and sends the applicant a confirmation.
+- Blank printable PDF: `public/321-swipe-merchant-application.pdf` — regenerate with `npx tsx scripts/blank-application.ts` after changing the layout.
+- Env vars: see `.env.example`. The route returns 503 until `RESEND_API_KEY` and `APPLICATION_PDF_PASSWORD` are set.
+- Nothing is stored server-side; the site is no longer a static export (`output: "export"` was removed so the route can run on Vercel).
