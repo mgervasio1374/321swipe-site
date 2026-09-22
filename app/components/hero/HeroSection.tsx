@@ -1,5 +1,6 @@
 "use client";
 
+import { openChat } from "@/app/lib/chat";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import type { HTMLMotionProps } from "framer-motion";
@@ -106,7 +107,7 @@ export function HeroSection({ photo }: HeroSectionProps) {
                 <path fillRule="evenodd" d="M2 8a.75.75 0 01.75-.75h8.69L8.22 4.03a.75.75 0 011.06-1.06l4.5 4.5a.75.75 0 010 1.06l-4.5 4.5a.75.75 0 01-1.06-1.06l3.22-3.22H2.75A.75.75 0 012 8z" clipRule="evenodd" />
               </svg>
             </motion.a>
-            <Button variant="secondary" onClick={() => window.Tawk_API?.maximize?.()} className="text-sm px-6 py-3">
+            <Button variant="secondary" onClick={() => openChat()} className="text-sm px-6 py-3">
               Talk to 321 Swipe
             </Button>
           </motion.div>

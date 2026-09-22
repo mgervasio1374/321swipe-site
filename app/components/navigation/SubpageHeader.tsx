@@ -1,5 +1,6 @@
 "use client";
 
+import { openChat } from "@/app/lib/chat";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -56,7 +57,7 @@ export function SubpageHeader({ label, partnerLogo, cta }: SubpageHeaderProps) {
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <button
-              onClick={() => window.Tawk_API?.maximize?.()}
+              onClick={() => openChat()}
               className="hidden md:block text-[13.5px] font-medium text-slate-500 hover:text-navy-900 px-3 py-2 transition-colors"
             >
               Talk to 321 Swipe

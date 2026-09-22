@@ -98,12 +98,11 @@ export function DashboardVisual() {
               <p className="text-[9.5px] font-semibold text-slate-400 uppercase tracking-[0.08em]">Payment overview</p>
               <p className="text-[13.5px] font-bold text-navy-900 mt-0.5 tracking-tight">This month</p>
             </div>
-            <span className="relative flex items-center gap-1.5 text-[10.5px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">
-              <span className="relative flex w-2 h-2">
-                <span className="live-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400" />
-                <span className="relative w-2 h-2 rounded-full bg-emerald-500" />
-              </span>
-              Live
+            <span
+              className="relative flex items-center gap-1.5 text-[10.5px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full"
+              title="An illustration of the kind of view a 321 Swipe merchant sees — not live data"
+            >
+              Sample view
             </span>
           </div>
 

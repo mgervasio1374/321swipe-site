@@ -1,5 +1,6 @@
 "use client";
 
+import { openChat } from "@/app/lib/chat";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -53,10 +54,10 @@ export function SiteFooter() {
           <p className="text-[12.5px] text-navy-100/45 leading-relaxed max-w-[300px]">
             Independent, contractor-first payment intelligence for the trades.
           </p>
-          {/* TODO: Replace with the registered ISO/MSP disclosure once legal language is provided. */}
+          {/* Disclosure per Elavon brand & partner guidelines (US-based MSP). */}
           <p className="text-[11px] text-navy-100/30 leading-relaxed max-w-[340px]">
-            321 Swipe is an independent payment advisory and processing partner for home service
-            contractors.
+            321 Swipe is an Elavon&reg; payments partner and a registered MSP/ISO of Elavon, Inc.
+            Merchant services are provided by and subject to approval by Elavon, Inc.
           </p>
         </div>
         {footerColumns.map((col) => (
@@ -66,7 +67,7 @@ export function SiteFooter() {
               link.href === "#chat" ? (
                 <button
                   key={link.label}
-                  onClick={() => window.Tawk_API?.maximize?.()}
+                  onClick={() => openChat()}
                   className="text-left text-[13px] text-navy-100/60 hover:text-white transition-colors"
                 >
                   {link.label}

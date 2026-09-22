@@ -13,6 +13,66 @@ import { EASE } from "@/app/lib/animations";
 
 const CYCLE_MS = 5000; // matches the `scan` keyframe duration in globals.css
 
+interface ScenarioInput {
+  client: string;
+  trade: string;
+  volume: number;        // monthly card volume, $
+  currentRate: number;   // effective rate today, e.g. 0.0315
+  optimizedRate: number; // effective rate after 321 Swipe
+  fees: { label: string; amount: number }[]; // must sum to volume × currentRate (checked below)
+  note: string;
+}
+
+/* Illustrative scenarios. Every displayed figure derives from ONE base per
+ * scenario — volume and the two rates — so the fee rows, the rate change and
+ * the savings always reconcile. Business names are fictional. */
+const inputs: ScenarioInput[] = [
+  {
+    client: "Apex Roofing LLC",
+    trade: "Roofing · $82k/mo volume",
+    volume: 82_000, currentRate: 0.0315, optimizedRate: 0.0235,
+    fees: [
+      { label: "Interchange pass-through", amount: 1_704 },
+      { label: "Processor markup",         amount: 510 },
+      { label: "Avoidable fees",           amount: 369 },
+    ],
+    note: "5 avoidable fees identified",
+  },
+  {
+    client: "FlowRight Plumbing",
+    trade: "Plumbing · $46k/mo volume",
+    volume: 46_000, currentRate: 0.0342, optimizedRate: 0.0241,
+    fees: [
+      { label: "Interchange pass-through", amount: 900 },
+      { label: "Non-qualified surcharges", amount: 478 },
+      { label: "PCI & statement fees",     amount: 195 },
+    ],
+    note: "Tiered pricing → interchange-plus",
+  },
+  {
+    client: "BrightLine Electric",
+    trade: "Electrical · $118k/mo volume",
+    volume: 118_000, currentRate: 0.0289, optimizedRate: 0.0228,
+    fees: [
+      { label: "Interchange pass-through", amount: 2_480 },
+      { label: "Processor markup",         amount: 560 },
+      { label: "Interchange downgrades",   amount: 370 },
+    ],
+    note: "Level II data enabled",
+  },
+  {
+    client: "Summit Heating & Air",
+    trade: "HVAC · $64k/mo volume",
+    volume: 64_000, currentRate: 0.0328, optimizedRate: 0.0239,
+    fees: [
+      { label: "Interchange pass-through",   amount: 1_470 },
+      { label: "Monthly access & batch",     amount: 215 },
+      { label: "Contract & compliance fees", amount: 414 },
+    ],
+    note: "3 contract fees removed",
+  },
+];
+
 interface Scenario {
   client: string;
   trade: string;
@@ -23,60 +83,26 @@ interface Scenario {
   note: string;
 }
 
-const scenarios: Scenario[] = [
-  {
-    client: "Apex Roofing LLC",
-    trade: "Roofing · $82k/mo volume",
-    currentRate: "3.15%",
-    optimizedRate: "2.35%",
-    fees: [
-      { label: "Interchange pass-through", amount: "$1,440", pct: 75 },
-      { label: "Processor markup",         amount: "$680",   pct: 46 },
-      { label: "Hidden markup fees",       amount: "$400",   pct: 26 },
-    ],
-    savings: "$640",
-    note: "5 hidden fees identified · 0.80% rate reduction",
-  },
-  {
-    client: "FlowRight Plumbing",
-    trade: "Plumbing · $46k/mo volume",
-    currentRate: "3.42%",
-    optimizedRate: "2.41%",
-    fees: [
-      { label: "Interchange pass-through", amount: "$860",  pct: 62 },
-      { label: "Non-qualified surcharges", amount: "$310",  pct: 33 },
-      { label: "PCI & statement fees",     amount: "$95",   pct: 12 },
-    ],
-    savings: "$465",
-    note: "Tiered pricing → interchange-plus · 1.01% rate reduction",
-  },
-  {
-    client: "BrightLine Electric",
-    trade: "Electrical · $118k/mo volume",
-    currentRate: "2.89%",
-    optimizedRate: "2.28%",
-    fees: [
-      { label: "Interchange pass-through", amount: "$2,120", pct: 80 },
-      { label: "Processor markup",         amount: "$540",   pct: 34 },
-      { label: "Interchange downgrades",   amount: "$260",   pct: 18 },
-    ],
-    savings: "$720",
-    note: "Level II data enabled · 0.61% rate reduction",
-  },
-  {
-    client: "Summit Heating & Air",
-    trade: "HVAC · $64k/mo volume",
-    currentRate: "3.28%",
-    optimizedRate: "2.39%",
-    fees: [
-      { label: "Interchange pass-through", amount: "$1,180", pct: 70 },
-      { label: "Monthly access & batch",   amount: "$145",   pct: 16 },
-      { label: "Early termination reserve", amount: "$210",  pct: 22 },
-    ],
-    savings: "$570",
-    note: "3 contract fees removed · 0.89% rate reduction",
-  },
-];
+const usd = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
+const pct = (r: number) => (r * 100).toFixed(2) + "%";
+
+const scenarios: Scenario[] = inputs.map((x) => {
+  const total = x.volume * x.currentRate;
+  const feeSum = x.fees.reduce((a, f) => a + f.amount, 0);
+  if (process.env.NODE_ENV !== "production" && Math.abs(feeSum - total) > 1) {
+    throw new Error(`AnalysisCard: ${x.client} fees ($${feeSum}) ≠ ${pct(x.currentRate)} of $${x.volume} ($${total.toFixed(0)})`);
+  }
+  const reduction = x.currentRate - x.optimizedRate;
+  return {
+    client: x.client,
+    trade: x.trade,
+    currentRate: pct(x.currentRate),
+    optimizedRate: pct(x.optimizedRate),
+    fees: x.fees.map((f) => ({ label: f.label, amount: usd(f.amount), pct: Math.round((f.amount / total) * 100) })),
+    savings: usd(x.volume * reduction),
+    note: `${x.note} · ${pct(reduction)} rate reduction`,
+  };
+});
 
 const fade = {
   initial: { opacity: 0, y: 6 },
@@ -129,8 +155,8 @@ export function AnalysisCard() {
             </AnimatePresence>
           </div>
         </div>
-        <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-1 rounded-full">
-          Analysis complete
+        <span className="text-[10px] font-semibold text-navy-100/50 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full" title="Figures are representative examples, not a specific client's results">
+          Illustrative example
         </span>
       </div>
 
@@ -214,7 +240,7 @@ export function AnalysisCard() {
         {/* Footer row: scenario dots + CTA */}
         <div className="flex items-center justify-between pt-1 text-[11px]" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
           <div className="flex items-center gap-2">
-            <span className="text-navy-100/35">Reviewed by a 321 Swipe analyst</span>
+            <span className="text-navy-100/35">Example figures · every real review is read by an analyst</span>
             <span className="flex gap-1 ml-1" aria-hidden>
               {scenarios.map((_, i) => (
                 <span
