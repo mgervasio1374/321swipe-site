@@ -1,5 +1,6 @@
 "use client";
 
+import { openChat } from "@/app/lib/chat";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -65,7 +66,7 @@ export function Navbar() {
           </motion.a>
 
           {/* Desktop nav — with animated hover indicator */}
-          <nav className="hidden md:flex items-center gap-0 flex-1 justify-center">
+          <nav className="hidden lg:flex items-center gap-0 flex-1 justify-center">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -80,9 +81,9 @@ export function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3 shrink-0">
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             <button
-              onClick={() => window.Tawk_API?.maximize?.()}
+              onClick={() => openChat()}
               className="text-[13.5px] font-medium text-slate-500 hover:text-navy-900 px-3 py-2 transition-colors duration-150"
             >
               Talk to 321 Swipe
@@ -107,7 +108,7 @@ export function Navbar() {
           <button
             onClick={() => setMobileOpen((o) => !o)}
             aria-label="Toggle menu"
-            className="md:hidden p-2 rounded-md text-navy-900 hover:bg-navy-50 transition-colors"
+            className="lg:hidden p-2 rounded-md text-navy-900 hover:bg-navy-50 transition-colors"
           >
             <div className="flex flex-col gap-[5px] w-5">
               <span className={["block h-[1.5px] w-full bg-current transition-all duration-200", mobileOpen ? "translate-y-[6.5px] rotate-45" : ""].join(" ")} />
@@ -126,7 +127,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.22, ease: EASE }}
-            className="md:hidden overflow-hidden border-t border-slate-100 bg-white/96 backdrop-blur-lg"
+            className="lg:hidden overflow-hidden border-t border-slate-100 bg-white/96 backdrop-blur-lg"
           >
             <div className="px-6 pb-6 pt-4 flex flex-col gap-1">
               {navLinks.map((link) => (
@@ -140,7 +141,7 @@ export function Navbar() {
                 </a>
               ))}
               <div className="pt-4 flex flex-col gap-2 border-t border-slate-100 mt-2">
-                <Button variant="secondary" onClick={() => { setMobileOpen(false); window.Tawk_API?.maximize?.(); }}>Talk to 321 Swipe</Button>
+                <Button variant="secondary" onClick={() => { setMobileOpen(false); openChat(); }}>Talk to 321 Swipe</Button>
                 <Button variant="primary" href="https://upload.321swipe.com">Request a Review</Button>
               </div>
             </div>

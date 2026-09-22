@@ -1,5 +1,6 @@
 "use client";
 
+import { openChat } from "@/app/lib/chat";
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import { PhotoFrame } from "@/app/components/ui/PhotoFrame";
@@ -103,7 +104,7 @@ export function ClosingCta({
             )}
             <Button
               variant="ghost"
-              onClick={() => window.Tawk_API?.maximize?.()}
+              onClick={() => openChat()}
               className="text-navy-100 hover:text-white hover:bg-white/10 text-sm px-7 py-3.5 border border-white/15"
             >
               {secondaryLabel}

@@ -6,6 +6,17 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ["pdfkit"],
   // The application PDF embeds the logo from disk at request time.
   outputFileTracingIncludes: { "/api/apply": ["./public/logo-print.png"] },
+  // One preferred host: www → apex (301). Vercel serves both; search engines should see one.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.321swipe.com" }],
+        destination: "https://321swipe.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

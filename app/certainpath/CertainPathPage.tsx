@@ -1,4 +1,5 @@
 "use client";
+import { openChat } from "@/app/lib/chat";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -17,7 +18,7 @@ import type { PhotoMap } from "@/app/lib/photos";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 const openModal = () => window.dispatchEvent(new Event("open-lead-modal"));
-const openChat  = () => window.Tawk_API?.maximize?.();
+
 
 const icon = (d: React.ReactNode, size = "w-5 h-5") => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className={size}>{d}</svg>

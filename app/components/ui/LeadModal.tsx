@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { EASE } from "@/app/lib/animations";
 import { track } from "@/app/lib/analytics";
@@ -35,6 +35,35 @@ export function LeadModal() {
   }, [open]);
 
   const close = useCallback(() => setOpen(false), []);
+
+  // Dialog behaviour: remember the opener, move focus in, trap Tab, close on Escape, restore focus on close.
+  const panelRef = useRef<HTMLDivElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    if (!open) return;
+    openerRef.current = document.activeElement as HTMLElement | null;
+    const panel = panelRef.current;
+    const focusables = () =>
+      Array.from(panel?.querySelectorAll<HTMLElement>('input, button, [href], select, textarea, [tabindex]:not([tabindex="-1"])') ?? [])
+        .filter((el) => !el.hasAttribute("disabled"));
+    const t = window.setTimeout(() => (focusables().find((el) => el.tagName === "INPUT") ?? focusables()[0])?.focus(), 60);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { e.preventDefault(); close(); return; }
+      if (e.key !== "Tab") return;
+      const els = focusables();
+      if (!els.length) return;
+      const first = els[0], last = els[els.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      if (e.shiftKey && (active === first || !panel?.contains(active))) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && (active === last || !panel?.contains(active))) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      window.clearTimeout(t);
+      document.removeEventListener("keydown", onKey);
+      openerRef.current?.focus?.();
+    };
+  }, [open, close]);
 
   const field = (k: keyof typeof form) => ({
     value: form[k],
@@ -87,6 +116,10 @@ export function LeadModal() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 18 }}
               transition={{ duration: 0.26, ease: EASE }}
+              ref={panelRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="lead-modal-title"
               onClick={e => e.stopPropagation()}
               className="relative w-full max-w-lg pointer-events-auto rounded-2xl overflow-y-auto max-h-[92vh]"
               style={{
@@ -96,7 +129,9 @@ export function LeadModal() {
             >
               {/* Close */}
               <button
+                type="button"
                 onClick={close}
+                aria-label="Close"
                 className="absolute top-4 right-4 z-10 w-7 h-7 rounded-full bg-navy-800/60 flex items-center justify-center text-navy-100/50 hover:text-white hover:bg-navy-700/60 transition-colors"
               >
                 <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5">
@@ -112,7 +147,7 @@ export function LeadModal() {
                       <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Request Received</h3>
+                  <h3 id="lead-modal-title" className="text-xl font-bold text-white mb-2">Request Received</h3>
                   <p className="text-sm text-navy-100/55 leading-relaxed mb-2 max-w-xs mx-auto">
                     We&apos;ll reach out within one business day. Your advisor will request your processor statement directly when we connect.
                   </p>
@@ -133,7 +168,7 @@ export function LeadModal() {
                       <div className="w-1.5 h-1.5 rounded-full bg-accent-400 animate-pulse" />
                       <span className="text-[10px] font-semibold uppercase tracking-widest text-navy-100/40">Free · No obligation</span>
                     </div>
-                    <h2 className="text-lg font-bold text-white leading-snug">Request a Free Statement Review</h2>
+                    <h2 id="lead-modal-title" className="text-lg font-bold text-white leading-snug">Request a Free Statement Review</h2>
                     <p className="text-xs text-navy-100/50 mt-1.5 leading-relaxed">
                       We&apos;ll analyze your processor statement and show you exactly what you&apos;re paying — and where you&apos;re overpaying.
                     </p>
@@ -143,33 +178,33 @@ export function LeadModal() {
                     {/* Name + Company */}
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className={LABEL}>Name *</label>
-                        <input required type="text" placeholder="Mike H." className={INPUT} {...field("name")} />
+                        <label htmlFor="lead-name" className={LABEL}>Name *</label>
+                        <input id="lead-name" name="name" autoComplete="name" required type="text" placeholder="Mike H." className={INPUT} {...field("name")} />
                       </div>
                       <div>
-                        <label className={LABEL}>Company *</label>
-                        <input required type="text" placeholder="Apex Roofing LLC" className={INPUT} {...field("company")} />
+                        <label htmlFor="lead-company" className={LABEL}>Company *</label>
+                        <input id="lead-company" name="company" autoComplete="organization" required type="text" placeholder="Apex Roofing LLC" className={INPUT} {...field("company")} />
                       </div>
                     </div>
 
                     {/* Email + Phone */}
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className={LABEL}>Email *</label>
-                        <input required type="email" placeholder="you@company.com" className={INPUT} {...field("email")} />
+                        <label htmlFor="lead-email" className={LABEL}>Email *</label>
+                        <input id="lead-email" name="email" autoComplete="email" required type="email" placeholder="you@company.com" className={INPUT} {...field("email")} />
                       </div>
                       <div>
-                        <label className={LABEL}>Phone *</label>
-                        <input required type="tel" placeholder="(555) 000-0000" className={INPUT} {...field("phone")} />
+                        <label htmlFor="lead-phone" className={LABEL}>Phone *</label>
+                        <input id="lead-phone" name="phone" autoComplete="tel" required type="tel" placeholder="(555) 000-0000" className={INPUT} {...field("phone")} />
                       </div>
                     </div>
 
                     {/* Processor */}
                     <div>
-                      <label className={LABEL}>
+                      <label htmlFor="lead-processor" className={LABEL}>
                         Current Processor <span className="normal-case font-normal opacity-60">(optional)</span>
                       </label>
-                      <input type="text" placeholder="e.g. Heartland, Square, Stripe…" className={INPUT} {...field("processor")} />
+                      <input id="lead-processor" name="processor" type="text" placeholder="e.g. Heartland, Square, Stripe…" className={INPUT} {...field("processor")} />
                     </div>
 
                     {/* Statement note */}

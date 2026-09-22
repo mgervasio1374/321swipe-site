@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/app/components/navigation/Navbar";
 import { HeroSection } from "@/app/components/hero/HeroSection";
 import { TradesMarquee } from "@/app/components/sections/TradesMarquee";
@@ -10,6 +11,10 @@ import { ServicesSection } from "@/app/components/sections/ServicesSection";
 import { AdvisorySection } from "@/app/components/sections/AdvisorySection";
 import { CtaSection } from "@/app/components/sections/CtaSection";
 import { loadPhotos } from "@/app/lib/photos";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://321swipe.com/" },
+};
 
 export default function Home() {
   // Resolved at build time: real photo from /public/photos, or null → placeholder.

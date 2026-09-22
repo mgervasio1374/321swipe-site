@@ -1,5 +1,6 @@
 "use client";
 
+import { openChat } from "@/app/lib/chat";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -66,7 +67,7 @@ export function SiteFooter() {
               link.href === "#chat" ? (
                 <button
                   key={link.label}
-                  onClick={() => window.Tawk_API?.maximize?.()}
+                  onClick={() => openChat()}
                   className="text-left text-[13px] text-navy-100/60 hover:text-white transition-colors"
                 >
                   {link.label}
