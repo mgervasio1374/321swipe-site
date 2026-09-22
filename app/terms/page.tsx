@@ -46,7 +46,7 @@ export default function Page() {
             <>
               <p>When you send us a processing statement, we review it and tell you, in plain English, what the fees are, which ones we think are avoidable or negotiable, and what we would do about them. The review is free and there is no obligation to become a customer.</p>
               <p>A review is our professional opinion based on the statement you send and the information you give us. It is not a guarantee of savings. Actual costs depend on your card mix, ticket sizes, how transactions are accepted, the terms of any new agreement and factors outside our control, including interchange rates set by the card networks. Where we quote an estimated saving, it is an estimate.</p>
-              <p>You are responsible for making sure you are allowed to share the statement with us and that it does not contain cardholder data. Please do not send full card numbers or bank account numbers.</p>
+              <p>You are responsible for making sure you are allowed to share the statement with us and that it does not contain cardholder data. Please do not send full card numbers or bank account numbers with a statement; banking details are collected only through the secure merchant application when you open an account.</p>
             </>
           ),
         },
@@ -94,7 +94,7 @@ export default function Page() {
           body: (
             <>
               <p>The site links to third-party sites, including our secure upload portal, partner organizations and processors. Those sites have their own terms and privacy policies, which govern your use of them. Mentioning a partner on the site does not mean the partner endorses any particular processor or outcome.</p>
-              <p>{COMPANY} is an independent sales organization / merchant services provider. Processing accounts are provided by our partner processors and their sponsor banks under their agreements. [Insert the registered ISO/MSP disclosure exactly as your processor requires it.]</p>
+              <p>{COMPANY} is an Elavon&reg; payments partner and a registered MSP/ISO of Elavon, Inc. Merchant services are provided by and subject to approval by Elavon, Inc. Processing accounts are governed by the merchant agreement you sign with Elavon and its sponsor bank, not by these terms.</p>
             </>
           ),
         },

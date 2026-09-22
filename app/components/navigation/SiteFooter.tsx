@@ -53,10 +53,10 @@ export function SiteFooter() {
           <p className="text-[12.5px] text-navy-100/45 leading-relaxed max-w-[300px]">
             Independent, contractor-first payment intelligence for the trades.
           </p>
-          {/* TODO: Replace with the registered ISO/MSP disclosure once legal language is provided. */}
+          {/* Disclosure per Elavon brand & partner guidelines (US-based MSP). */}
           <p className="text-[11px] text-navy-100/30 leading-relaxed max-w-[340px]">
-            321 Swipe is an independent payment advisory and processing partner for home service
-            contractors.
+            321 Swipe is an Elavon&reg; payments partner and a registered MSP/ISO of Elavon, Inc.
+            Merchant services are provided by and subject to approval by Elavon, Inc.
           </p>
         </div>
         {footerColumns.map((col) => (
