@@ -156,7 +156,7 @@ export function Grader() {
 
             <div className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3">
               <a
-                href="https://upload.321swipe.com"
+                href="https://app.321swipe.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track({ name: "grader_cta", grade: grade.letter })}

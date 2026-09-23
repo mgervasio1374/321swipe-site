@@ -252,7 +252,7 @@ export function AnalysisCard() {
             </span>
           </div>
           <a
-            href="https://upload.321swipe.com"
+            href="https://app.321swipe.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-accent-400 font-semibold hover:text-accent-300 transition-colors"

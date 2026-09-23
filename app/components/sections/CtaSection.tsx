@@ -15,7 +15,7 @@ export function CtaSection({ photo }: { photo: string | null }) {
         </>
       }
       body="Many contractors discover hundreds of dollars per month in avoidable fees during their first review. A free statement review gives you a clear picture of what you are paying — and what you should not be."
-      primary={{ label: "Request a Free Statement Review", href: "https://upload.321swipe.com" }}
+      primary={{ label: "Request a Free Statement Review", href: "https://app.321swipe.com" }}
       trustPoints={["Free statement review", "Answer in plain English", "No setup fees", "Cancel any month"]}
     />
   );

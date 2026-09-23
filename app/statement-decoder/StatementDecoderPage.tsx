@@ -136,7 +136,7 @@ export function StatementDecoderPage({ photos, variant }: { photos: PhotoMap; va
           badge={variant?.closing.badge ?? "Free statement review"}
           title={variant?.closing.title ?? "Now decode yours."}
           body={variant?.closing.body ?? "Send one recent statement — a photo from your phone is fine. Within a few business days you'll get it back marked up exactly like this one: every line labeled, every avoidable fee totaled, and a plain answer on what to do next."}
-          primary={variant ? variant.cta : { label: "Request a statement review", href: "https://upload.321swipe.com" }}
+          primary={variant ? variant.cta : { label: "Request a statement review", href: "https://app.321swipe.com" }}
           trustPoints={["Free, no obligation", "Marked up like the sample above", "Reviewed by a person, not a form", "Month-to-month if you switch"]}
         />
       </main>

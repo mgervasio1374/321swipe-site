@@ -163,10 +163,10 @@ class Layout {
     opts.forEach((o, i) => {
       const cx = M + (i % perRow) * cw;
       const cy = this.y + 13 + Math.floor(i / perRow) * 13;
+      // Always draw the box so it shows in every viewer; the form widget sits on top when fillable.
+      d.rect(cx, cy, 8, 8).lineWidth(0.7).fillAndStroke(this.fillable ? "#f4f8ff" : WHITE, "#9aa5b5");
       if (this.fillable) {
-        d.formCheckbox(this.fieldName(`${label}_${o}`), cx - 0.5, cy - 0.5, 9, 9, { backgroundColor: "#f4f8ff", borderColor: "#9aa5b5" });
-      } else {
-        d.rect(cx, cy, 8, 8).lineWidth(0.7).strokeColor("#9aa5b5").stroke();
+        d.formCheckbox(this.fieldName(`${label}_${o}`), cx, cy, 8, 8);
       }
       d.fillColor(INK).font("Helvetica").fontSize(8).text(o, cx + 12, cy - 0.5, { width: cw - 14, lineBreak: false });
     });
@@ -205,7 +205,7 @@ function header(d: Doc, L: Layout, blank: boolean, meta?: RenderMeta, logoPath?:
   d.fillColor(MUTED).font("Helvetica").fontSize(8).text(
     blank
       ? fillable
-        ? "Fill in, save, and return securely at upload.321swipe.com — or apply online at 321swipe.com/apply"
+        ? "Fill in, save, and return securely at app.321swipe.com — or apply online at 321swipe.com/apply"
         : "Complete online at 321swipe.com/apply, or email this form to sales@321swipe.com"
       : `Reference ${meta?.reference ?? ""}  ·  Submitted ${meta ? fmtDate(meta.submittedAt) : ""}`,
     M + 110, M + 17, { width: CONTENT_W - 110, align: "right", lineBreak: false },
@@ -223,7 +223,7 @@ function footer(d: Doc, blank: boolean, password?: string) {
     d.page.margins.bottom = 0;
     d.fillColor(MUTED).font("Helvetica").fontSize(7);
     const left = blank
-      ? "321 Swipe · sales@321swipe.com · Contains personal and banking details — return via upload.321swipe.com rather than plain email when possible."
+      ? "321 Swipe · sales@321swipe.com · Contains personal and banking details — return via app.321swipe.com rather than plain email when possible."
       : password
         ? "CONFIDENTIAL — contains personal and banking information. Encrypted; do not forward outside 321 Swipe."
         : "CONFIDENTIAL — contains personal and banking information.";

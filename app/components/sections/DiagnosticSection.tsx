@@ -137,7 +137,7 @@ export function DiagnosticSection({ photo }: { photo: string | null }) {
             <ScrollReveal delay={0.32}>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <a
-                  href="https://upload.321swipe.com"
+                  href="https://app.321swipe.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg bg-navy-900 text-white text-sm font-semibold px-5 py-2.5 hover:bg-navy-800 transition-colors"

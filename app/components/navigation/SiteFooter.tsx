@@ -29,7 +29,7 @@ const footerColumns = [
   {
     heading: "Get in touch",
     links: [
-      { label: "Request a statement review", href: "https://upload.321swipe.com" },
+      { label: "Request a statement review", href: "https://app.321swipe.com" },
       { label: "Talk to 321 Swipe", href: "#chat" },
     ],
   },

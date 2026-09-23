@@ -121,7 +121,7 @@ export function FeeIndexPage({ photos }: { photos: PhotoMap }) {
           badge="Free statement review"
           title="Which of these are you paying?"
           body="Send a recent statement and we'll show you which of these lines are on it, which are fair, and which shouldn't be there at all."
-          primary={{ label: "Request a statement review", href: "https://upload.321swipe.com" }}
+          primary={{ label: "Request a statement review", href: "https://app.321swipe.com" }}
           trustPoints={["Free", "Every line labeled", "No sales pitch on the first call"]}
         />
       </main>

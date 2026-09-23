@@ -90,7 +90,7 @@ export function HeroSection({ photo }: HeroSectionProps) {
 
           <motion.div {...fadeUp(0.43)} className="mt-7 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <motion.a
-              href="https://upload.321swipe.com"
+              href="https://app.321swipe.com"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track({ name: "review_cta", page: "/", placement: "hero" })}
