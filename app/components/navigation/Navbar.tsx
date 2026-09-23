@@ -89,7 +89,7 @@ export function Navbar() {
               Talk to 321 Swipe
             </button>
             <motion.a
-              href="https://upload.321swipe.com"
+              href="https://app.321swipe.com"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
@@ -142,7 +142,7 @@ export function Navbar() {
               ))}
               <div className="pt-4 flex flex-col gap-2 border-t border-slate-100 mt-2">
                 <Button variant="secondary" onClick={() => { setMobileOpen(false); openChat(); }}>Talk to 321 Swipe</Button>
-                <Button variant="primary" href="https://upload.321swipe.com">Request a Review</Button>
+                <Button variant="primary" href="https://app.321swipe.com">Request a Review</Button>
               </div>
             </div>
           </motion.div>

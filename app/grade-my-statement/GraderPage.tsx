@@ -55,7 +55,7 @@ export function GraderPage({ photos }: { photos: PhotoMap }) {
           badge="Free statement review"
           title="Want the real grade?"
           body="The quiz scores your answers. A review scores the statement itself. Send one and see how close the guess was."
-          primary={{ label: "Request a statement review", href: "https://upload.321swipe.com" }}
+          primary={{ label: "Request a statement review", href: "https://app.321swipe.com" }}
           trustPoints={["Free", "Compare it to your quiz grade", "No obligation either way"]}
         />
       </main>

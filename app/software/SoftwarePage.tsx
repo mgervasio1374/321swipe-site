@@ -218,7 +218,7 @@ export function SoftwarePage({ photos, shots }: { photos: PhotoMap; shots: Recor
           badge="Try the real thing"
           title="Software is the demo. The review is the product."
           body="Send one recent statement and get it back the way the tools above show it — your numbers, your fees, your fix."
-          primary={{ label: "Request a statement review", href: "https://upload.321swipe.com" }}
+          primary={{ label: "Request a statement review", href: "https://app.321swipe.com" }}
           trustPoints={["Free", "Same tools, your numbers", "No obligation"]}
         />
       </main>

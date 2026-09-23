@@ -258,8 +258,8 @@ export function RepPage({ rep, photos }: { rep: Rep; photos: PhotoMap }) {
                 <ScrollReveal delay={0.3}>
                   <p className="mt-5 text-[12px] text-slate-400 leading-relaxed max-w-md">
                     Prefer the secure portal? You can also{" "}
-                    <a href={`https://upload.321swipe.com?rep=${rep.portalTag}`} target="_blank" rel="noopener noreferrer" className="underline hover:text-navy-900">
-                      upload a statement at upload.321swipe.com
+                    <a href={`https://app.321swipe.com?rep=${rep.portalTag}`} target="_blank" rel="noopener noreferrer" className="underline hover:text-navy-900">
+                      upload a statement at app.321swipe.com
                     </a>{" "}
                     and it will be routed to {n}.
                   </p>

@@ -112,7 +112,7 @@ export const SOFTWARE: SoftwareItem[] = [
       "A dedicated portal where a business drops a PDF or a phone photo of its statement and it lands with a 321 Swipe analyst. Rep and partner pages tag their uploads so each review routes to the right person.",
     category: "Operations",
     status: "live",
-    href: "https://upload.321swipe.com",
+    href: "https://app.321swipe.com",
     audience: "Every prospect",
     tags: ["PDF or photo", "Rep routing", "Analyst queue"],
     tone: "navy",

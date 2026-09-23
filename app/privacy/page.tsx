@@ -86,7 +86,7 @@ export default function Page() {
             <>
               <p>Your information is seen by the 321 Swipe people who work on your review or account, including the representative whose page you used. Beyond that, we share it only with:</p>
               <ul>
-                <li><strong>Service providers</strong> that run parts of the site for us: our hosting provider (Vercel), the form-delivery services that route contact-form submissions to our inboxes (Web3Forms and FormSubmit), our live-chat provider (Tawk.to), our email provider, and the secure upload portal at upload.321swipe.com. Each receives only what it needs to do its job.</li>
+                <li><strong>Service providers</strong> that run parts of the site for us: our hosting provider (Vercel), the form-delivery services that route contact-form submissions to our inboxes (Web3Forms and FormSubmit), our live-chat provider (Tawk.to), our email provider, and the secure upload portal at app.321swipe.com. Each receives only what it needs to do its job.</li>
                 <li><strong>Partner processors and banks</strong>, but only when you ask us to set up or price a processing account. They will have their own agreements and privacy notices.</li>
                 <li><strong>Partner organizations</strong> such as CertainPath or Blue Collar Success Group, limited to confirming that a member used the program, and only where that is part of the member benefit. We do not share your statement, pricing or account details with partner organizations.</li>
                 <li><strong>Authorities</strong>, if we are legally required to, or to protect the rights and safety of 321 Swipe, our customers or others.</li>

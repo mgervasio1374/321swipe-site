@@ -182,7 +182,7 @@ export function FeePage({ fee, photos }: { fee: Fee; photos: PhotoMap }) {
           badge="Free statement review"
           title={<>Is this on your statement?</>}
           body="Send it and we'll tell you — along with everything else on there that shouldn't be. A phone photo of the fee page is enough."
-          primary={{ label: "Request a statement review", href: "https://upload.321swipe.com" }}
+          primary={{ label: "Request a statement review", href: "https://app.321swipe.com" }}
           trustPoints={["Free", "Nothing to sign", "An analyst reads it, not software"]}
         />
       </main>

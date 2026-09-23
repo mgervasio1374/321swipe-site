@@ -238,7 +238,7 @@ function StatementRow({ fee, index, active, flagOn, onHover, onSelect }: RowProp
 
 // ── The decoder ───────────────────────────────────────────────────────────────
 
-export function StatementDecoder({ sample, tradePhrase = "a roofing company", cta = { label: "Decode my statement", href: "https://upload.321swipe.com" }, variant = "default" }: DecoderProps = {}) {
+export function StatementDecoder({ sample, tradePhrase = "a roofing company", cta = { label: "Decode my statement", href: "https://app.321swipe.com" }, variant = "default" }: DecoderProps = {}) {
   const SAMPLE = { ...DEFAULT_SAMPLE, ...sample };
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const [pinned, setPinned] = useState<string | null>(null);

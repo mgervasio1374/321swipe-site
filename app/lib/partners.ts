@@ -31,7 +31,7 @@ export const PARTNER_DECODERS: Record<string, DecoderVariant> = {
       address: "2210 Refugee Rd · Columbus, OH 43207",
       merchantId: "4412 0087 5520",
     },
-    cta: { label: "Request my free member review", href: "https://upload.321swipe.com?partner=certainpath" },
+    cta: { label: "Request my free member review", href: "https://app.321swipe.com?partner=certainpath" },
     closing: {
       badge: "Free for CertainPath members",
       title: "Now decode yours.",
@@ -50,7 +50,7 @@ export const PARTNER_DECODERS: Record<string, DecoderVariant> = {
       address: "4480 Blue Mound Rd · Fort Worth, TX 76106",
       merchantId: "4412 0087 7714",
     },
-    cta: { label: "Request my free member review", href: "https://upload.321swipe.com?partner=bcsg" },
+    cta: { label: "Request my free member review", href: "https://app.321swipe.com?partner=bcsg" },
     closing: {
       badge: "Free for Blue Collar Success Group members",
       title: "Now decode yours.",

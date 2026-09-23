@@ -430,7 +430,7 @@ export function AdvisoryPage({ photos }: { photos: PhotoMap }) {
                   Talk to an advisor
                 </button>
                 <a
-                  href="https://upload.321swipe.com"
+                  href="https://app.321swipe.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-6 py-3 text-sm font-medium text-navy-900 hover:border-slate-300 hover:bg-slate-50 transition-colors"
