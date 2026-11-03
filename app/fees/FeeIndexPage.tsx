@@ -6,7 +6,7 @@ import { SubpageHeader } from "@/app/components/navigation/SubpageHeader";
 import { ClosingCta } from "@/app/components/sections/ClosingCta";
 import { ScrollReveal } from "@/app/components/ui/ScrollReveal";
 import { EASE } from "@/app/lib/animations";
-import { FEES, GROUPS, VERDICTS, feesInGroup, money, type Verdict } from "@/app/lib/fees";
+import { FEES, GROUPS, SAMPLE, VERDICTS, feesInGroup, money, type Verdict } from "@/app/lib/fees";
 import type { PhotoMap } from "@/app/lib/photos";
 
 const openModal = () => window.dispatchEvent(new Event("open-lead-modal"));
@@ -70,6 +70,11 @@ export function FeeIndexPage({ photos }: { photos: PhotoMap }) {
 
         <section className="py-16 lg:py-20 bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-12">
+            <p className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-[13px] text-slate-600 leading-relaxed">
+              <b className="font-semibold text-navy-900">Dollar amounts are examples.</b> Each one is from a sample
+              statement for a home-service contractor running ${SAMPLE.volume.toLocaleString("en-US")} a month in card sales, not from
+              your statement.
+            </p>
             {GROUPS.map((g, gi) => (
               <ScrollReveal key={g.id} delay={0.04 * gi}>
                 <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-6 lg:gap-16">
@@ -87,7 +92,7 @@ export function FeeIndexPage({ photos }: { photos: PhotoMap }) {
                             <span className="block text-[12.5px] text-slate-400 truncate">{f.plainEnglish.split(". ")[0]}.</span>
                           </span>
                           <span className="text-[12px] text-slate-400 tabular-nums font-mono whitespace-nowrap">
-                            {f.sampleAmount !== null ? money(f.sampleAmount) : "terms"}
+                            {f.sampleAmount !== null ? <><span className="sr-only">Sample amount: </span>{money(f.sampleAmount)}</> : "terms"}
                           </span>
                         </Link>
                       </li>
